@@ -1,37 +1,21 @@
 # ninja log v6
-26	474	7505299233468605	TcpClient_autogen/timestamp	c61ab048507b911c
-475	2747	7505299237953194	CMakeFiles/TcpClient.dir/tcpclient.cpp.obj	9ef124149cbbf996
-26	474	7505299233468605	TcpClient_autogen/mocs_compilation.cpp	c61ab048507b911c
-26	474	7505299233468605	D:/C++/Cloud Drive/TcpClient/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpClient_autogen/timestamp	c61ab048507b911c
-26	474	7505299233468605	D:/C++/Cloud Drive/TcpClient/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpClient_autogen/mocs_compilation.cpp	c61ab048507b911c
-1792	4263	7505291335142248	CMakeFiles/TcpClient.dir/TcpClient_autogen/mocs_compilation.cpp.obj	e5e2c9b2399c79b5
-1872	4356	7505291335936597	CMakeFiles/TcpClient.dir/main.cpp.obj	43e57aedbd31433
-2747	3106	7505299260684974	TcpClient.exe	15917fba0a34b32d
-1563	1792	7505291334948024	D:/C++/Cloud Drive/TcpClient/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpClient_autogen/EWIEGA46WW/qrc_config.cpp	624896b9cc1c1f1
-1563	1792	7505291334948024	TcpClient_autogen/EWIEGA46WW/qrc_config.cpp	624896b9cc1c1f1
-2073	2642	7505291337944744	CMakeFiles/TcpClient.dir/TcpClient_autogen/EWIEGA46WW/qrc_config.cpp.obj	bb6a7abcf634e1d4
-20	1382	7505307083077454	TcpClient_autogen/timestamp	c61ab048507b911c
-20	1382	7505307083077454	TcpClient_autogen/mocs_compilation.cpp	c61ab048507b911c
-20	1382	7505307083077454	D:/C++/Cloud Drive/TcpClient/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpClient_autogen/timestamp	c61ab048507b911c
-20	1382	7505307083077454	D:/C++/Cloud Drive/TcpClient/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpClient_autogen/mocs_compilation.cpp	c61ab048507b911c
-1642	2005	7505307087223841	CMakeFiles/TcpClient.dir/TcpClient_autogen/EWIEGA46WW/qrc_config.cpp.obj	5067bc9e668a3ce1
-1383	3805	7505307084630307	CMakeFiles/TcpClient.dir/TcpClient_autogen/mocs_compilation.cpp.obj	5d0a57913fd96c19
-1457	3894	7505307085381631	CMakeFiles/TcpClient.dir/main.cpp.obj	ad9bb448a1b22298
-1531	4083	7505307086119638	CMakeFiles/TcpClient.dir/tcpclient.cpp.obj	324e0e4bcddc50bc
-4083	4486	7505307111627697	TcpClient.exe	7cc05591cd60db5a
-28	1153	7505315974802409	TcpClient_autogen/timestamp	c61ab048507b911c
-28	1153	7505315974802409	TcpClient_autogen/mocs_compilation.cpp	c61ab048507b911c
-28	1153	7505315974802409	D:/C++/Cloud Drive/TcpClient/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpClient_autogen/timestamp	c61ab048507b911c
-28	1153	7505315974802409	D:/C++/Cloud Drive/TcpClient/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpClient_autogen/mocs_compilation.cpp	c61ab048507b911c
-1154	3643	7505315976399636	CMakeFiles/TcpClient.dir/TcpClient_autogen/mocs_compilation.cpp.obj	5d0a57913fd96c19
-1226	3756	7505315977128849	CMakeFiles/TcpClient.dir/main.cpp.obj	ad9bb448a1b22298
-1308	3935	7505315977945230	CMakeFiles/TcpClient.dir/tcpclient.cpp.obj	324e0e4bcddc50bc
-3935	4325	7505316004220445	TcpClient.exe	7cc05591cd60db5a
 26	1046	7505336226913119	TcpClient_autogen/timestamp	c61ab048507b911c
+1188	3753	7505336229830104	CMakeFiles/TcpClient.dir/tcpclient.cpp.obj	324e0e4bcddc50bc
 26	1046	7505336226913119	TcpClient_autogen/mocs_compilation.cpp	c61ab048507b911c
 26	1046	7505336226913119	D:/C++/Cloud Drive/TcpClient/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpClient_autogen/timestamp	c61ab048507b911c
 26	1046	7505336226913119	D:/C++/Cloud Drive/TcpClient/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpClient_autogen/mocs_compilation.cpp	c61ab048507b911c
 1047	3473	7505336228417104	CMakeFiles/TcpClient.dir/TcpClient_autogen/mocs_compilation.cpp.obj	5d0a57913fd96c19
 1116	3609	7505336229101765	CMakeFiles/TcpClient.dir/main.cpp.obj	ad9bb448a1b22298
-1188	3753	7505336229830104	CMakeFiles/TcpClient.dir/tcpclient.cpp.obj	324e0e4bcddc50bc
 3753	4107	7505336255484377	TcpClient.exe	7cc05591cd60db5a
+1563	1792	7505291334948024	D:/C++/Cloud Drive/TcpClient/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpClient_autogen/EWIEGA46WW/qrc_config.cpp	624896b9cc1c1f1
+1563	1792	7505291334948024	TcpClient_autogen/EWIEGA46WW/qrc_config.cpp	624896b9cc1c1f1
+1642	2005	7505307087223841	CMakeFiles/TcpClient.dir/TcpClient_autogen/EWIEGA46WW/qrc_config.cpp.obj	5067bc9e668a3ce1
+25	1197	7506003741173809	TcpClient_autogen/timestamp	c61ab048507b911c
+25	1197	7506003741173809	TcpClient_autogen/mocs_compilation.cpp	c61ab048507b911c
+25	1197	7506003741173809	D:/C++/Cloud Drive/TcpClient/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpClient_autogen/timestamp	c61ab048507b911c
+25	1197	7506003741173809	D:/C++/Cloud Drive/TcpClient/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpClient_autogen/mocs_compilation.cpp	c61ab048507b911c
+1484	1868	7506003745573206	CMakeFiles/TcpClient.dir/protocol.cpp.obj	8b24519a7115ddc1
+1197	3544	7506003742700382	CMakeFiles/TcpClient.dir/TcpClient_autogen/mocs_compilation.cpp.obj	5d0a57913fd96c19
+1281	3676	7506003743540533	CMakeFiles/TcpClient.dir/main.cpp.obj	ad9bb448a1b22298
+1365	3979	7506003744374366	CMakeFiles/TcpClient.dir/tcpclient.cpp.obj	324e0e4bcddc50bc
+3979	4351	7506003770516075	TcpClient.exe	2a2f199014a1928c

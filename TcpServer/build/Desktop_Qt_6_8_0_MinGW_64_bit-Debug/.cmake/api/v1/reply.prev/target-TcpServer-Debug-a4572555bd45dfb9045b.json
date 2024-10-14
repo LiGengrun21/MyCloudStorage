@@ -2,10 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "TcpClient.exe"
+			"path" : "TcpServer.exe"
 		},
 		{
-			"path" : "TcpClient.pdb"
+			"path" : "TcpServer.pdb"
 		}
 	],
 	"backtrace" : 4,
@@ -77,13 +77,13 @@
 			{
 				"command" : 4,
 				"file" : 1,
-				"line" : 63,
+				"line" : 65,
 				"parent" : 0
 			},
 			{
 				"command" : 5,
 				"file" : 1,
-				"line" : 46,
+				"line" : 48,
 				"parent" : 0
 			},
 			{
@@ -354,7 +354,7 @@
 			[
 				{
 					"backtrace" : 0,
-					"path" : "D:/C++/Cloud Drive/TcpClient/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpClient_autogen/include"
+					"path" : "D:/C++/Cloud Drive/TcpServer/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpServer_autogen/include"
 				},
 				{
 					"backtrace" : 23,
@@ -402,21 +402,23 @@
 				0,
 				1,
 				2,
-				8
+				7,
+				9,
+				12
 			]
 		}
 	],
 	"dependencies" : 
 	[
 		{
-			"id" : "TcpClient_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
+			"backtrace" : 0,
+			"id" : "TcpServer_autogen::@6890427a1f51a3e7e1df"
 		},
 		{
-			"backtrace" : 0,
-			"id" : "TcpClient_autogen::@6890427a1f51a3e7e1df"
+			"id" : "TcpServer_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
 		}
 	],
-	"id" : "TcpClient::@6890427a1f51a3e7e1df",
+	"id" : "TcpServer::@6890427a1f51a3e7e1df",
 	"install" : 
 	{
 		"destinations" : 
@@ -428,7 +430,7 @@
 		],
 		"prefix" : 
 		{
-			"path" : "C:/Program Files (x86)/TcpClient"
+			"path" : "C:/Program Files (x86)/TcpServer"
 		}
 	},
 	"link" : 
@@ -520,8 +522,8 @@
 		],
 		"language" : "CXX"
 	},
-	"name" : "TcpClient",
-	"nameOnDisk" : "TcpClient.exe",
+	"name" : "TcpServer",
+	"nameOnDisk" : "TcpServer.exe",
 	"paths" : 
 	{
 		"build" : ".",
@@ -536,7 +538,9 @@
 				0,
 				1,
 				2,
-				8
+				7,
+				9,
+				12
 			]
 		},
 		{
@@ -544,7 +548,9 @@
 			"sourceIndexes" : 
 			[
 				3,
-				6
+				6,
+				8,
+				10
 			]
 		},
 		{
@@ -553,15 +559,15 @@
 			[
 				4,
 				5,
-				7
+				11
 			]
 		},
 		{
 			"name" : "CMake Rules",
 			"sourceIndexes" : 
 			[
-				9,
-				10
+				13,
+				14
 			]
 		}
 	],
@@ -571,7 +577,7 @@
 			"backtrace" : 0,
 			"compileGroupIndex" : 0,
 			"isGenerated" : true,
-			"path" : "build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpClient_autogen/mocs_compilation.cpp",
+			"path" : "build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpServer_autogen/mocs_compilation.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -583,17 +589,17 @@
 		{
 			"backtrace" : 4,
 			"compileGroupIndex" : 0,
-			"path" : "tcpclient.cpp",
+			"path" : "tcpserver.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 4,
-			"path" : "tcpclient.h",
+			"path" : "tcpserver.h",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 4,
-			"path" : "tcpclient.ui",
+			"path" : "tcpserver.ui",
 			"sourceGroupIndex" : 2
 		},
 		{
@@ -602,34 +608,56 @@
 			"sourceGroupIndex" : 2
 		},
 		{
+			"backtrace" : 4,
+			"path" : "mytcpserver.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "mytcpserver.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "mytcpsocket.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "mytcpsocket.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
 			"backtrace" : 0,
 			"isGenerated" : true,
-			"path" : "build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpClient_autogen/include/ui_tcpclient.h",
+			"path" : "build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpServer_autogen/include/ui_tcpserver.h",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 0,
 			"isGenerated" : true,
-			"path" : "build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpClient_autogen/timestamp",
+			"path" : "build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpServer_autogen/timestamp",
 			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 0,
 			"compileGroupIndex" : 0,
 			"isGenerated" : true,
-			"path" : "build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpClient_autogen/EWIEGA46WW/qrc_config.cpp",
+			"path" : "build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpServer_autogen/EWIEGA46WW/qrc_config.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 0,
 			"isGenerated" : true,
-			"path" : "build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpClient_autogen/timestamp.rule",
+			"path" : "build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpServer_autogen/timestamp.rule",
 			"sourceGroupIndex" : 3
 		},
 		{
 			"backtrace" : 0,
 			"isGenerated" : true,
-			"path" : "build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpClient_autogen/EWIEGA46WW/qrc_config.cpp.rule",
+			"path" : "build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpServer_autogen/EWIEGA46WW/qrc_config.cpp.rule",
 			"sourceGroupIndex" : 3
 		}
 	],

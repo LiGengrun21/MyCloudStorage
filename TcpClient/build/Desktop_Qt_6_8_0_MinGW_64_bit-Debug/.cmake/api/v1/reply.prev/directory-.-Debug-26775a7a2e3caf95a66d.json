@@ -30,9 +30,9 @@
 			"destination" : "bin",
 			"paths" : 
 			[
-				"TcpServer.exe"
+				"TcpClient.exe"
 			],
-			"targetId" : "TcpServer::@6890427a1f51a3e7e1df",
+			"targetId" : "TcpClient::@6890427a1f51a3e7e1df",
 			"targetIndex" : 0,
 			"type" : "target"
 		}

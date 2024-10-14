@@ -1,8 +1,12 @@
 D:/C++/Cloud\ Drive/TcpServer/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpServer_autogen/EWIEGA46WW/moc_mytcpserver.cpp: D:/C++/Cloud\ Drive/TcpServer/mytcpserver.h \
   D:/C++/Cloud\ Drive/TcpServer/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpServer_autogen/moc_predefs.h \
+  D:/C++/Cloud\ Drive/TcpServer/mytcpsocket.h \
+  D:/C++/Cloud\ Drive/TcpServer/protocol.h \
+  D:/Qt/6.8.0/mingw_64/include/QtCore/QList \
   D:/Qt/6.8.0/mingw_64/include/QtCore/q20functional.h \
   D:/Qt/6.8.0/mingw_64/include/QtCore/q20memory.h \
   D:/Qt/6.8.0/mingw_64/include/QtCore/q20type_traits.h \
+  D:/Qt/6.8.0/mingw_64/include/QtCore/q23utility.h \
   D:/Qt/6.8.0/mingw_64/include/QtCore/qalgorithms.h \
   D:/Qt/6.8.0/mingw_64/include/QtCore/qanystringview.h \
   D:/Qt/6.8.0/mingw_64/include/QtCore/qarraydata.h \
@@ -107,14 +111,17 @@ D:/C++/Cloud\ Drive/TcpServer/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpServe
   D:/Qt/6.8.0/mingw_64/include/QtCore/qtypeinfo.h \
   D:/Qt/6.8.0/mingw_64/include/QtCore/qtypes.h \
   D:/Qt/6.8.0/mingw_64/include/QtCore/qutf8stringview.h \
+  D:/Qt/6.8.0/mingw_64/include/QtCore/qvariant.h \
   D:/Qt/6.8.0/mingw_64/include/QtCore/qvarlengtharray.h \
   D:/Qt/6.8.0/mingw_64/include/QtCore/qversiontagging.h \
   D:/Qt/6.8.0/mingw_64/include/QtCore/qxptype_traits.h \
   D:/Qt/6.8.0/mingw_64/include/QtCore/qyieldcpu.h \
   D:/Qt/6.8.0/mingw_64/include/QtNetwork/QTcpServer \
+  D:/Qt/6.8.0/mingw_64/include/QtNetwork/QTcpSocket \
   D:/Qt/6.8.0/mingw_64/include/QtNetwork/qabstractsocket.h \
   D:/Qt/6.8.0/mingw_64/include/QtNetwork/qhostaddress.h \
   D:/Qt/6.8.0/mingw_64/include/QtNetwork/qtcpserver.h \
+  D:/Qt/6.8.0/mingw_64/include/QtNetwork/qtcpsocket.h \
   D:/Qt/6.8.0/mingw_64/include/QtNetwork/qtnetwork-config.h \
   D:/Qt/6.8.0/mingw_64/include/QtNetwork/qtnetworkexports.h \
   D:/Qt/6.8.0/mingw_64/include/QtNetwork/qtnetworkglobal.h \
@@ -302,6 +309,8 @@ D:/C++/Cloud\ Drive/TcpServer/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpServe
   D:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/crtdefs.h \
   D:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/ctype.h \
   D:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/errno.h \
+  D:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/getopt.h \
+  D:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/io.h \
   D:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/locale.h \
   D:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/process.h \
   D:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/pthread.h \
@@ -321,5 +330,6 @@ D:/C++/Cloud\ Drive/TcpServer/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpServe
   D:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/sys/timeb.h \
   D:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/sys/types.h \
   D:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/time.h \
+  D:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/unistd.h \
   D:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/vadefs.h \
   D:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/wchar.h

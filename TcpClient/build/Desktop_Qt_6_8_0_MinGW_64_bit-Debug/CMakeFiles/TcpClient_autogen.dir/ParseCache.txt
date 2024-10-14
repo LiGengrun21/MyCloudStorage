@@ -2,6 +2,7 @@
 D:/C++/Cloud Drive/TcpClient/tcpclient.h
  mmc:Q_OBJECT
  mdp:D:/C++/Cloud Drive/TcpClient/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpClient_autogen/moc_predefs.h
+ mdp:D:/C++/Cloud Drive/TcpClient/protocol.h
  mdp:D:/C++/Cloud Drive/TcpClient/tcpclient.h
  mdp:D:/Qt/6.8.0/mingw_64/include/QtCore/QFile
  mdp:D:/Qt/6.8.0/mingw_64/include/QtCore/q20functional.h
@@ -379,6 +380,8 @@ D:/C++/Cloud Drive/TcpClient/tcpclient.h
  mdp:D:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/crtdefs.h
  mdp:D:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/ctype.h
  mdp:D:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/errno.h
+ mdp:D:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/getopt.h
+ mdp:D:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/io.h
  mdp:D:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/locale.h
  mdp:D:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/process.h
  mdp:D:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/pthread.h
@@ -398,9 +401,12 @@ D:/C++/Cloud Drive/TcpClient/tcpclient.h
  mdp:D:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/sys/timeb.h
  mdp:D:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/sys/types.h
  mdp:D:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/time.h
+ mdp:D:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/unistd.h
  mdp:D:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/vadefs.h
  mdp:D:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/wchar.h
  mdp:D:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/wctype.h
 D:/C++/Cloud Drive/TcpClient/main.cpp
 D:/C++/Cloud Drive/TcpClient/tcpclient.cpp
  uic:./ui_tcpclient.h
+D:/C++/Cloud Drive/TcpClient/protocol.h
+D:/C++/Cloud Drive/TcpClient/protocol.cpp

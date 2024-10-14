@@ -47,3 +47,20 @@ void TcpClient::showConnect()
 {
     QMessageBox::information(this,"connect to server","Connection is successful");
 }
+
+void TcpClient::on_sendButton_clicked()
+{
+    QString strMsg = ui->lineEdit->text();
+    if (!strMsg.isEmpty()){
+        PDU *pdu = mkPDU(strMsg.size());
+        pdu->uiMsgType = 8888;
+        memcpy(pdu->caMsg,strMsg.toStdString().c_str(),strMsg.size());
+        m_tcpSocket.write((char*)pdu, pdu->uiPDULen); //send the pdu
+        free(pdu);
+        pdu=NULL;
+    }
+    else{
+        QMessageBox::warning(this, "send message", "message cannot be empty");
+    }
+}
+

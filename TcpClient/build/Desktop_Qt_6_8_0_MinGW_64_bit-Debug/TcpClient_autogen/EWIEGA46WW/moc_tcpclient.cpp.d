@@ -1,5 +1,6 @@
 D:/C++/Cloud\ Drive/TcpClient/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpClient_autogen/EWIEGA46WW/moc_tcpclient.cpp: D:/C++/Cloud\ Drive/TcpClient/tcpclient.h \
   D:/C++/Cloud\ Drive/TcpClient/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpClient_autogen/moc_predefs.h \
+  D:/C++/Cloud\ Drive/TcpClient/protocol.h \
   D:/Qt/6.8.0/mingw_64/include/QtCore/QFile \
   D:/Qt/6.8.0/mingw_64/include/QtCore/q20functional.h \
   D:/Qt/6.8.0/mingw_64/include/QtCore/q20iterator.h \
@@ -376,6 +377,8 @@ D:/C++/Cloud\ Drive/TcpClient/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpClien
   D:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/crtdefs.h \
   D:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/ctype.h \
   D:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/errno.h \
+  D:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/getopt.h \
+  D:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/io.h \
   D:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/locale.h \
   D:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/process.h \
   D:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/pthread.h \
@@ -395,6 +398,7 @@ D:/C++/Cloud\ Drive/TcpClient/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpClien
   D:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/sys/timeb.h \
   D:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/sys/types.h \
   D:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/time.h \
+  D:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/unistd.h \
   D:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/vadefs.h \
   D:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/wchar.h \
   D:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/wctype.h

@@ -303,6 +303,18 @@
 			null
 		],
 		[
+			"D:/C++/Cloud Drive/TcpServer/mytcpsocket.h",
+			"MU",
+			"EWIEGA46WW/moc_mytcpsocket.cpp",
+			null
+		],
+		[
+			"D:/C++/Cloud Drive/TcpServer/protocol.h",
+			"MU",
+			"EWIEGA46WW/moc_protocol.cpp",
+			null
+		],
+		[
 			"D:/C++/Cloud Drive/TcpServer/tcpserver.h",
 			"MU",
 			"EWIEGA46WW/moc_tcpserver.cpp",
@@ -384,6 +396,8 @@
 	[
 		[ "D:/C++/Cloud Drive/TcpServer/main.cpp", "MU", null ],
 		[ "D:/C++/Cloud Drive/TcpServer/mytcpserver.cpp", "MU", null ],
+		[ "D:/C++/Cloud Drive/TcpServer/mytcpsocket.cpp", "MU", null ],
+		[ "D:/C++/Cloud Drive/TcpServer/protocol.cpp", "MU", null ],
 		[ "D:/C++/Cloud Drive/TcpServer/tcpserver.cpp", "MU", null ]
 	],
 	"UIC_OPTIONS" : [],

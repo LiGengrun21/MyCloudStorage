@@ -7,7 +7,7 @@
 				{
 					"build" : ".",
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-.-Debug-30dd2171f9a12e5b12a5.json",
+					"jsonFile" : "directory-.-Debug-07ef9fb5199c07a1503d.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.16"
@@ -44,7 +44,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "TcpServer::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-TcpServer-Debug-02c451c1c29dfc445fb7.json",
+					"jsonFile" : "target-TcpServer-Debug-e2386ef783c0489286c0.json",
 					"name" : "TcpServer",
 					"projectIndex" : 0
 				},

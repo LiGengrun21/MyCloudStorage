@@ -2,15 +2,22 @@
 #define MYTCPSERVER_H
 
 #include <QTcpServer>
+#include <QList>
+#include "mytcpsocket.h"
 
 class MyTcpServer : public QTcpServer
 {
     Q_OBJECT
 public:
     MyTcpServer();
+
     // sigleton pattern
     static MyTcpServer &getInstance();
+
     void incomingConnection(qintptr socketDescriptor);
+
+private:
+    QList <MyTcpSocket*> m_tcpSocketList;
 };
 
 #endif // MYTCPSERVER_H

@@ -81,6 +81,22 @@ build CMakeFiles/TcpServer.dir/mytcpserver.cpp.obj: CXX_COMPILER__TcpServer_unsc
   OBJECT_DIR = CMakeFiles\TcpServer.dir
   OBJECT_FILE_DIR = CMakeFiles\TcpServer.dir
 
+build CMakeFiles/TcpServer.dir/mytcpsocket.cpp.obj: CXX_COMPILER__TcpServer_unscanned_Debug D$:/C++/Cloud$ Drive/TcpServer/mytcpsocket.cpp || cmake_object_order_depends_target_TcpServer
+  DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_NETWORK_LIB -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
+  DEP_FILE = CMakeFiles\TcpServer.dir\mytcpsocket.cpp.obj.d
+  FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -I"D:/C++/Cloud Drive/TcpServer/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpServer_autogen/include" -isystem D:/Qt/6.8.0/mingw_64/include/QtCore -isystem D:/Qt/6.8.0/mingw_64/include -isystem D:/Qt/6.8.0/mingw_64/mkspecs/win32-g++ -isystem D:/Qt/6.8.0/mingw_64/include/QtWidgets -isystem D:/Qt/6.8.0/mingw_64/include/QtGui -isystem D:/Qt/6.8.0/mingw_64/include/QtNetwork
+  OBJECT_DIR = CMakeFiles\TcpServer.dir
+  OBJECT_FILE_DIR = CMakeFiles\TcpServer.dir
+
+build CMakeFiles/TcpServer.dir/protocol.cpp.obj: CXX_COMPILER__TcpServer_unscanned_Debug D$:/C++/Cloud$ Drive/TcpServer/protocol.cpp || cmake_object_order_depends_target_TcpServer
+  DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_NETWORK_LIB -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
+  DEP_FILE = CMakeFiles\TcpServer.dir\protocol.cpp.obj.d
+  FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -I"D:/C++/Cloud Drive/TcpServer/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpServer_autogen/include" -isystem D:/Qt/6.8.0/mingw_64/include/QtCore -isystem D:/Qt/6.8.0/mingw_64/include -isystem D:/Qt/6.8.0/mingw_64/mkspecs/win32-g++ -isystem D:/Qt/6.8.0/mingw_64/include/QtWidgets -isystem D:/Qt/6.8.0/mingw_64/include/QtGui -isystem D:/Qt/6.8.0/mingw_64/include/QtNetwork
+  OBJECT_DIR = CMakeFiles\TcpServer.dir
+  OBJECT_FILE_DIR = CMakeFiles\TcpServer.dir
+
 build CMakeFiles/TcpServer.dir/TcpServer_autogen/EWIEGA46WW/qrc_config.cpp.obj: CXX_COMPILER__TcpServer_unscanned_Debug D$:/C++/Cloud$ Drive/TcpServer/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpServer_autogen/EWIEGA46WW/qrc_config.cpp || cmake_object_order_depends_target_TcpServer
   DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_NETWORK_LIB -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
   DEP_FILE = CMakeFiles\TcpServer.dir\TcpServer_autogen\EWIEGA46WW\qrc_config.cpp.obj.d
@@ -97,7 +113,7 @@ build CMakeFiles/TcpServer.dir/TcpServer_autogen/EWIEGA46WW/qrc_config.cpp.obj: 
 #############################################
 # Link the executable TcpServer.exe
 
-build TcpServer.exe: CXX_EXECUTABLE_LINKER__TcpServer_Debug CMakeFiles/TcpServer.dir/TcpServer_autogen/mocs_compilation.cpp.obj CMakeFiles/TcpServer.dir/main.cpp.obj CMakeFiles/TcpServer.dir/tcpserver.cpp.obj CMakeFiles/TcpServer.dir/mytcpserver.cpp.obj CMakeFiles/TcpServer.dir/TcpServer_autogen/EWIEGA46WW/qrc_config.cpp.obj | D$:/Qt/6.8.0/mingw_64/lib/libQt6Widgets.a D$:/Qt/6.8.0/mingw_64/lib/libQt6Network.a D$:/Qt/6.8.0/mingw_64/lib/libQt6Gui.a D$:/Qt/6.8.0/mingw_64/lib/libQt6Core.a D$:/Qt/6.8.0/mingw_64/lib/libQt6EntryPoint.a || TcpServer_autogen TcpServer_autogen_timestamp_deps
+build TcpServer.exe: CXX_EXECUTABLE_LINKER__TcpServer_Debug CMakeFiles/TcpServer.dir/TcpServer_autogen/mocs_compilation.cpp.obj CMakeFiles/TcpServer.dir/main.cpp.obj CMakeFiles/TcpServer.dir/tcpserver.cpp.obj CMakeFiles/TcpServer.dir/mytcpserver.cpp.obj CMakeFiles/TcpServer.dir/mytcpsocket.cpp.obj CMakeFiles/TcpServer.dir/protocol.cpp.obj CMakeFiles/TcpServer.dir/TcpServer_autogen/EWIEGA46WW/qrc_config.cpp.obj | D$:/Qt/6.8.0/mingw_64/lib/libQt6Widgets.a D$:/Qt/6.8.0/mingw_64/lib/libQt6Network.a D$:/Qt/6.8.0/mingw_64/lib/libQt6Gui.a D$:/Qt/6.8.0/mingw_64/lib/libQt6Core.a D$:/Qt/6.8.0/mingw_64/lib/libQt6EntryPoint.a || TcpServer_autogen TcpServer_autogen_timestamp_deps
   FLAGS = -DQT_QML_DEBUG -g
   LINK_FLAGS = -mwindows
   LINK_LIBRARIES = D:/Qt/6.8.0/mingw_64/lib/libQt6Widgets.a  D:/Qt/6.8.0/mingw_64/lib/libQt6Network.a  D:/Qt/6.8.0/mingw_64/lib/libQt6Gui.a  -ld3d11  -ldxgi  -ldxguid  -ld3d12  D:/Qt/6.8.0/mingw_64/lib/libQt6Core.a  -lmpr  -luserenv  -lmingw32  D:/Qt/6.8.0/mingw_64/lib/libQt6EntryPoint.a  -lshell32  -lws2_32  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32

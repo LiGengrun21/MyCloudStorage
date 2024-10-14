@@ -2,10 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "TcpServer.exe"
+			"path" : "TcpClient.exe"
 		},
 		{
-			"path" : "TcpServer.pdb"
+			"path" : "TcpClient.pdb"
 		}
 	],
 	"backtrace" : 4,
@@ -32,16 +32,18 @@
 			"D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Widgets/Qt6WidgetsTargets.cmake",
 			"D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Widgets/Qt6WidgetsConfig.cmake",
 			"D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6/Qt6Config.cmake",
-			"D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Core/Qt6CoreTargets.cmake",
-			"D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Core/Qt6CoreConfig.cmake",
+			"D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Gui/Qt6GuiTargets.cmake",
+			"D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Gui/Qt6GuiConfig.cmake",
 			"D:/Qt/Tools/CMake_64/share/cmake-3.29/Modules/CMakeFindDependencyMacro.cmake",
 			"D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6/QtPublicDependencyHelpers.cmake",
 			"D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Widgets/Qt6WidgetsDependencies.cmake",
+			"D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Core/Qt6CoreTargets.cmake",
+			"D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Core/Qt6CoreConfig.cmake",
 			"D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6EntryPointPrivate/Qt6EntryPointPrivateTargets.cmake",
 			"D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6EntryPointPrivate/Qt6EntryPointPrivateConfig.cmake",
 			"D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Core/Qt6CoreDependencies.cmake",
-			"D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Gui/Qt6GuiTargets.cmake",
-			"D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Gui/Qt6GuiConfig.cmake"
+			"D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Network/Qt6NetworkTargets.cmake",
+			"D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Network/Qt6NetworkConfig.cmake"
 		],
 		"nodes" : 
 		[
@@ -75,13 +77,13 @@
 			{
 				"command" : 4,
 				"file" : 1,
-				"line" : 64,
+				"line" : 65,
 				"parent" : 0
 			},
 			{
 				"command" : 5,
 				"file" : 1,
-				"line" : 47,
+				"line" : 48,
 				"parent" : 0
 			},
 			{
@@ -121,12 +123,6 @@
 				"parent" : 12
 			},
 			{
-				"command" : 5,
-				"file" : 0,
-				"line" : 645,
-				"parent" : 2
-			},
-			{
 				"command" : 7,
 				"file" : 3,
 				"line" : 43,
@@ -134,131 +130,163 @@
 			},
 			{
 				"file" : 9,
-				"parent" : 15
+				"parent" : 14
 			},
 			{
 				"command" : 10,
 				"file" : 9,
 				"line" : 43,
-				"parent" : 16
+				"parent" : 15
 			},
 			{
 				"command" : 9,
 				"file" : 8,
 				"line" : 143,
-				"parent" : 17
+				"parent" : 16
 			},
 			{
 				"command" : 8,
 				"file" : 7,
 				"line" : 76,
-				"parent" : 18
+				"parent" : 17
 			},
 			{
 				"file" : 6,
-				"parent" : 19
+				"parent" : 18
 			},
 			{
 				"command" : 7,
 				"file" : 6,
-				"line" : 57,
-				"parent" : 20
+				"line" : 55,
+				"parent" : 19
 			},
 			{
 				"file" : 5,
-				"parent" : 21
+				"parent" : 20
 			},
 			{
 				"command" : 6,
 				"file" : 5,
 				"line" : 61,
-				"parent" : 22
+				"parent" : 21
 			},
 			{
-				"command" : 7,
-				"file" : 6,
-				"line" : 45,
-				"parent" : 20
-			},
-			{
-				"file" : 12,
-				"parent" : 24
-			},
-			{
-				"command" : 10,
-				"file" : 12,
-				"line" : 44,
-				"parent" : 25
+				"command" : 5,
+				"file" : 0,
+				"line" : 645,
+				"parent" : 2
 			},
 			{
 				"command" : 9,
 				"file" : 8,
 				"line" : 143,
-				"parent" : 26
+				"parent" : 16
 			},
 			{
 				"command" : 8,
 				"file" : 7,
 				"line" : 76,
-				"parent" : 27
+				"parent" : 24
 			},
 			{
 				"file" : 11,
+				"parent" : 25
+			},
+			{
+				"command" : 7,
+				"file" : 11,
+				"line" : 57,
+				"parent" : 26
+			},
+			{
+				"file" : 10,
+				"parent" : 27
+			},
+			{
+				"command" : 6,
+				"file" : 10,
+				"line" : 61,
 				"parent" : 28
 			},
 			{
 				"command" : 7,
 				"file" : 11,
-				"line" : 55,
-				"parent" : 29
+				"line" : 45,
+				"parent" : 26
 			},
 			{
-				"file" : 10,
+				"file" : 14,
 				"parent" : 30
 			},
 			{
-				"command" : 6,
-				"file" : 10,
-				"line" : 61,
-				"parent" : 31
-			},
-			{
-				"command" : 6,
-				"file" : 10,
-				"line" : 83,
+				"command" : 10,
+				"file" : 14,
+				"line" : 44,
 				"parent" : 31
 			},
 			{
 				"command" : 9,
 				"file" : 8,
 				"line" : 143,
-				"parent" : 17
+				"parent" : 32
 			},
 			{
 				"command" : 8,
 				"file" : 7,
 				"line" : 76,
-				"parent" : 34
-			},
-			{
-				"file" : 14,
-				"parent" : 35
-			},
-			{
-				"command" : 7,
-				"file" : 14,
-				"line" : 55,
-				"parent" : 36
+				"parent" : 33
 			},
 			{
 				"file" : 13,
+				"parent" : 34
+			},
+			{
+				"command" : 7,
+				"file" : 13,
+				"line" : 55,
+				"parent" : 35
+			},
+			{
+				"file" : 12,
+				"parent" : 36
+			},
+			{
+				"command" : 6,
+				"file" : 12,
+				"line" : 61,
 				"parent" : 37
 			},
 			{
 				"command" : 6,
-				"file" : 13,
+				"file" : 12,
+				"line" : 83,
+				"parent" : 37
+			},
+			{
+				"command" : 8,
+				"file" : 4,
+				"line" : 181,
+				"parent" : 8
+			},
+			{
+				"file" : 16,
+				"parent" : 40
+			},
+			{
+				"command" : 7,
+				"file" : 16,
+				"line" : 55,
+				"parent" : 41
+			},
+			{
+				"file" : 15,
+				"parent" : 42
+			},
+			{
+				"command" : 6,
+				"file" : 15,
 				"line" : 61,
-				"parent" : 38
+				"parent" : 43
 			}
 		]
 	},
@@ -274,11 +302,11 @@
 			"defines" : 
 			[
 				{
-					"backtrace" : 14,
+					"backtrace" : 23,
 					"define" : "MINGW_HAS_SECURE_API=1"
 				},
 				{
-					"backtrace" : 14,
+					"backtrace" : 23,
 					"define" : "QT_CORE_LIB"
 				},
 				{
@@ -286,35 +314,39 @@
 					"define" : "QT_GUI_LIB"
 				},
 				{
-					"backtrace" : 14,
+					"backtrace" : 23,
 					"define" : "QT_NEEDS_QMAIN"
+				},
+				{
+					"backtrace" : 6,
+					"define" : "QT_NETWORK_LIB"
 				},
 				{
 					"backtrace" : 6,
 					"define" : "QT_WIDGETS_LIB"
 				},
 				{
-					"backtrace" : 14,
+					"backtrace" : 23,
 					"define" : "UNICODE"
 				},
 				{
-					"backtrace" : 14,
+					"backtrace" : 23,
 					"define" : "WIN32"
 				},
 				{
-					"backtrace" : 14,
+					"backtrace" : 23,
 					"define" : "WIN64"
 				},
 				{
-					"backtrace" : 14,
+					"backtrace" : 23,
 					"define" : "_ENABLE_EXTENDED_ALIGNED_STORAGE"
 				},
 				{
-					"backtrace" : 14,
+					"backtrace" : 23,
 					"define" : "_UNICODE"
 				},
 				{
-					"backtrace" : 14,
+					"backtrace" : 23,
 					"define" : "_WIN64"
 				}
 			],
@@ -322,20 +354,20 @@
 			[
 				{
 					"backtrace" : 0,
-					"path" : "D:/C++/Cloud Drive/TcpServer/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpServer_autogen/include"
+					"path" : "D:/C++/Cloud Drive/TcpClient/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpClient_autogen/include"
 				},
 				{
-					"backtrace" : 14,
+					"backtrace" : 23,
 					"isSystem" : true,
 					"path" : "D:/Qt/6.8.0/mingw_64/include/QtCore"
 				},
 				{
-					"backtrace" : 14,
+					"backtrace" : 23,
 					"isSystem" : true,
 					"path" : "D:/Qt/6.8.0/mingw_64/include"
 				},
 				{
-					"backtrace" : 14,
+					"backtrace" : 23,
 					"isSystem" : true,
 					"path" : "D:/Qt/6.8.0/mingw_64/mkspecs/win32-g++"
 				},
@@ -348,6 +380,11 @@
 					"backtrace" : 6,
 					"isSystem" : true,
 					"path" : "D:/Qt/6.8.0/mingw_64/include/QtGui"
+				},
+				{
+					"backtrace" : 6,
+					"isSystem" : true,
+					"path" : "D:/Qt/6.8.0/mingw_64/include/QtNetwork"
 				}
 			],
 			"language" : "CXX",
@@ -355,8 +392,8 @@
 			{
 				"backtraces" : 
 				[
-					14,
-					14
+					23,
+					23
 				],
 				"standard" : "17"
 			},
@@ -374,13 +411,13 @@
 	[
 		{
 			"backtrace" : 0,
-			"id" : "TcpServer_autogen::@6890427a1f51a3e7e1df"
+			"id" : "TcpClient_autogen::@6890427a1f51a3e7e1df"
 		},
 		{
-			"id" : "TcpServer_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
+			"id" : "TcpClient_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
 		}
 	],
-	"id" : "TcpServer::@6890427a1f51a3e7e1df",
+	"id" : "TcpClient::@6890427a1f51a3e7e1df",
 	"install" : 
 	{
 		"destinations" : 
@@ -392,7 +429,7 @@
 		],
 		"prefix" : 
 		{
-			"path" : "C:/Program Files (x86)/TcpServer"
+			"path" : "C:/Program Files (x86)/TcpClient"
 		}
 	},
 	"link" : 
@@ -413,58 +450,68 @@
 				"role" : "libraries"
 			},
 			{
+				"backtrace" : 6,
+				"fragment" : "D:\\Qt\\6.8.0\\mingw_64\\lib\\libQt6Network.a",
+				"role" : "libraries"
+			},
+			{
 				"backtrace" : 13,
 				"fragment" : "D:\\Qt\\6.8.0\\mingw_64\\lib\\libQt6Gui.a",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 14,
-				"fragment" : "D:\\Qt\\6.8.0\\mingw_64\\lib\\libQt6Core.a",
-				"role" : "libraries"
-			},
-			{
-				"backtrace" : 23,
-				"fragment" : "-lmpr",
-				"role" : "libraries"
-			},
-			{
-				"backtrace" : 23,
-				"fragment" : "-luserenv",
-				"role" : "libraries"
-			},
-			{
-				"backtrace" : 32,
-				"fragment" : "-lmingw32",
-				"role" : "libraries"
-			},
-			{
-				"backtrace" : 32,
-				"fragment" : "D:\\Qt\\6.8.0\\mingw_64\\lib\\libQt6EntryPoint.a",
-				"role" : "libraries"
-			},
-			{
-				"backtrace" : 33,
-				"fragment" : "-lshell32",
-				"role" : "libraries"
-			},
-			{
-				"backtrace" : 39,
+				"backtrace" : 22,
 				"fragment" : "-ld3d11",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 39,
+				"backtrace" : 22,
 				"fragment" : "-ldxgi",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 39,
+				"backtrace" : 22,
 				"fragment" : "-ldxguid",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 39,
+				"backtrace" : 22,
 				"fragment" : "-ld3d12",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 23,
+				"fragment" : "D:\\Qt\\6.8.0\\mingw_64\\lib\\libQt6Core.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 29,
+				"fragment" : "-lmpr",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 29,
+				"fragment" : "-luserenv",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 38,
+				"fragment" : "-lmingw32",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 38,
+				"fragment" : "D:\\Qt\\6.8.0\\mingw_64\\lib\\libQt6EntryPoint.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 39,
+				"fragment" : "-lshell32",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 44,
+				"fragment" : "-lws2_32",
 				"role" : "libraries"
 			},
 			{
@@ -474,8 +521,8 @@
 		],
 		"language" : "CXX"
 	},
-	"name" : "TcpServer",
-	"nameOnDisk" : "TcpServer.exe",
+	"name" : "TcpClient",
+	"nameOnDisk" : "TcpClient.exe",
 	"paths" : 
 	{
 		"build" : ".",
@@ -527,7 +574,7 @@
 			"backtrace" : 0,
 			"compileGroupIndex" : 0,
 			"isGenerated" : true,
-			"path" : "build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpServer_autogen/mocs_compilation.cpp",
+			"path" : "build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpClient_autogen/mocs_compilation.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -539,17 +586,17 @@
 		{
 			"backtrace" : 4,
 			"compileGroupIndex" : 0,
-			"path" : "tcpserver.cpp",
+			"path" : "tcpclient.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 4,
-			"path" : "tcpserver.h",
+			"path" : "tcpclient.h",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 4,
-			"path" : "tcpserver.ui",
+			"path" : "tcpclient.ui",
 			"sourceGroupIndex" : 2
 		},
 		{
@@ -559,44 +606,44 @@
 		},
 		{
 			"backtrace" : 4,
-			"path" : "mytcpserver.h",
+			"path" : "protocol.h",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 4,
 			"compileGroupIndex" : 0,
-			"path" : "mytcpserver.cpp",
+			"path" : "protocol.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 0,
 			"isGenerated" : true,
-			"path" : "build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpServer_autogen/include/ui_tcpserver.h",
+			"path" : "build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpClient_autogen/include/ui_tcpclient.h",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 0,
 			"isGenerated" : true,
-			"path" : "build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpServer_autogen/timestamp",
+			"path" : "build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpClient_autogen/timestamp",
 			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 0,
 			"compileGroupIndex" : 0,
 			"isGenerated" : true,
-			"path" : "build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpServer_autogen/EWIEGA46WW/qrc_config.cpp",
+			"path" : "build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpClient_autogen/EWIEGA46WW/qrc_config.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 0,
 			"isGenerated" : true,
-			"path" : "build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpServer_autogen/timestamp.rule",
+			"path" : "build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpClient_autogen/timestamp.rule",
 			"sourceGroupIndex" : 3
 		},
 		{
 			"backtrace" : 0,
 			"isGenerated" : true,
-			"path" : "build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpServer_autogen/EWIEGA46WW/qrc_config.cpp.rule",
+			"path" : "build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpClient_autogen/EWIEGA46WW/qrc_config.cpp.rule",
 			"sourceGroupIndex" : 3
 		}
 	],
