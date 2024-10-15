@@ -23,9 +23,14 @@ public:
 
 public slots:
     void showConnect();
+    void recvMsg();
 
 private slots:
-    void on_sendButton_clicked();
+    // void on_sendButton_clicked();
+
+    void on_login_btn_clicked();
+
+    void on_register_btn_clicked();
 
 private:
     Ui::TcpClient *ui;

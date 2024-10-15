@@ -11,11 +11,14 @@ TcpServer_autogen/timestamp: \
 	D:/C++/Cloud\ Drive/TcpServer/mytcpserver.h \
 	D:/C++/Cloud\ Drive/TcpServer/mytcpsocket.cpp \
 	D:/C++/Cloud\ Drive/TcpServer/mytcpsocket.h \
+	D:/C++/Cloud\ Drive/TcpServer/opedb.cpp \
+	D:/C++/Cloud\ Drive/TcpServer/opedb.h \
 	D:/C++/Cloud\ Drive/TcpServer/protocol.cpp \
 	D:/C++/Cloud\ Drive/TcpServer/protocol.h \
 	D:/C++/Cloud\ Drive/TcpServer/tcpserver.cpp \
 	D:/C++/Cloud\ Drive/TcpServer/tcpserver.h \
 	D:/Qt/6.8.0/mingw_64/include/QtCore/QList \
+	D:/Qt/6.8.0/mingw_64/include/QtCore/QObject \
 	D:/Qt/6.8.0/mingw_64/include/QtCore/q20functional.h \
 	D:/Qt/6.8.0/mingw_64/include/QtCore/q20iterator.h \
 	D:/Qt/6.8.0/mingw_64/include/QtCore/q20memory.h \
@@ -74,6 +77,7 @@ TcpServer_autogen/timestamp: \
 	D:/Qt/6.8.0/mingw_64/include/QtCore/qmargins.h \
 	D:/Qt/6.8.0/mingw_64/include/QtCore/qmath.h \
 	D:/Qt/6.8.0/mingw_64/include/QtCore/qmetacontainer.h \
+	D:/Qt/6.8.0/mingw_64/include/QtCore/qmetaobject.h \
 	D:/Qt/6.8.0/mingw_64/include/QtCore/qmetatype.h \
 	D:/Qt/6.8.0/mingw_64/include/QtCore/qminmax.h \
 	D:/Qt/6.8.0/mingw_64/include/QtCore/qnamespace.h \
@@ -171,6 +175,13 @@ TcpServer_autogen/timestamp: \
 	D:/Qt/6.8.0/mingw_64/include/QtNetwork/qtnetwork-config.h \
 	D:/Qt/6.8.0/mingw_64/include/QtNetwork/qtnetworkexports.h \
 	D:/Qt/6.8.0/mingw_64/include/QtNetwork/qtnetworkglobal.h \
+	D:/Qt/6.8.0/mingw_64/include/QtSql/QSqlDatabase \
+	D:/Qt/6.8.0/mingw_64/include/QtSql/QSqlQuery \
+	D:/Qt/6.8.0/mingw_64/include/QtSql/qsqldatabase.h \
+	D:/Qt/6.8.0/mingw_64/include/QtSql/qsqlquery.h \
+	D:/Qt/6.8.0/mingw_64/include/QtSql/qtsql-config.h \
+	D:/Qt/6.8.0/mingw_64/include/QtSql/qtsqlexports.h \
+	D:/Qt/6.8.0/mingw_64/include/QtSql/qtsqlglobal.h \
 	D:/Qt/6.8.0/mingw_64/include/QtWidgets/QWidget \
 	D:/Qt/6.8.0/mingw_64/include/QtWidgets/qsizepolicy.h \
 	D:/Qt/6.8.0/mingw_64/include/QtWidgets/qtwidgets-config.h \
@@ -312,6 +323,31 @@ TcpServer_autogen/timestamp: \
 	D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Network/Qt6QTlsBackendOpenSSLPluginConfig.cmake \
 	D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Network/Qt6QTlsBackendOpenSSLPluginTargets-relwithdebinfo.cmake \
 	D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Network/Qt6QTlsBackendOpenSSLPluginTargets.cmake \
+	D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Sql/Qt6QMimerSQLDriverPluginAdditionalTargetInfo.cmake \
+	D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Sql/Qt6QMimerSQLDriverPluginConfig.cmake \
+	D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Sql/Qt6QMimerSQLDriverPluginTargets-relwithdebinfo.cmake \
+	D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Sql/Qt6QMimerSQLDriverPluginTargets.cmake \
+	D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Sql/Qt6QODBCDriverPluginAdditionalTargetInfo.cmake \
+	D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Sql/Qt6QODBCDriverPluginConfig.cmake \
+	D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Sql/Qt6QODBCDriverPluginTargets-relwithdebinfo.cmake \
+	D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Sql/Qt6QODBCDriverPluginTargets.cmake \
+	D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Sql/Qt6QPSQLDriverPluginAdditionalTargetInfo.cmake \
+	D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Sql/Qt6QPSQLDriverPluginConfig.cmake \
+	D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Sql/Qt6QPSQLDriverPluginTargets-relwithdebinfo.cmake \
+	D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Sql/Qt6QPSQLDriverPluginTargets.cmake \
+	D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Sql/Qt6QSQLiteDriverPluginAdditionalTargetInfo.cmake \
+	D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Sql/Qt6QSQLiteDriverPluginConfig.cmake \
+	D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Sql/Qt6QSQLiteDriverPluginTargets-relwithdebinfo.cmake \
+	D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Sql/Qt6QSQLiteDriverPluginTargets.cmake \
+	D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Sql/Qt6SqlAdditionalTargetInfo.cmake \
+	D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Sql/Qt6SqlConfig.cmake \
+	D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Sql/Qt6SqlConfigVersion.cmake \
+	D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Sql/Qt6SqlConfigVersionImpl.cmake \
+	D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Sql/Qt6SqlDependencies.cmake \
+	D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Sql/Qt6SqlPlugins.cmake \
+	D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Sql/Qt6SqlTargets-relwithdebinfo.cmake \
+	D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Sql/Qt6SqlTargets.cmake \
+	D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Sql/Qt6SqlVersionlessAliasTargets.cmake \
 	D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Widgets/Qt6QModernWindowsStylePluginAdditionalTargetInfo.cmake \
 	D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Widgets/Qt6QModernWindowsStylePluginConfig.cmake \
 	D:/Qt/6.8.0/mingw_64/lib/cmake/Qt6Widgets/Qt6QModernWindowsStylePluginTargets-relwithdebinfo.cmake \

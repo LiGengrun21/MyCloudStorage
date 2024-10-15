@@ -16,6 +16,9 @@ public:
 
     void incomingConnection(qintptr socketDescriptor);
 
+public slots:
+    void deleteSocket(MyTcpSocket* socket); // the parameter of the slot must be same as the signal, which is offline in mytcpsocket
+
 private:
     QList <MyTcpSocket*> m_tcpSocketList;
 };

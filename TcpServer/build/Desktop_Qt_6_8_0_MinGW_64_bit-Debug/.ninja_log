@@ -1,30 +1,100 @@
 # ninja log v6
-27	848	7505335776865861	TcpServer_autogen/timestamp	66c360b0876d3dbe
-27	848	7505335776865861	D:/C++/Cloud Drive/TcpServer/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpServer_autogen/timestamp	66c360b0876d3dbe
-27	848	7505335776865861	TcpServer_autogen/mocs_compilation.cpp	66c360b0876d3dbe
+25	434	7506005130704446	TcpServer_autogen/timestamp	66c360b0876d3dbe
+25	434	7506005130704446	D:/C++/Cloud Drive/TcpServer/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpServer_autogen/timestamp	66c360b0876d3dbe
+25	434	7506005130704446	TcpServer_autogen/mocs_compilation.cpp	66c360b0876d3dbe
+514	2232	7506005135603419	CMakeFiles/TcpServer.dir/mytcpsocket.cpp.obj	bcfbdde2159faa73
 1330	1530	7505331163703710	D:/C++/Cloud Drive/TcpServer/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpServer_autogen/EWIEGA46WW/qrc_config.cpp	3aaeafde6e984ba9
-27	848	7505335776865861	D:/C++/Cloud Drive/TcpServer/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpServer_autogen/mocs_compilation.cpp	66c360b0876d3dbe
+25	434	7506005130704446	D:/C++/Cloud Drive/TcpServer/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpServer_autogen/mocs_compilation.cpp	66c360b0876d3dbe
 1330	1530	7505331163703710	TcpServer_autogen/EWIEGA46WW/qrc_config.cpp	3aaeafde6e984ba9
 1901	2303	7505331167569794	CMakeFiles/TcpServer.dir/TcpServer_autogen/EWIEGA46WW/qrc_config.cpp.obj	b724e461065eeeb4
-992	2748	7505335779762075	CMakeFiles/TcpServer.dir/mytcpserver.cpp.obj	32d88a06416e98df
-849	2875	7505335778330398	CMakeFiles/TcpServer.dir/TcpServer_autogen/mocs_compilation.cpp.obj	f39b8e6631660cc2
-1604	3914	7505331164610784	CMakeFiles/TcpServer.dir/main.cpp.obj	74d6dbc573eaf0ef
-920	3252	7505335779028730	CMakeFiles/TcpServer.dir/tcpserver.cpp.obj	e434ff339e650ebe
-3252	3609	7505335802343620	TcpServer.exe	7eff4ac5c8d6d104
-19	980	7506003512208078	TcpServer_autogen/timestamp	66c360b0876d3dbe
-19	980	7506003512208078	TcpServer_autogen/mocs_compilation.cpp	66c360b0876d3dbe
-19	980	7506003512208078	D:/C++/Cloud Drive/TcpServer/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpServer_autogen/timestamp	66c360b0876d3dbe
-19	980	7506003512208078	D:/C++/Cloud Drive/TcpServer/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpServer_autogen/mocs_compilation.cpp	66c360b0876d3dbe
-1352	1818	7506003517408154	CMakeFiles/TcpServer.dir/protocol.cpp.obj	46c63ce5f99b0605
-1259	3980	7506003516472413	CMakeFiles/TcpServer.dir/mytcpsocket.cpp.obj	bcfbdde2159faa73
 1132	4028	7506003515200718	CMakeFiles/TcpServer.dir/mytcpserver.cpp.obj	32d88a06416e98df
 981	4193	7506003513697556	CMakeFiles/TcpServer.dir/TcpServer_autogen/mocs_compilation.cpp.obj	f39b8e6631660cc2
-1055	4554	7506003514438901	CMakeFiles/TcpServer.dir/tcpserver.cpp.obj	e434ff339e650ebe
-4554	5533	7506003549430997	TcpServer.exe	7342f3968e494578
-25	434	7506005130704446	TcpServer_autogen/timestamp	66c360b0876d3dbe
-25	434	7506005130704446	TcpServer_autogen/mocs_compilation.cpp	66c360b0876d3dbe
-25	434	7506005130704446	D:/C++/Cloud Drive/TcpServer/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpServer_autogen/timestamp	66c360b0876d3dbe
-25	434	7506005130704446	D:/C++/Cloud Drive/TcpServer/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpServer_autogen/mocs_compilation.cpp	66c360b0876d3dbe
-514	2232	7506005135603419	CMakeFiles/TcpServer.dir/mytcpsocket.cpp.obj	bcfbdde2159faa73
+1604	3914	7505331164610784	CMakeFiles/TcpServer.dir/main.cpp.obj	74d6dbc573eaf0ef
 435	2742	7506005134806846	CMakeFiles/TcpServer.dir/tcpserver.cpp.obj	e434ff339e650ebe
 2742	3137	7506005157878832	TcpServer.exe	7342f3968e494578
+1352	1818	7506003517408154	CMakeFiles/TcpServer.dir/protocol.cpp.obj	46c63ce5f99b0605
+25	1522	7506814761982391	TcpServer_autogen/timestamp	66c360b0876d3dbe
+25	1522	7506814761982391	TcpServer_autogen/mocs_compilation.cpp	66c360b0876d3dbe
+25	1522	7506814761982391	D:/C++/Cloud Drive/TcpServer/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpServer_autogen/timestamp	66c360b0876d3dbe
+25	1522	7506814761982391	D:/C++/Cloud Drive/TcpServer/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpServer_autogen/mocs_compilation.cpp	66c360b0876d3dbe
+2048	2661	7506814768814540	CMakeFiles/TcpServer.dir/protocol.cpp.obj	f01d0a4894e69c62
+2337	2886	7506814771706750	CMakeFiles/TcpServer.dir/TcpServer_autogen/EWIEGA46WW/qrc_config.cpp.obj	857ca0f12fc24db7
+1598	4837	7506814764322480	CMakeFiles/TcpServer.dir/main.cpp.obj	ed0dacedb7efd785
+1804	4838	7506814766378598	CMakeFiles/TcpServer.dir/mytcpserver.cpp.obj	8ed730af494301cc
+1523	4859	7506814763570002	CMakeFiles/TcpServer.dir/TcpServer_autogen/mocs_compilation.cpp.obj	920ad05c74da3d01
+1919	4919	7506814767530623	CMakeFiles/TcpServer.dir/mytcpsocket.cpp.obj	ad57273807677aa5
+1680	5387	7506814765140460	CMakeFiles/TcpServer.dir/tcpserver.cpp.obj	a51df51972c32bbb
+2194	5424	7506814770288119	CMakeFiles/TcpServer.dir/opedb.cpp.obj	9c2efa55b1a8193
+5424	6182	7506814802582002	TcpServer.exe	bcfd409663f0d509
+26	970	7506831827992552	TcpServer_autogen/timestamp	66c360b0876d3dbe
+26	970	7506831827992552	TcpServer_autogen/mocs_compilation.cpp	66c360b0876d3dbe
+26	970	7506831827992552	D:/C++/Cloud Drive/TcpServer/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpServer_autogen/timestamp	66c360b0876d3dbe
+26	970	7506831827992552	D:/C++/Cloud Drive/TcpServer/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpServer_autogen/mocs_compilation.cpp	66c360b0876d3dbe
+971	3372	7506831829645656	CMakeFiles/TcpServer.dir/TcpServer_autogen/mocs_compilation.cpp.obj	920ad05c74da3d01
+1052	3434	7506831830454874	CMakeFiles/TcpServer.dir/main.cpp.obj	ed0dacedb7efd785
+1281	3621	7506831832737816	CMakeFiles/TcpServer.dir/opedb.cpp.obj	9c2efa55b1a8193
+1163	3894	7506831831567179	CMakeFiles/TcpServer.dir/tcpserver.cpp.obj	a51df51972c32bbb
+3894	4353	7506831858864128	TcpServer.exe	bcfd409663f0d509
+12	449	7506847675912357	TcpServer_autogen/timestamp	66c360b0876d3dbe
+12	449	7506847675912357	TcpServer_autogen/mocs_compilation.cpp	66c360b0876d3dbe
+12	449	7506847675912357	D:/C++/Cloud Drive/TcpServer/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpServer_autogen/timestamp	66c360b0876d3dbe
+12	449	7506847675912357	D:/C++/Cloud Drive/TcpServer/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpServer_autogen/mocs_compilation.cpp	66c360b0876d3dbe
+527	2936	7506847681062540	CMakeFiles/TcpServer.dir/mytcpsocket.cpp.obj	ad57273807677aa5
+450	3452	7506847680283351	CMakeFiles/TcpServer.dir/tcpserver.cpp.obj	a51df51972c32bbb
+3453	3881	7506847710312798	TcpServer.exe	bcfd409663f0d509
+26	1206	7506878425552384	TcpServer_autogen/timestamp	66c360b0876d3dbe
+26	1206	7506878425552384	TcpServer_autogen/mocs_compilation.cpp	66c360b0876d3dbe
+26	1206	7506878425552384	D:/C++/Cloud Drive/TcpServer/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpServer_autogen/timestamp	66c360b0876d3dbe
+26	1206	7506878425552384	D:/C++/Cloud Drive/TcpServer/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpServer_autogen/mocs_compilation.cpp	66c360b0876d3dbe
+1762	2292	7506878432851054	CMakeFiles/TcpServer.dir/protocol.cpp.obj	f01d0a4894e69c62
+1208	5230	7506878427308336	CMakeFiles/TcpServer.dir/TcpServer_autogen/mocs_compilation.cpp.obj	920ad05c74da3d01
+1294	5288	7506878428168431	CMakeFiles/TcpServer.dir/main.cpp.obj	ed0dacedb7efd785
+1507	5363	7506878430297643	CMakeFiles/TcpServer.dir/mytcpserver.cpp.obj	8ed730af494301cc
+1626	5399	7506878431491983	CMakeFiles/TcpServer.dir/mytcpsocket.cpp.obj	ad57273807677aa5
+1380	5856	7506878429028657	CMakeFiles/TcpServer.dir/tcpserver.cpp.obj	a51df51972c32bbb
+1912	5931	7506878434356206	CMakeFiles/TcpServer.dir/opedb.cpp.obj	9c2efa55b1a8193
+5931	6441	7506878474541510	TcpServer.exe	bcfd409663f0d509
+24	464	7506881328239438	TcpServer_autogen/timestamp	66c360b0876d3dbe
+24	464	7506881328239438	TcpServer_autogen/mocs_compilation.cpp	66c360b0876d3dbe
+24	464	7506881328239438	D:/C++/Cloud Drive/TcpServer/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpServer_autogen/timestamp	66c360b0876d3dbe
+24	464	7506881328239438	D:/C++/Cloud Drive/TcpServer/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpServer_autogen/mocs_compilation.cpp	66c360b0876d3dbe
+547	2573	7506881333469157	CMakeFiles/TcpServer.dir/opedb.cpp.obj	9c2efa55b1a8193
+465	2863	7506881332649221	CMakeFiles/TcpServer.dir/tcpserver.cpp.obj	a51df51972c32bbb
+2864	3337	7506881356632495	TcpServer.exe	bcfd409663f0d509
+24	463	7506882039800345	TcpServer_autogen/timestamp	66c360b0876d3dbe
+24	463	7506882039800345	TcpServer_autogen/mocs_compilation.cpp	66c360b0876d3dbe
+24	463	7506882039800345	D:/C++/Cloud Drive/TcpServer/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpServer_autogen/timestamp	66c360b0876d3dbe
+24	463	7506882039800345	D:/C++/Cloud Drive/TcpServer/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpServer_autogen/mocs_compilation.cpp	66c360b0876d3dbe
+543	2492	7506882044989948	CMakeFiles/TcpServer.dir/opedb.cpp.obj	9c2efa55b1a8193
+464	2771	7506882044191919	CMakeFiles/TcpServer.dir/tcpserver.cpp.obj	a51df51972c32bbb
+2771	3193	7506882067263483	TcpServer.exe	bcfd409663f0d509
+40	1271	7507228998075461	TcpServer_autogen/timestamp	66c360b0876d3dbe
+40	1271	7507228998075461	TcpServer_autogen/mocs_compilation.cpp	66c360b0876d3dbe
+40	1271	7507228998075461	D:/C++/Cloud Drive/TcpServer/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpServer_autogen/timestamp	66c360b0876d3dbe
+40	1271	7507228998075461	D:/C++/Cloud Drive/TcpServer/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpServer_autogen/mocs_compilation.cpp	66c360b0876d3dbe
+1861	2432	7507229005662860	CMakeFiles/TcpServer.dir/protocol.cpp.obj	f01d0a4894e69c62
+1375	3999	7507229000812100	CMakeFiles/TcpServer.dir/main.cpp.obj	ed0dacedb7efd785
+1610	4108	7507229003155197	CMakeFiles/TcpServer.dir/mytcpserver.cpp.obj	8ed730af494301cc
+1272	4145	7507228999772682	CMakeFiles/TcpServer.dir/TcpServer_autogen/mocs_compilation.cpp.obj	920ad05c74da3d01
+1727	4152	7507229004331236	CMakeFiles/TcpServer.dir/mytcpsocket.cpp.obj	ad57273807677aa5
+1471	4613	7507229001770535	CMakeFiles/TcpServer.dir/tcpserver.cpp.obj	a51df51972c32bbb
+2011	4706	7507229007160510	CMakeFiles/TcpServer.dir/opedb.cpp.obj	9c2efa55b1a8193
+4706	5515	7507229034122976	TcpServer.exe	bcfd409663f0d509
+25	471	7507230714130428	TcpServer_autogen/timestamp	66c360b0876d3dbe
+25	471	7507230714130428	TcpServer_autogen/mocs_compilation.cpp	66c360b0876d3dbe
+25	471	7507230714130428	D:/C++/Cloud Drive/TcpServer/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpServer_autogen/timestamp	66c360b0876d3dbe
+25	471	7507230714130428	D:/C++/Cloud Drive/TcpServer/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpServer_autogen/mocs_compilation.cpp	66c360b0876d3dbe
+550	2516	7507230719381076	CMakeFiles/TcpServer.dir/opedb.cpp.obj	9c2efa55b1a8193
+472	2760	7507230718605727	CMakeFiles/TcpServer.dir/tcpserver.cpp.obj	a51df51972c32bbb
+2760	3188	7507230741474828	TcpServer.exe	bcfd409663f0d509
+25	1191	7507263329860492	TcpServer_autogen/timestamp	66c360b0876d3dbe
+25	1191	7507263329860492	TcpServer_autogen/mocs_compilation.cpp	66c360b0876d3dbe
+25	1191	7507263329860492	D:/C++/Cloud Drive/TcpServer/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpServer_autogen/timestamp	66c360b0876d3dbe
+25	1191	7507263329860492	D:/C++/Cloud Drive/TcpServer/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpServer_autogen/mocs_compilation.cpp	66c360b0876d3dbe
+1276	4838	7507263332372237	CMakeFiles/TcpServer.dir/main.cpp.obj	ed0dacedb7efd785
+1192	4937	7507263331539702	CMakeFiles/TcpServer.dir/TcpServer_autogen/mocs_compilation.cpp.obj	920ad05c74da3d01
+1638	4995	7507263335987345	CMakeFiles/TcpServer.dir/mytcpsocket.cpp.obj	ad57273807677aa5
+1510	5007	7507263334716067	CMakeFiles/TcpServer.dir/mytcpserver.cpp.obj	8ed730af494301cc
+1792	5521	7507263337544581	CMakeFiles/TcpServer.dir/opedb.cpp.obj	9c2efa55b1a8193
+1363	5562	7507263333245535	CMakeFiles/TcpServer.dir/tcpserver.cpp.obj	a51df51972c32bbb
+5562	6181	7507263375237735	TcpServer.exe	bcfd409663f0d509

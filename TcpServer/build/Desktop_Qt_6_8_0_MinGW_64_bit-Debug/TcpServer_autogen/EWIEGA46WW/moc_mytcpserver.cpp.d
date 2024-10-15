@@ -1,8 +1,10 @@
 D:/C++/Cloud\ Drive/TcpServer/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpServer_autogen/EWIEGA46WW/moc_mytcpserver.cpp: D:/C++/Cloud\ Drive/TcpServer/mytcpserver.h \
   D:/C++/Cloud\ Drive/TcpServer/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpServer_autogen/moc_predefs.h \
   D:/C++/Cloud\ Drive/TcpServer/mytcpsocket.h \
+  D:/C++/Cloud\ Drive/TcpServer/opedb.h \
   D:/C++/Cloud\ Drive/TcpServer/protocol.h \
   D:/Qt/6.8.0/mingw_64/include/QtCore/QList \
+  D:/Qt/6.8.0/mingw_64/include/QtCore/QObject \
   D:/Qt/6.8.0/mingw_64/include/QtCore/q20functional.h \
   D:/Qt/6.8.0/mingw_64/include/QtCore/q20memory.h \
   D:/Qt/6.8.0/mingw_64/include/QtCore/q20type_traits.h \
@@ -57,6 +59,7 @@ D:/C++/Cloud\ Drive/TcpServer/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpServe
   D:/Qt/6.8.0/mingw_64/include/QtCore/qmap.h \
   D:/Qt/6.8.0/mingw_64/include/QtCore/qmath.h \
   D:/Qt/6.8.0/mingw_64/include/QtCore/qmetacontainer.h \
+  D:/Qt/6.8.0/mingw_64/include/QtCore/qmetaobject.h \
   D:/Qt/6.8.0/mingw_64/include/QtCore/qmetatype.h \
   D:/Qt/6.8.0/mingw_64/include/QtCore/qminmax.h \
   D:/Qt/6.8.0/mingw_64/include/QtCore/qnamespace.h \
@@ -125,6 +128,13 @@ D:/C++/Cloud\ Drive/TcpServer/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpServe
   D:/Qt/6.8.0/mingw_64/include/QtNetwork/qtnetwork-config.h \
   D:/Qt/6.8.0/mingw_64/include/QtNetwork/qtnetworkexports.h \
   D:/Qt/6.8.0/mingw_64/include/QtNetwork/qtnetworkglobal.h \
+  D:/Qt/6.8.0/mingw_64/include/QtSql/QSqlDatabase \
+  D:/Qt/6.8.0/mingw_64/include/QtSql/QSqlQuery \
+  D:/Qt/6.8.0/mingw_64/include/QtSql/qsqldatabase.h \
+  D:/Qt/6.8.0/mingw_64/include/QtSql/qsqlquery.h \
+  D:/Qt/6.8.0/mingw_64/include/QtSql/qtsql-config.h \
+  D:/Qt/6.8.0/mingw_64/include/QtSql/qtsqlexports.h \
+  D:/Qt/6.8.0/mingw_64/include/QtSql/qtsqlglobal.h \
   D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/algorithm \
   D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/array \
   D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/atomic \
