@@ -1,4 +1,5 @@
-build/
+tcpClient/build/
+tcpServer/build/
 
 *.user
 
