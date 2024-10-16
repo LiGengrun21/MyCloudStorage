@@ -26,6 +26,10 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         config.qrc
         protocol.h
         protocol.cpp
+        opewidget.h opewidget.cpp
+        online.h online.cpp online.ui
+        friend.h friend.cpp
+        book.h book.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET TcpClient APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

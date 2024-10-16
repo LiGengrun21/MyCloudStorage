@@ -78,6 +78,8 @@ void TcpClient::recvMsg()
     {
         if (strcmp(pdu->caData,LOGIN_OK)==0){
             QMessageBox::information(this, "login", "login successful");
+            OpeWidget::getInstance().show(); // if login successful, show the operate widget, which is the main window of the application
+            hide(); // hide tcp client, which is the login window
         }
         else if (strcmp(pdu->caData,LOGIN_FAILED)==0){
             QMessageBox::information(this,"login","login failed");

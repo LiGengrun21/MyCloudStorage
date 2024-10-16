@@ -297,6 +297,30 @@
 	"HEADERS" : 
 	[
 		[
+			"D:/C++/Cloud Drive/TcpClient/book.h",
+			"MU",
+			"EWIEGA46WW/moc_book.cpp",
+			null
+		],
+		[
+			"D:/C++/Cloud Drive/TcpClient/friend.h",
+			"MU",
+			"EWIEGA46WW/moc_friend.cpp",
+			null
+		],
+		[
+			"D:/C++/Cloud Drive/TcpClient/online.h",
+			"MU",
+			"EWIEGA46WW/moc_online.cpp",
+			null
+		],
+		[
+			"D:/C++/Cloud Drive/TcpClient/opewidget.h",
+			"MU",
+			"EWIEGA46WW/moc_opewidget.cpp",
+			null
+		],
+		[
 			"D:/C++/Cloud Drive/TcpClient/protocol.h",
 			"MU",
 			"EWIEGA46WW/moc_protocol.cpp",
@@ -382,7 +406,11 @@
 	"SETTINGS_FILE" : "D:/C++/Cloud Drive/TcpClient/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/CMakeFiles/TcpClient_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
+		[ "D:/C++/Cloud Drive/TcpClient/book.cpp", "MU", null ],
+		[ "D:/C++/Cloud Drive/TcpClient/friend.cpp", "MU", null ],
 		[ "D:/C++/Cloud Drive/TcpClient/main.cpp", "MU", null ],
+		[ "D:/C++/Cloud Drive/TcpClient/online.cpp", "MU", null ],
+		[ "D:/C++/Cloud Drive/TcpClient/opewidget.cpp", "MU", null ],
 		[ "D:/C++/Cloud Drive/TcpClient/protocol.cpp", "MU", null ],
 		[ "D:/C++/Cloud Drive/TcpClient/tcpclient.cpp", "MU", null ]
 	],

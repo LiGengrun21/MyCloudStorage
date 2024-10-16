@@ -77,13 +77,13 @@
 			{
 				"command" : 4,
 				"file" : 1,
-				"line" : 65,
+				"line" : 69,
 				"parent" : 0
 			},
 			{
 				"command" : 5,
 				"file" : 1,
-				"line" : 48,
+				"line" : 52,
 				"parent" : 0
 			},
 			{
@@ -403,7 +403,11 @@
 				1,
 				2,
 				7,
-				10
+				9,
+				11,
+				14,
+				16,
+				20
 			]
 		}
 	],
@@ -538,7 +542,11 @@
 				1,
 				2,
 				7,
-				10
+				9,
+				11,
+				14,
+				16,
+				20
 			]
 		},
 		{
@@ -547,7 +555,12 @@
 			[
 				3,
 				6,
-				8
+				8,
+				10,
+				13,
+				15,
+				17,
+				18
 			]
 		},
 		{
@@ -556,15 +569,16 @@
 			[
 				4,
 				5,
-				9
+				12,
+				19
 			]
 		},
 		{
 			"name" : "CMake Rules",
 			"sourceIndexes" : 
 			[
-				11,
-				12
+				21,
+				22
 			]
 		}
 	],
@@ -616,9 +630,64 @@
 			"sourceGroupIndex" : 0
 		},
 		{
+			"backtrace" : 4,
+			"path" : "opewidget.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "opewidget.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "online.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "online.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "online.ui",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 4,
+			"path" : "friend.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "friend.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "book.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "book.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
 			"backtrace" : 0,
 			"isGenerated" : true,
 			"path" : "build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpClient_autogen/include/ui_tcpclient.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpClient_autogen/include/ui_online.h",
 			"sourceGroupIndex" : 1
 		},
 		{

@@ -7,7 +7,7 @@
 				{
 					"build" : ".",
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-.-Debug-f5e5386bad3d2750b659.json",
+					"jsonFile" : "directory-.-Debug-04f3f33bc25a201e6c5d.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.16"
@@ -44,7 +44,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "TcpClient::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-TcpClient-Debug-499f8576d508d448228b.json",
+					"jsonFile" : "target-TcpClient-Debug-9769c6b7abd54c4202a9.json",
 					"name" : "TcpClient",
 					"projectIndex" : 0
 				},

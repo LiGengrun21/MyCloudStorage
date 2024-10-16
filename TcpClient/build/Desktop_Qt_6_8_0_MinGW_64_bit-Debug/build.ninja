@@ -81,6 +81,38 @@ build CMakeFiles/TcpClient.dir/protocol.cpp.obj: CXX_COMPILER__TcpClient_unscann
   OBJECT_DIR = CMakeFiles\TcpClient.dir
   OBJECT_FILE_DIR = CMakeFiles\TcpClient.dir
 
+build CMakeFiles/TcpClient.dir/opewidget.cpp.obj: CXX_COMPILER__TcpClient_unscanned_Debug D$:/C++/Cloud$ Drive/TcpClient/opewidget.cpp || cmake_object_order_depends_target_TcpClient
+  DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_NETWORK_LIB -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
+  DEP_FILE = CMakeFiles\TcpClient.dir\opewidget.cpp.obj.d
+  FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -I"D:/C++/Cloud Drive/TcpClient/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpClient_autogen/include" -isystem D:/Qt/6.8.0/mingw_64/include/QtCore -isystem D:/Qt/6.8.0/mingw_64/include -isystem D:/Qt/6.8.0/mingw_64/mkspecs/win32-g++ -isystem D:/Qt/6.8.0/mingw_64/include/QtWidgets -isystem D:/Qt/6.8.0/mingw_64/include/QtGui -isystem D:/Qt/6.8.0/mingw_64/include/QtNetwork
+  OBJECT_DIR = CMakeFiles\TcpClient.dir
+  OBJECT_FILE_DIR = CMakeFiles\TcpClient.dir
+
+build CMakeFiles/TcpClient.dir/online.cpp.obj: CXX_COMPILER__TcpClient_unscanned_Debug D$:/C++/Cloud$ Drive/TcpClient/online.cpp || cmake_object_order_depends_target_TcpClient
+  DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_NETWORK_LIB -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
+  DEP_FILE = CMakeFiles\TcpClient.dir\online.cpp.obj.d
+  FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -I"D:/C++/Cloud Drive/TcpClient/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpClient_autogen/include" -isystem D:/Qt/6.8.0/mingw_64/include/QtCore -isystem D:/Qt/6.8.0/mingw_64/include -isystem D:/Qt/6.8.0/mingw_64/mkspecs/win32-g++ -isystem D:/Qt/6.8.0/mingw_64/include/QtWidgets -isystem D:/Qt/6.8.0/mingw_64/include/QtGui -isystem D:/Qt/6.8.0/mingw_64/include/QtNetwork
+  OBJECT_DIR = CMakeFiles\TcpClient.dir
+  OBJECT_FILE_DIR = CMakeFiles\TcpClient.dir
+
+build CMakeFiles/TcpClient.dir/friend.cpp.obj: CXX_COMPILER__TcpClient_unscanned_Debug D$:/C++/Cloud$ Drive/TcpClient/friend.cpp || cmake_object_order_depends_target_TcpClient
+  DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_NETWORK_LIB -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
+  DEP_FILE = CMakeFiles\TcpClient.dir\friend.cpp.obj.d
+  FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -I"D:/C++/Cloud Drive/TcpClient/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpClient_autogen/include" -isystem D:/Qt/6.8.0/mingw_64/include/QtCore -isystem D:/Qt/6.8.0/mingw_64/include -isystem D:/Qt/6.8.0/mingw_64/mkspecs/win32-g++ -isystem D:/Qt/6.8.0/mingw_64/include/QtWidgets -isystem D:/Qt/6.8.0/mingw_64/include/QtGui -isystem D:/Qt/6.8.0/mingw_64/include/QtNetwork
+  OBJECT_DIR = CMakeFiles\TcpClient.dir
+  OBJECT_FILE_DIR = CMakeFiles\TcpClient.dir
+
+build CMakeFiles/TcpClient.dir/book.cpp.obj: CXX_COMPILER__TcpClient_unscanned_Debug D$:/C++/Cloud$ Drive/TcpClient/book.cpp || cmake_object_order_depends_target_TcpClient
+  DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_NETWORK_LIB -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
+  DEP_FILE = CMakeFiles\TcpClient.dir\book.cpp.obj.d
+  FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -I"D:/C++/Cloud Drive/TcpClient/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpClient_autogen/include" -isystem D:/Qt/6.8.0/mingw_64/include/QtCore -isystem D:/Qt/6.8.0/mingw_64/include -isystem D:/Qt/6.8.0/mingw_64/mkspecs/win32-g++ -isystem D:/Qt/6.8.0/mingw_64/include/QtWidgets -isystem D:/Qt/6.8.0/mingw_64/include/QtGui -isystem D:/Qt/6.8.0/mingw_64/include/QtNetwork
+  OBJECT_DIR = CMakeFiles\TcpClient.dir
+  OBJECT_FILE_DIR = CMakeFiles\TcpClient.dir
+
 build CMakeFiles/TcpClient.dir/TcpClient_autogen/EWIEGA46WW/qrc_config.cpp.obj: CXX_COMPILER__TcpClient_unscanned_Debug D$:/C++/Cloud$ Drive/TcpClient/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/TcpClient_autogen/EWIEGA46WW/qrc_config.cpp || cmake_object_order_depends_target_TcpClient
   DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_NETWORK_LIB -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
   DEP_FILE = CMakeFiles\TcpClient.dir\TcpClient_autogen\EWIEGA46WW\qrc_config.cpp.obj.d
@@ -97,7 +129,7 @@ build CMakeFiles/TcpClient.dir/TcpClient_autogen/EWIEGA46WW/qrc_config.cpp.obj: 
 #############################################
 # Link the executable TcpClient.exe
 
-build TcpClient.exe: CXX_EXECUTABLE_LINKER__TcpClient_Debug CMakeFiles/TcpClient.dir/TcpClient_autogen/mocs_compilation.cpp.obj CMakeFiles/TcpClient.dir/main.cpp.obj CMakeFiles/TcpClient.dir/tcpclient.cpp.obj CMakeFiles/TcpClient.dir/protocol.cpp.obj CMakeFiles/TcpClient.dir/TcpClient_autogen/EWIEGA46WW/qrc_config.cpp.obj | D$:/Qt/6.8.0/mingw_64/lib/libQt6Widgets.a D$:/Qt/6.8.0/mingw_64/lib/libQt6Network.a D$:/Qt/6.8.0/mingw_64/lib/libQt6Gui.a D$:/Qt/6.8.0/mingw_64/lib/libQt6Core.a D$:/Qt/6.8.0/mingw_64/lib/libQt6EntryPoint.a || TcpClient_autogen TcpClient_autogen_timestamp_deps
+build TcpClient.exe: CXX_EXECUTABLE_LINKER__TcpClient_Debug CMakeFiles/TcpClient.dir/TcpClient_autogen/mocs_compilation.cpp.obj CMakeFiles/TcpClient.dir/main.cpp.obj CMakeFiles/TcpClient.dir/tcpclient.cpp.obj CMakeFiles/TcpClient.dir/protocol.cpp.obj CMakeFiles/TcpClient.dir/opewidget.cpp.obj CMakeFiles/TcpClient.dir/online.cpp.obj CMakeFiles/TcpClient.dir/friend.cpp.obj CMakeFiles/TcpClient.dir/book.cpp.obj CMakeFiles/TcpClient.dir/TcpClient_autogen/EWIEGA46WW/qrc_config.cpp.obj | D$:/Qt/6.8.0/mingw_64/lib/libQt6Widgets.a D$:/Qt/6.8.0/mingw_64/lib/libQt6Network.a D$:/Qt/6.8.0/mingw_64/lib/libQt6Gui.a D$:/Qt/6.8.0/mingw_64/lib/libQt6Core.a D$:/Qt/6.8.0/mingw_64/lib/libQt6EntryPoint.a || TcpClient_autogen TcpClient_autogen_timestamp_deps
   FLAGS = -DQT_QML_DEBUG -g
   LINK_FLAGS = -mwindows
   LINK_LIBRARIES = D:/Qt/6.8.0/mingw_64/lib/libQt6Widgets.a  D:/Qt/6.8.0/mingw_64/lib/libQt6Network.a  D:/Qt/6.8.0/mingw_64/lib/libQt6Gui.a  -ld3d11  -ldxgi  -ldxguid  -ld3d12  D:/Qt/6.8.0/mingw_64/lib/libQt6Core.a  -lmpr  -luserenv  -lmingw32  D:/Qt/6.8.0/mingw_64/lib/libQt6EntryPoint.a  -lshell32  -lws2_32  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
@@ -184,7 +216,7 @@ build TcpClient_autogen_timestamp_deps: phony
 #############################################
 # Utility command for TcpClient_autogen
 
-build TcpClient_autogen: phony CMakeFiles/TcpClient_autogen TcpClient_autogen/include/ui_tcpclient.h TcpClient_autogen/timestamp TcpClient_autogen/mocs_compilation.cpp TcpClient_autogen_timestamp_deps
+build TcpClient_autogen: phony CMakeFiles/TcpClient_autogen TcpClient_autogen/include/ui_tcpclient.h TcpClient_autogen/include/ui_online.h TcpClient_autogen/timestamp TcpClient_autogen/mocs_compilation.cpp TcpClient_autogen_timestamp_deps
 
 
 #############################################
@@ -210,7 +242,7 @@ build TcpClient_autogen/EWIEGA46WW/qrc_config.cpp | ${cmake_ninja_workdir}TcpCli
 #############################################
 # Phony custom command for CMakeFiles\TcpClient_autogen
 
-build CMakeFiles/TcpClient_autogen TcpClient_autogen/include/ui_tcpclient.h | ${cmake_ninja_workdir}CMakeFiles/TcpClient_autogen ${cmake_ninja_workdir}TcpClient_autogen/include/ui_tcpclient.h: phony TcpClient_autogen/timestamp || TcpClient_autogen_timestamp_deps
+build CMakeFiles/TcpClient_autogen TcpClient_autogen/include/ui_tcpclient.h TcpClient_autogen/include/ui_online.h | ${cmake_ninja_workdir}CMakeFiles/TcpClient_autogen ${cmake_ninja_workdir}TcpClient_autogen/include/ui_tcpclient.h ${cmake_ninja_workdir}TcpClient_autogen/include/ui_online.h: phony TcpClient_autogen/timestamp || TcpClient_autogen_timestamp_deps
 
 # =============================================================================
 # Target aliases.
