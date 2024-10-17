@@ -18,7 +18,7 @@
   <property name="windowTitle">
    <string>TcpClient</string>
   </property>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>170</x>
@@ -62,7 +62,11 @@
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="password_le"/>
+       <widget class="QLineEdit" name="password_le">
+        <property name="echoMode">
+         <enum>QLineEdit::EchoMode::Password</enum>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>

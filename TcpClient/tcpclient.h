@@ -20,7 +20,14 @@ class TcpClient : public QWidget
 public:
     TcpClient(QWidget *parent = nullptr);
     ~TcpClient();
+
     void loadConfig();
+
+    // TcpClient is a singleton, because tcp socket needs to be used in other place, like friend widget, to send messages.
+    static TcpClient &getInstance();
+
+    // get m_tcpSocket, to be used in anywhere
+    QTcpSocket &getTcpSocket();
 
 public slots:
     void showConnect();

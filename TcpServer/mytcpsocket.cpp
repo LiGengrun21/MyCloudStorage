@@ -66,6 +66,36 @@ void MyTcpSocket::recvMsg()
         }
         break;
     }
+    case ENUM_MSG_TYPE_ALL_ONLINE_REQUEST:
+    {
+        QStringList result;
+        result=OpeDB::getInstance().getAllOnlineUsers();
+        uint uiMsgLen = result.size()*32; // calculate bytes of the result; 32 because name field is varchar(32) in database.
+        respPdu = mkPDU(uiMsgLen);
+        respPdu->uiMsgType = ENUM_MSG_TYPE_ALL_ONLINE_RESPONSE;
+        for (int i=0;i<result.size();i++){
+            memcpy((char*)(respPdu->caMsg)+i*32
+                   , result.at(i).toStdString().c_str()
+                   , result.at(i).size()); // copy actual bytes of the name
+        }
+        break;
+    }
+    case ENUM_MSG_TYPE_SEARCH_USER_REQUEST:
+    {
+        int result = OpeDB::getInstance().searchUser(pdu->caData); // go to database to find the user based on name
+        respPdu = mkPDU(0);
+        respPdu->uiMsgType=ENUM_MSG_TYPE_SEARCH_USER_RESPONSE;
+        if (result == -1){
+            strcpy(respPdu->caData, SEARCH_USER_NO);
+        }
+        else if (result == 1){
+            strcpy(respPdu->caData, SEARCH_USER_ONLINE);
+        }
+        else{
+            strcpy(respPdu->caData, SEARCH_USER_OFFLINE);
+        }
+        break;
+    }
     default:
         break;
     }

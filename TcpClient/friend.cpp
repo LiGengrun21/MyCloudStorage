@@ -1,4 +1,8 @@
 #include "friend.h"
+#include "protocol.h"
+#include "tcpclient.h"
+#include <QInputDialog>
+#include <QDebug>
 
 Friend::Friend(QWidget *parent)
     : QWidget{parent}
@@ -9,7 +13,7 @@ Friend::Friend(QWidget *parent)
     m_pDelFriendPB = new QPushButton("Delete Friend");
     m_pFlushFriendPB = new QPushButton("Flush Friend List");
     m_pShowOnlineUsersPB = new QPushButton("Show Online Users");
-    m_pSearchUsersPB = new QPushButton("Search Users");
+    m_pSearchUsersPB = new QPushButton("Search User");
     m_pMsgSendPB = new QPushButton("Send Message");
     m_pPrivateChatPB = new QPushButton("Private Chat");
     m_pOnline = new Online();
@@ -43,14 +47,43 @@ Friend::Friend(QWidget *parent)
 
     connect(m_pShowOnlineUsersPB, SIGNAL(clicked(bool))
             , this, SLOT(showOnline()));
+    connect(m_pSearchUsersPB, SIGNAL(clicked(bool))
+            , this, SLOT(searchUser()));
 }
 
 void Friend::showOnline()
 {
     if (m_pOnline->isHidden()){ // click the button, show the online users
         m_pOnline->show();
+        PDU *pdu=mkPDU(0); // 0 because it's a request to get all users, does not contain any parameter
+        pdu->uiMsgType=ENUM_MSG_TYPE_ALL_ONLINE_REQUEST;
+        TcpClient::getInstance().getTcpSocket().write((char*) pdu, pdu->uiPDULen);
+        free(pdu);
+        pdu=NULL;
     }
     else{
         m_pOnline->hide(); // click again, hide the online users
     }
+}
+
+void Friend::searchUser()
+{
+    m_searchName = QInputDialog::getText(this, "Search", "username:");
+    if (!m_searchName.isEmpty()){
+        qDebug() << m_searchName;
+    }
+    PDU *pdu = mkPDU(0);
+    pdu->uiMsgType=ENUM_MSG_TYPE_SEARCH_USER_REQUEST;
+    memcpy(pdu->caData, m_searchName.toStdString().c_str(), m_searchName.size()); // name is stored in caData
+    TcpClient::getInstance().getTcpSocket().write((char*) pdu, pdu->uiPDULen);
+    free(pdu);
+    pdu=NULL;
+}
+
+void Friend::showAllOnlineUsers(PDU *pdu)
+{
+    if (pdu==NULL){
+        return;
+    }
+    m_pOnline->showUsers(pdu);
 }

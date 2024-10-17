@@ -49,6 +49,17 @@ void TcpClient::loadConfig()
     }
 }
 
+TcpClient &TcpClient::getInstance()
+{
+    static TcpClient instance;
+    return instance;
+}
+
+QTcpSocket &TcpClient::getTcpSocket()
+{
+    return m_tcpSocket;
+}
+
 void TcpClient::showConnect()
 {
     QMessageBox::information(this,"connect to server","Connection is successful");
@@ -60,7 +71,7 @@ void TcpClient::recvMsg()
     uint uiPDULen=0;
     m_tcpSocket.read((char*)&uiPDULen, sizeof(uint));
     uint uiMsgLen = uiPDULen - sizeof(PDU);
-    PDU *pdu = mkPDU(uiMsgLen); // receive pdu from client
+    PDU *pdu = mkPDU(uiMsgLen); // receive pdu from server
     m_tcpSocket.read((char*)pdu+sizeof(uint), uiPDULen - sizeof(uint));
 
     switch(pdu->uiMsgType){
@@ -83,6 +94,25 @@ void TcpClient::recvMsg()
         }
         else if (strcmp(pdu->caData,LOGIN_FAILED)==0){
             QMessageBox::information(this,"login","login failed");
+        }
+        break;
+    }
+    case ENUM_MSG_TYPE_ALL_ONLINE_RESPONSE:
+    {
+        OpeWidget::getInstance().getFriend()->showAllOnlineUsers(pdu);
+        break;
+    }
+    case ENUM_MSG_TYPE_SEARCH_USER_RESPONSE:
+    {
+        QString name = OpeWidget::getInstance().getFriend()->m_searchName;
+        if (strcmp(SEARCH_USER_NO, pdu->caData)==0){
+            QMessageBox::information(this, "search", QString("%1 not exist").arg(name));
+        }
+        else if (strcmp(SEARCH_USER_ONLINE, pdu->caData)==0){
+            QMessageBox::information(this, "search", QString("%1 is online").arg(name));
+        }
+        else if (strcmp(SEARCH_USER_OFFLINE, pdu->caData)==0){
+            QMessageBox::information(this, "search", QString("%1 is offline").arg(name));
         }
         break;
     }

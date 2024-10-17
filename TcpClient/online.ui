@@ -18,118 +18,38 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QWidget" name="">
+  <widget class="QListWidget" name="listWidget">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>481</width>
+     <width>301</width>
      <height>241</height>
     </rect>
    </property>
-   <layout class="QHBoxLayout" name="horizontalLayout">
-    <item>
-     <widget class="QListWidget" name="listWidget">
-      <property name="font">
-       <font>
-        <pointsize>14</pointsize>
-       </font>
-      </property>
-      <item>
-       <property name="text">
-        <string>Lucy</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>ee</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>eeeee</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>wwwww</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>rere</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>fsdere</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>werwerew</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>ewrewr</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>rwerew</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>rwerew</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>rwerewtrty</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>rweretryty</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>wetretrt</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>John</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Ed</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Luo</string>
-       </property>
-      </item>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="pushButton">
-      <property name="font">
-       <font>
-        <pointsize>16</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>Add Friend</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
+   <property name="font">
+    <font>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>0</y>
+     <width>118</width>
+     <height>34</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Add Friend</string>
+   </property>
   </widget>
  </widget>
  <resources/>

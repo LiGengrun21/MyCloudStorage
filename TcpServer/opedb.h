@@ -3,6 +3,7 @@
 #include <QObject>
 #include <QSqlDatabase>
 #include <QSqlQuery>
+#include <QStringList>
 
 class OpeDB : public QObject
 {
@@ -21,6 +22,10 @@ public:
     bool login(const char* username, const char* password);
     // login out
     bool logout(const char* username);
+    // get all online users
+    QStringList getAllOnlineUsers();
+    // get a user by name
+    int searchUser(const char* name);
 
 signals:
 

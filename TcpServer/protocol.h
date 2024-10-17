@@ -9,6 +9,9 @@
 #define REGISTER_FAILED "register failed: username exists"
 #define LOGIN_OK "login successful"
 #define LOGIN_FAILED "login failed: username or password error, or already logined"
+#define SEARCH_USER_NO "no such user"
+#define SEARCH_USER_ONLINE "user is online"
+#define SEARCH_USER_OFFLINE "user is offline"
 
 typedef unsigned int uint;
 
@@ -27,9 +30,12 @@ enum ENUM_MSG_TYPE{
     ENUM_MSG_TYPE_REGISTER_RESPONSE,
     ENUM_MSG_TYPE_LOGIN_REQUEST,
     ENUM_MSG_TYPE_LOGIN_RESPONSE,
+    ENUM_MSG_TYPE_ALL_ONLINE_REQUEST, // request all online users
+    ENUM_MSG_TYPE_ALL_ONLINE_RESPONSE,
+    ENUM_MSG_TYPE_SEARCH_USER_REQUEST, // search user
+    ENUM_MSG_TYPE_SEARCH_USER_RESPONSE,
     ENUM_MSG_TYPE_MAX=0x00ffffff
 };
-
 
 PDU *mkPDU(uint uiMsgLen);
 

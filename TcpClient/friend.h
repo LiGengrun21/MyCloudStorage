@@ -14,6 +14,9 @@ class Friend : public QWidget
     Q_OBJECT
 public:
     explicit Friend(QWidget *parent = nullptr);
+    void showAllOnlineUsers(PDU *pdu); // show all online users
+
+    QString m_searchName; // tmp, for showing name in QMessageBox while searching
 
 private:
     QTextEdit *m_pShowMsgTE;
@@ -30,6 +33,7 @@ signals:
 
 public slots:
     void showOnline(); // show online users
+    void searchUser();
 };
 
 #endif // FRIEND_H

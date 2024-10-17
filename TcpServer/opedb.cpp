@@ -77,6 +77,35 @@ bool OpeDB::logout(const char *username)
     return true;
 }
 
+QStringList OpeDB::getAllOnlineUsers()
+{
+    QString data = QString("select name from userInfo where online=1");
+    QSqlQuery query;
+    query.exec(data);
+    QStringList result;
+    result.clear();
+    while(query.next()){
+        result.append(query.value(0).toString()); // value(0) get QVariant, so it should be casted to QString; 0 because only name is returned in the query result.
+    }
+    return result;
+}
+
+int OpeDB::searchUser(const char *name)
+{
+    if (name == NULL){
+        return -1;
+    }
+    QString data = QString("select online from userInfo where name=\'%1\'").arg(name);
+    QSqlQuery query;
+    query.exec(data);
+    if (query.next()){
+        return query.value(0).toInt(); // 1: online; 0: offline
+    }
+    else{
+        return -1;
+    }
+}
+
 OpeDB::~OpeDB()
 {
     m_db.close();
