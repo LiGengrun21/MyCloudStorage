@@ -32,6 +32,10 @@ public:
     bool insertFriend(const char* name1, const char* name2);
     // get id by name (because name is unique)
     int getIdByName(const char* name);
+    // get the user's friends
+    QStringList getFriends(const char* name);
+    // remove a friend
+    bool removeFriend(const char* myName, const char* friendName);
 
 signals:
 

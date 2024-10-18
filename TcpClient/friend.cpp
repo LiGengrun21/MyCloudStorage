@@ -49,6 +49,10 @@ Friend::Friend(QWidget *parent)
             , this, SLOT(showOnline()));
     connect(m_pSearchUsersPB, SIGNAL(clicked(bool))
             , this, SLOT(searchUser()));
+    connect(m_pFlushFriendPB, SIGNAL(clicked(bool))
+            , this, SLOT(flushFriends()));
+    connect(m_pDelFriendPB, SIGNAL(clicked(bool))
+            , this, SLOT(deleteFriend()));
 }
 
 void Friend::showOnline()
@@ -80,10 +84,54 @@ void Friend::searchUser()
     pdu=NULL;
 }
 
+void Friend::flushFriends()
+{
+    QString myName = TcpClient::getInstance().getMyLoginName();
+    PDU *pdu = mkPDU(0);
+    pdu->uiMsgType = ENUM_MSG_TYPE_FLUSH_FRIEND_REQUEST;
+    memcpy(pdu->caData, myName.toStdString().c_str(), myName.size());
+    TcpClient::getInstance().getTcpSocket().write((char*) pdu, pdu->uiPDULen);
+    free(pdu);
+    pdu=NULL;
+}
+
+void Friend::deleteFriend()
+{
+    if (m_pFriendListWidget->currentItem()==NULL)
+    {
+        // no item is selected
+        return;
+    }
+    QString friendName = m_pFriendListWidget->currentItem()->text();
+    PDU *pdu = mkPDU(0);
+    pdu->uiMsgType=ENUM_MSG_TYPE_DELETE_FRIEND_REQUEST;
+    QString myName = TcpClient::getInstance().getMyLoginName();
+    // caData contains my name and name of the friend I'd like to remove
+    memcpy(pdu->caData, myName.toStdString().c_str(), 32);
+    memcpy(pdu->caData+32, friendName.toStdString().c_str(), 32);
+    TcpClient::getInstance().getTcpSocket().write((char*) pdu, pdu->uiPDULen);
+    free(pdu);
+    pdu=NULL;
+}
+
 void Friend::showAllOnlineUsers(PDU *pdu)
 {
     if (pdu==NULL){
         return;
     }
     m_pOnline->showUsers(pdu);
+}
+
+void Friend::updateFriendList(PDU *pdu)
+{
+    if (pdu==NULL){
+        return;
+    }
+    m_pFriendListWidget->clear(); // clear the original data
+    uint size = pdu->uiMsgLen/32; // number of names
+    char name[32]={'\0'};
+    for (uint i=0;i<size;i++){
+        memcpy(name, (char*)(pdu->caMsg)+32*i,32);
+        m_pFriendListWidget->addItem(name); // add the data to the widget
+    }
 }

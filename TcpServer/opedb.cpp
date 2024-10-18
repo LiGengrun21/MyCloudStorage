@@ -163,6 +163,41 @@ int OpeDB::getIdByName(const char *name)
     }
 }
 
+QStringList OpeDB::getFriends(const char *name)
+{
+    QStringList strFriendList;
+    strFriendList.clear();
+    if (name ==NULL)
+    {
+        return strFriendList;
+    }
+    QString data = QString("select name from userInfo where id in"
+                           "(select id from friend where friendId=(select id from userInfo where name=\'%1\') "
+                           "union "
+                           "select friendId from friend where id=(select id from userInfo where name=\'%1\'))").arg(name);
+    QSqlQuery query;
+    query.exec(data);
+    while(query.next()){
+        strFriendList.append(query.value(0).toString());
+    }
+    return strFriendList;
+}
+
+bool OpeDB::removeFriend(const char *myName, const char *friendName)
+{
+    if (myName==NULL || friendName==NULL){
+        return false;
+    }
+    QString data = QString("delete from friend "
+                           "where (id = (select id from userInfo where name = \'%1\') and friendId = (select id from userInfo where name = \'%2\')) "
+                           "or (id = (select id from userInfo where name = \'%3\') and friendId = (select id from userInfo where name = \'%4\'))")
+                       .arg(myName).arg(friendName).arg(friendName).arg(myName);
+    QSqlQuery query;
+    qDebug() << data;
+    query.exec(data);
+    return true;
+}
+
 OpeDB::~OpeDB()
 {
     m_db.close();

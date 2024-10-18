@@ -159,6 +159,16 @@ void TcpClient::recvMsg()
         QMessageBox::information(this, "Friend Requst", pdu->caData);
         break;
     }
+    case ENUM_MSG_TYPE_FLUSH_FRIEND_RESPONSE:
+    {
+        OpeWidget::getInstance().getFriend()->updateFriendList(pdu);
+        break;
+    }
+    case ENUM_MSG_TYPE_DELETE_FRIEND_RESPONSE:
+    {
+        QMessageBox::information(this, "Remove Friend", "removed successfully");
+        break;
+    }
     default:
         break;
     }

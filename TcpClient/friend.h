@@ -15,6 +15,7 @@ class Friend : public QWidget
 public:
     explicit Friend(QWidget *parent = nullptr);
     void showAllOnlineUsers(PDU *pdu); // show all online users
+    void updateFriendList(PDU *pdu); // update friend list (both online and offline)
 
     QString m_searchName; // tmp, for showing name in QMessageBox while searching
 
@@ -29,11 +30,14 @@ private:
     QPushButton *m_pMsgSendPB; // send message
     QPushButton *m_pPrivateChatPB; // private chat
     Online *m_pOnline; // show online users
+
 signals:
 
 public slots:
     void showOnline(); // show online users
-    void searchUser();
+    void searchUser(); // check if the user is online
+    void flushFriends(); // flush friend list
+    void deleteFriend(); // remove the user from friend list
 };
 
 #endif // FRIEND_H

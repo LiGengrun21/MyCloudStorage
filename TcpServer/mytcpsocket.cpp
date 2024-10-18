@@ -48,8 +48,8 @@ void MyTcpSocket::recvMsg()
             strcpy(respPdu->caData, REGISTER_FAILED);
         }
         write((char*) respPdu, respPdu->uiPDULen);
-        free(pdu);
-        pdu=NULL;
+        // free(pdu);
+        // pdu=NULL;
         free(respPdu);
         respPdu = NULL;
         break;
@@ -71,8 +71,8 @@ void MyTcpSocket::recvMsg()
             strcpy(respPdu->caData, LOGIN_FAILED);
         }
         write((char*) respPdu, respPdu->uiPDULen);
-        free(pdu);
-        pdu=NULL;
+        // free(pdu);
+        // pdu=NULL;
         free(respPdu);
         respPdu = NULL;
         break;
@@ -90,8 +90,8 @@ void MyTcpSocket::recvMsg()
                    , result.at(i).size()); // copy actual bytes of the name
         }
         write((char*) respPdu, respPdu->uiPDULen);
-        free(pdu);
-        pdu=NULL;
+        // free(pdu);
+        // pdu=NULL;
         free(respPdu);
         respPdu = NULL;
         break;
@@ -111,8 +111,8 @@ void MyTcpSocket::recvMsg()
             strcpy(respPdu->caData, SEARCH_USER_OFFLINE);
         }
         write((char*) respPdu, respPdu->uiPDULen);
-        free(pdu);
-        pdu=NULL;
+        // free(pdu);
+        // pdu=NULL;
         free(respPdu);
         respPdu = NULL;
         break;
@@ -137,8 +137,8 @@ void MyTcpSocket::recvMsg()
             respPdu->uiMsgType = ENUM_MSG_TYPE_ADD_FRIEND_RESPONSE;
             strcpy(respPdu->caData, UNKNOWN_ERROR);
             write((char*) respPdu, respPdu->uiPDULen);
-            free(pdu);
-            pdu=NULL;
+            // free(pdu);
+            // pdu=NULL;
             free(respPdu);
             respPdu = NULL;
         }
@@ -147,8 +147,8 @@ void MyTcpSocket::recvMsg()
             respPdu->uiMsgType = ENUM_MSG_TYPE_ADD_FRIEND_RESPONSE;
             strcpy(respPdu->caData, ADD_FRIEND_ALREADY_FRIENDS);
             write((char*) respPdu, respPdu->uiPDULen);
-            free(pdu);
-            pdu=NULL;
+            // free(pdu);
+            // pdu=NULL;
             free(respPdu);
             respPdu = NULL;
         }
@@ -160,8 +160,8 @@ void MyTcpSocket::recvMsg()
             respPdu->uiMsgType = ENUM_MSG_TYPE_ADD_FRIEND_RESPONSE;
             strcpy(respPdu->caData, ADD_FRIEND_OFFLINE);
             write((char*) respPdu, respPdu->uiPDULen);
-            free(pdu);
-            pdu=NULL;
+            // free(pdu);
+            // pdu=NULL;
             free(respPdu);
             respPdu = NULL;
         }
@@ -170,8 +170,8 @@ void MyTcpSocket::recvMsg()
             respPdu->uiMsgType = ENUM_MSG_TYPE_ADD_FRIEND_RESPONSE;
             strcpy(respPdu->caData, ADD_FRIEND_NOT_EXIST);
             write((char*) respPdu, respPdu->uiPDULen);
-            free(pdu);
-            pdu=NULL;
+            // free(pdu);
+            // pdu=NULL;
             free(respPdu);
             respPdu = NULL;
         }
@@ -190,12 +190,46 @@ void MyTcpSocket::recvMsg()
         // insert one item to friend table
         OpeDB::getInstance().insertFriend(name1, name2);
     }
+    case ENUM_MSG_TYPE_FLUSH_FRIEND_REQUEST:
+    {
+        char name[32] = {'\0'};
+        strncpy(name, pdu->caData,32);
+        QStringList result = OpeDB::getInstance().getFriends(name);
+        uint uiMsgLen = result.size()*32;
+        respPdu = mkPDU(uiMsgLen);
+        respPdu->uiMsgType = ENUM_MSG_TYPE_FLUSH_FRIEND_RESPONSE;
+        // copy every element of the result list into respPdu's caMsg
+        for (int i=0; i<result.size();i++){
+            memcpy((char*)respPdu->caMsg+32*i, result.at(i).toStdString().c_str(), result.at(i).size());
+        }
+        write((char*) respPdu, respPdu->uiPDULen);
+        free(respPdu);
+        respPdu = NULL;
+        break;
+    }
+    case ENUM_MSG_TYPE_DELETE_FRIEND_REQUEST:
+    {
+        char myName[32]={'\0'};
+        char friendName[32]={'\0'};
+        strncpy(myName, pdu->caData,32);
+        strncpy(friendName,pdu->caData+32,32);
+        bool result = OpeDB::getInstance().removeFriend(myName, friendName); // delete the friend
+        qDebug() << "If deleted successfully" << result;
+        // only notify the user who who sent the delete request
+        respPdu = mkPDU(0);
+        respPdu->uiMsgType = ENUM_MSG_TYPE_DELETE_FRIEND_RESPONSE;
+        strcpy(respPdu->caData, DELETE_OK);
+        write((char*) respPdu, respPdu->uiPDULen);
+        free(respPdu);
+        respPdu = NULL;
+        break;
+    }
     default:
         break;
     }
     // write((char*) respPdu, respPdu->uiPDULen);
-    // free(pdu);
-    // pdu=NULL;
+    free(pdu);
+    pdu=NULL;
     // free(respPdu);
     // respPdu = NULL;
 }

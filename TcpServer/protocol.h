@@ -15,6 +15,7 @@
 #define ADD_FRIEND_ALREADY_FRIENDS "Already friends"
 #define ADD_FRIEND_OFFLINE "user offline"
 #define ADD_FRIEND_NOT_EXIST "user not exist"
+#define DELETE_OK "removed successfully"
 
 typedef unsigned int uint;
 
@@ -41,9 +42,12 @@ enum ENUM_MSG_TYPE{
     ENUM_MSG_TYPE_ADD_FRIEND_RESPONSE,
     ENUM_MSG_TYPE_ADD_FRIEND_ACCEPT, // accpet
     ENUM_MSG_TYPE_ADD_FRIEND_REJECT, // reject
+    ENUM_MSG_TYPE_FLUSH_FRIEND_REQUEST, // flush friend list request
+    ENUM_MSG_TYPE_FLUSH_FRIEND_RESPONSE,
+    ENUM_MSG_TYPE_DELETE_FRIEND_REQUEST, // delete friend request
+    ENUM_MSG_TYPE_DELETE_FRIEND_RESPONSE,
     ENUM_MSG_TYPE_MAX=0x00ffffff
 };
-
 
 PDU *mkPDU(uint uiMsgLen);
 
