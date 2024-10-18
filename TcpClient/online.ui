@@ -32,6 +32,11 @@
      <pointsize>14</pointsize>
     </font>
    </property>
+   <item>
+    <property name="text">
+     <string>Test</string>
+    </property>
+   </item>
   </widget>
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">

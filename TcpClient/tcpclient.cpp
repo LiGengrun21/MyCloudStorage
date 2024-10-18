@@ -60,6 +60,11 @@ QTcpSocket &TcpClient::getTcpSocket()
     return m_tcpSocket;
 }
 
+QString TcpClient::getMyLoginName()
+{
+    return m_strMyLoginName;
+}
+
 void TcpClient::showConnect()
 {
     QMessageBox::information(this,"connect to server","Connection is successful");
@@ -67,12 +72,23 @@ void TcpClient::showConnect()
 
 void TcpClient::recvMsg()
 {
-    qDebug()<<m_tcpSocket.bytesAvailable();
+    // test
+    //qDebug()<<"tcp client socket byts:" << m_tcpSocket.bytesAvailable();
+
     uint uiPDULen=0;
     m_tcpSocket.read((char*)&uiPDULen, sizeof(uint));
     uint uiMsgLen = uiPDULen - sizeof(PDU);
     PDU *pdu = mkPDU(uiMsgLen); // receive pdu from server
     m_tcpSocket.read((char*)pdu+sizeof(uint), uiPDULen - sizeof(uint));
+
+    // test
+    qDebug() << "tcp client: pdu message type: " <<pdu->uiMsgType;
+    QString output;
+    for (int i = 0; i < 64; ++i) {
+        output.append(pdu->caData[i]);
+    }
+    qDebug() << "tcp client: pdu caData: " <<output;
+
 
     switch(pdu->uiMsgType){
     case ENUM_MSG_TYPE_REGISTER_RESPONSE: // register respnse
@@ -116,6 +132,33 @@ void TcpClient::recvMsg()
         }
         break;
     }
+    case ENUM_MSG_TYPE_ADD_FRIEND_REQUEST: // from the client (forwarded by server)who wants to add you as a friend
+    {
+        char caName[32] = {'\0'};
+        char caMyName[32] = {'\0'};
+        strncpy(caName, pdu->caData, 32); // the user who sent you request
+        strncpy(caMyName, pdu->caData+32, 32); // me who received the request
+        PDU *respPdu = mkPDU(0);
+        // first: me; second: the user who send the request
+        memcpy(respPdu->caData, caMyName, 32);
+        memcpy(respPdu->caData+32, caName, 32);
+        int result = QMessageBox::information(this, "Friend Request", QString("%1 sent friend request to you.").arg(caName),QMessageBox::Yes, QMessageBox::No); // two options: yes or no
+        if (result == QMessageBox::Yes){
+            respPdu->uiMsgType=ENUM_MSG_TYPE_ADD_FRIEND_ACCEPT;
+        }
+        else{
+            respPdu->uiMsgType=ENUM_MSG_TYPE_ADD_FRIEND_REJECT;
+        }
+        m_tcpSocket.write((char*) respPdu, respPdu->uiPDULen);
+        free(respPdu);
+        respPdu=NULL;
+        break;
+    }
+    case ENUM_MSG_TYPE_ADD_FRIEND_RESPONSE: // from the server, your add request is declined due to some reason
+    {
+        QMessageBox::information(this, "Friend Requst", pdu->caData);
+        break;
+    }
     default:
         break;
     }
@@ -145,6 +188,8 @@ void TcpClient::on_login_btn_clicked()
     QString strName = ui->username_le->text();
     QString strPwd = ui->password_le->text();
     if (!strName.isEmpty()&&!strPwd.isEmpty()){
+        // store the login name
+        m_strMyLoginName = strName;
         PDU *pdu = mkPDU(0); //because message does not contain anything
         pdu->uiMsgType = ENUM_MSG_TYPE_LOGIN_REQUEST;
         // username and password are stored in caData, not caMsg.

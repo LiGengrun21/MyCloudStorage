@@ -29,6 +29,9 @@ public:
     // get m_tcpSocket, to be used in anywhere
     QTcpSocket &getTcpSocket();
 
+    // getter
+    QString getMyLoginName();
+
 public slots:
     void showConnect();
     void recvMsg();
@@ -45,5 +48,6 @@ private:
     QString m_StrIP;
     quint16 m_usPort;
     QTcpSocket m_tcpSocket; // to connect server
+    QString m_strMyLoginName; // login name of the user
 };
 #endif // TCPCLIENT_H

@@ -21,6 +21,32 @@ void MyTcpServer::incomingConnection(qintptr socketDescriptor)
             , this, SLOT(deleteSocket(MyTcpSocket*)));
 }
 
+void MyTcpServer::forward(const char *hisName, PDU *pdu)
+{
+    if (hisName==NULL || pdu==NULL){
+        qDebug() << "Null exists in forward function parameters";
+        return;
+    }
+    // get his socket based on his name
+    QString strName = hisName;
+    // test
+    for (int i=0;i<m_tcpSocketList.size();i++){
+        if (strName == m_tcpSocketList.at(i)->getName())
+        {
+            //test
+            qDebug() << "In forward function, print pdu caData to be sent to client";
+            for (int i = 0; i < 64; ++i) {
+                qDebug() << pdu->caData[i];
+            }
+            qDebug()<<pdu->uiPDULen;
+            qDebug() << m_tcpSocketList.at(i)->getName();
+
+            m_tcpSocketList.at(i)->write((char*) pdu, pdu->uiPDULen); // His socket sends pdu to his client
+            break;
+        }
+    }
+}
+
 void MyTcpServer::deleteSocket(MyTcpSocket *socket)
 {
     QList<MyTcpSocket*>::iterator iter = m_tcpSocketList.begin(); // use iterator to get the first element of the list
@@ -34,7 +60,7 @@ void MyTcpServer::deleteSocket(MyTcpSocket *socket)
     }
 
     // test if deleted
-    for (int i=0;i<m_tcpSocketList.size();i++){
-        qDebug() << m_tcpSocketList.at(i)->getName();
-    }
+    // for (int i=0;i<m_tcpSocketList.size();i++){
+    //     qDebug() << m_tcpSocketList.at(i)->getName();
+    // }
 }

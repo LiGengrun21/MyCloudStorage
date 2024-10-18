@@ -26,6 +26,12 @@ public:
     QStringList getAllOnlineUsers();
     // get a user by name
     int searchUser(const char* name);
+    // add  (deal with add friend request, return integer, -1,0,1,2,3), does not insert data
+    int addFriend(const char* myName, const char* hisName);
+    // insert an item to friend table
+    bool insertFriend(const char* name1, const char* name2);
+    // get id by name (because name is unique)
+    int getIdByName(const char* name);
 
 signals:
 

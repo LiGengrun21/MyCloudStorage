@@ -23,7 +23,7 @@ void OpeDB::init()
         query.exec("select * from userInfo");
         while (query.next()){
             QString data = QString("%1,%2,%3").arg(query.value(0).toString()).arg(query.value(1).toString()).arg(query.value(2).toString());
-            qDebug() << data;
+            //qDebug() << data;
         }
     }
     else{
@@ -50,12 +50,12 @@ bool OpeDB::login(const char *username, const char *password)
         return false;
     }
     QString data = QString("select * from userInfo where name=\'%1\' and password=\'%2\' and online=0").arg(username).arg(password); // online = 0 means not logined
-    qDebug()<<data;
+    //qDebug()<<data;
     QSqlQuery query;
     query.exec(data);
     if (query.next()){ // set online to 1
         data = QString("update userinfo set online=1 where name=\'%1\'").arg(username);
-        qDebug()<<data;
+        //qDebug()<<data;
         QSqlQuery query;
         query.exec(data);
         return true;
@@ -100,6 +100,63 @@ int OpeDB::searchUser(const char *name)
     query.exec(data);
     if (query.next()){
         return query.value(0).toInt(); // 1: online; 0: offline
+    }
+    else{
+        return -1;
+    }
+}
+
+// return values: -1, 0, 1, 2, 3
+int OpeDB::addFriend(const char *myName, const char *hisName)
+{
+    if (myName==NULL || hisName == NULL || strcmp(myName, hisName) == 0){
+        return -1; // input error
+    }
+    QString data = QString("select * from friend where (id = (select id from userInfo where name = \'%1\') and friendId = (select id from userInfo where name = \'%2\')) "
+                           "or (id = (select id from userInfo where name = \'%3\') and friendId = (select id from userInfo where name = \'%4\'))").arg(myName).arg(hisName).arg(hisName).arg(myName);
+    //qDebug()<<data;
+    QSqlQuery query;
+    query.exec(data);
+    if (query.next()){
+        return 0; // they are aleady friends
+    }
+    else{ // not friends
+        // whether the request receiver is online or not, online ==1 or 0.
+        int online = searchUser(hisName);
+        if (online == 0){
+            return 2; // not online
+        }
+        else if (online == 1){
+            return 1; // online
+        }
+        else{
+            return 3; // the user does not exist
+        }
+    }
+}
+
+bool OpeDB::insertFriend(const char *name1, const char *name2)
+{
+    int userId1 = getIdByName(name1);
+    int userId2 = getIdByName(name2);
+    if (userId1<=0 || userId2<=0){
+        return false;
+    }
+    QString data = QString("insert into friend (id, friendId) values (%1,%2);").arg(userId1).arg(userId2);
+    QSqlQuery query;
+    return query.exec(data);
+}
+
+int OpeDB::getIdByName(const char *name)
+{
+    if (name==NULL){
+        return -1;
+    }
+    QString data = QString("select id from userInfo where name=\'%1\'").arg(name);
+    QSqlQuery query;
+    query.exec(data);
+    if (query.next()){
+        return query.value(0).toInt();
     }
     else{
         return -1;

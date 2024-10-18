@@ -11,6 +11,10 @@
 #define SEARCH_USER_NO "no such user"
 #define SEARCH_USER_ONLINE "user is online"
 #define SEARCH_USER_OFFLINE "user is offline"
+#define UNKNOWN_ERROR "unknown error"
+#define ADD_FRIEND_ALREADY_FRIENDS "Already friends"
+#define ADD_FRIEND_OFFLINE "user offline"
+#define ADD_FRIEND_NOT_EXIST "user not exist"
 
 typedef unsigned int uint;
 
@@ -33,6 +37,10 @@ enum ENUM_MSG_TYPE{
     ENUM_MSG_TYPE_ALL_ONLINE_RESPONSE,
     ENUM_MSG_TYPE_SEARCH_USER_REQUEST, // search user
     ENUM_MSG_TYPE_SEARCH_USER_RESPONSE,
+    ENUM_MSG_TYPE_ADD_FRIEND_REQUEST, // add friend in online widget
+    ENUM_MSG_TYPE_ADD_FRIEND_RESPONSE,
+    ENUM_MSG_TYPE_ADD_FRIEND_ACCEPT, // accpet
+    ENUM_MSG_TYPE_ADD_FRIEND_REJECT, // reject
     ENUM_MSG_TYPE_MAX=0x00ffffff
 };
 

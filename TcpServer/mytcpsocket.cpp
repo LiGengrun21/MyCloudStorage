@@ -1,4 +1,5 @@
 #include "mytcpsocket.h"
+#include "mytcpserver.h"
 #include <QDebug>
 
 MyTcpSocket::MyTcpSocket(QObject *parent)
@@ -20,7 +21,7 @@ QString MyTcpSocket::getName()
 
 void MyTcpSocket::recvMsg()
 {
-    qDebug() << this->bytesAvailable();
+    //qDebug() << "my tcp socket recvMsg, bytes of socket:" <<this->bytesAvailable();
     uint uiPDULen=0;
     this->read((char*)&uiPDULen, sizeof(uint));
     uint uiMsgLen = uiPDULen - sizeof(PDU);
@@ -46,6 +47,11 @@ void MyTcpSocket::recvMsg()
         else{
             strcpy(respPdu->caData, REGISTER_FAILED);
         }
+        write((char*) respPdu, respPdu->uiPDULen);
+        free(pdu);
+        pdu=NULL;
+        free(respPdu);
+        respPdu = NULL;
         break;
     }
     case ENUM_MSG_TYPE_LOGIN_REQUEST: // login request
@@ -64,6 +70,11 @@ void MyTcpSocket::recvMsg()
         else{
             strcpy(respPdu->caData, LOGIN_FAILED);
         }
+        write((char*) respPdu, respPdu->uiPDULen);
+        free(pdu);
+        pdu=NULL;
+        free(respPdu);
+        respPdu = NULL;
         break;
     }
     case ENUM_MSG_TYPE_ALL_ONLINE_REQUEST:
@@ -78,6 +89,11 @@ void MyTcpSocket::recvMsg()
                    , result.at(i).toStdString().c_str()
                    , result.at(i).size()); // copy actual bytes of the name
         }
+        write((char*) respPdu, respPdu->uiPDULen);
+        free(pdu);
+        pdu=NULL;
+        free(respPdu);
+        respPdu = NULL;
         break;
     }
     case ENUM_MSG_TYPE_SEARCH_USER_REQUEST:
@@ -94,16 +110,94 @@ void MyTcpSocket::recvMsg()
         else{
             strcpy(respPdu->caData, SEARCH_USER_OFFLINE);
         }
+        write((char*) respPdu, respPdu->uiPDULen);
+        free(pdu);
+        pdu=NULL;
+        free(respPdu);
+        respPdu = NULL;
         break;
+    }
+    case ENUM_MSG_TYPE_ADD_FRIEND_REQUEST: // three scenarios: 1. already a friend; 2. not friend yet, but not online; 3. not friend yet, and online
+    {
+        char myName[32]={'\0'};
+        char hisName[32]={'\0'};
+        strncpy(myName, pdu->caData,32);
+        strncpy(hisName,pdu->caData+32,32);
+
+        //test
+        // qDebug() << "myName：" <<myName;
+        // qDebug() << "hisName:" <<hisName;
+        // for (int i = 0; i < 64; ++i) {
+        //     qDebug() << pdu->caData[i];
+        // }
+
+        int result = OpeDB::getInstance().addFriend(myName, hisName);
+        if (result == -1){ // system error
+            respPdu = mkPDU(0);
+            respPdu->uiMsgType = ENUM_MSG_TYPE_ADD_FRIEND_RESPONSE;
+            strcpy(respPdu->caData, UNKNOWN_ERROR);
+            write((char*) respPdu, respPdu->uiPDULen);
+            free(pdu);
+            pdu=NULL;
+            free(respPdu);
+            respPdu = NULL;
+        }
+        else if (result == 0){ // already friends
+            respPdu = mkPDU(0);
+            respPdu->uiMsgType = ENUM_MSG_TYPE_ADD_FRIEND_RESPONSE;
+            strcpy(respPdu->caData, ADD_FRIEND_ALREADY_FRIENDS);
+            write((char*) respPdu, respPdu->uiPDULen);
+            free(pdu);
+            pdu=NULL;
+            free(respPdu);
+            respPdu = NULL;
+        }
+        else if (result == 1){ // not friends yet and online
+            MyTcpServer::getInstance().forward(hisName, pdu); // forward the add request to the corresponding user
+        }
+        else if (result == 2){ // not friends yet but not online
+            respPdu = mkPDU(0);
+            respPdu->uiMsgType = ENUM_MSG_TYPE_ADD_FRIEND_RESPONSE;
+            strcpy(respPdu->caData, ADD_FRIEND_OFFLINE);
+            write((char*) respPdu, respPdu->uiPDULen);
+            free(pdu);
+            pdu=NULL;
+            free(respPdu);
+            respPdu = NULL;
+        }
+        else{ // the user you want to add as friend does not exist in db
+            respPdu = mkPDU(0);
+            respPdu->uiMsgType = ENUM_MSG_TYPE_ADD_FRIEND_RESPONSE;
+            strcpy(respPdu->caData, ADD_FRIEND_NOT_EXIST);
+            write((char*) respPdu, respPdu->uiPDULen);
+            free(pdu);
+            pdu=NULL;
+            free(respPdu);
+            respPdu = NULL;
+        }
+        break;
+    }
+    case ENUM_MSG_TYPE_ADD_FRIEND_REJECT:
+    {
+        // do nothing
+    }
+    case ENUM_MSG_TYPE_ADD_FRIEND_ACCEPT:
+    {
+        char name1[32]={'\0'};
+        char name2[32]={'\0'};
+        strncpy(name1, pdu->caData, 32);
+        strncpy(name2, pdu->caData+32, 32);
+        // insert one item to friend table
+        OpeDB::getInstance().insertFriend(name1, name2);
     }
     default:
         break;
     }
-    write((char*) respPdu, respPdu->uiPDULen);
-    free(pdu);
-    pdu=NULL;
-    free(respPdu);
-    respPdu = NULL;
+    // write((char*) respPdu, respPdu->uiPDULen);
+    // free(pdu);
+    // pdu=NULL;
+    // free(respPdu);
+    // respPdu = NULL;
 }
 
 void MyTcpSocket::clientOffline()

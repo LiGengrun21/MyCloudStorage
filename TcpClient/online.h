@@ -18,6 +18,9 @@ public:
     ~Online();
     void showUsers(PDU *pdu);
 
+private slots:
+    void on_pushButton_clicked();
+
 private:
     Ui::Online *ui;
 };
