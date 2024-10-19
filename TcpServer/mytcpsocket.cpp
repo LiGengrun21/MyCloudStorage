@@ -1,6 +1,7 @@
 #include "mytcpsocket.h"
 #include "mytcpserver.h"
 #include <QDebug>
+#include <QDir>
 
 MyTcpSocket::MyTcpSocket(QObject *parent)
     : QTcpSocket{parent}
@@ -43,6 +44,9 @@ void MyTcpSocket::recvMsg()
         respPdu->uiMsgType = ENUM_MSG_TYPE_REGISTER_RESPONSE;
         if (result){
             strcpy(respPdu->caData, REGISTER_OK);
+            // if registered sucessfully, create a folder for the user, where all his files will be stored
+            QDir dir;
+            qDebug()<<"if the user's folder is created:" << dir.mkdir(QString("./storage/%1").arg(username));
         }
         else{
             strcpy(respPdu->caData, REGISTER_FAILED);
@@ -241,6 +245,52 @@ void MyTcpSocket::recvMsg()
         for(int i=0;i<friendList.size();i++){ // forward the request to all friends
             MyTcpServer::getInstance().forward(friendList.at(i).toStdString().c_str(), pdu);
         }
+        break;
+    }
+    case ENUM_MSG_TYPE_CREATE_FOLDER_REQUEST:
+    {
+        respPdu=mkPDU(0);
+        respPdu->uiMsgType=ENUM_MSG_TYPE_CREATE_FOLDER_RESPONSE;
+        //qDebug()<<respPdu->uiMsgType;
+
+        // before creating, first check if the current path exists.
+        QDir dir;
+        QString curPath = QString("%1").arg((char*)pdu->caMsg);
+        bool result = dir.exists(curPath); // if the base dir exists?
+        if (!result){
+            // base dir not exists
+            qDebug()<< "base dir not exists";
+            qDebug()<<"base path:"<<curPath;
+            strcpy(respPdu->caData, BASE_DIR_NOT_EXIST);
+            write((char*) respPdu, respPdu->uiPDULen);
+            free(respPdu);
+            respPdu = NULL;
+            break;
+        }
+        // base dir exist
+        char newDir[32] = {'\0'};
+        memcpy(newDir, pdu->caData+32, 32);
+        QString newCurPath = curPath+"/"+newDir;
+        bool result2 = dir.exists(newCurPath); // if the new dir exists?
+        if (result2){
+            // if exists, change to another name
+            qDebug()<< "change to another name";
+            strcpy(respPdu->caData, DIR_ALREADY_EXITS);
+            write((char*) respPdu, respPdu->uiPDULen);
+            free(respPdu);
+            respPdu = NULL;
+            break;
+        }
+        // not exist, create it
+        qDebug()<<"you can create it";
+        dir.mkdir(newCurPath);
+        // qDebug()<<"base path:"<<curPath;
+        // qDebug()<<"new dir name:" <<newDir;
+        // qDebug()<<"new current path:"<<newCurPath;
+        strcpy(respPdu->caData, CREATE_DIR_OK);
+        write((char*) respPdu, respPdu->uiPDULen);
+        free(respPdu);
+        respPdu = NULL;
         break;
     }
     default:

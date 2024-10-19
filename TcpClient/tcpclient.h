@@ -31,6 +31,7 @@ public:
 
     // getter
     QString getMyLoginName();
+    QString getCurrentPath();
 
 public slots:
     void showConnect();
@@ -49,5 +50,6 @@ private:
     quint16 m_usPort;
     QTcpSocket m_tcpSocket; // to connect server
     QString m_strMyLoginName; // login name of the user
+    QString m_strCurPath; // current path of user's folder
 };
 #endif // TCPCLIENT_H

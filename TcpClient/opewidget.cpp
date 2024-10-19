@@ -8,10 +8,10 @@ OpeWidget::OpeWidget(QWidget *parent)
 
     m_pListWidget=new QListWidget(this); // this is the parent of m_pListWidget. If the parent is destroyed, it will also destroy QListWidget.
     m_pListWidget->addItem("Friends");
-    m_pListWidget->addItem("Books");
+    m_pListWidget->addItem("Files");
 
     m_pFriend = new Friend;
-    m_pBook = new Book;
+    m_pBook = new File;
     m_pSW = new QStackedWidget;
     m_pSW->addWidget(m_pFriend);
     m_pSW->addWidget(m_pBook);

@@ -2,7 +2,7 @@
 #define OPEWIDGET_H
 #include <QWidget>
 #include <QListWidget>
-#include "book.h"
+#include "File.h"
 #include "friend.h"
 #include <QStackedWidget>
 
@@ -18,7 +18,7 @@ public:
 private:
     QListWidget *m_pListWidget; // list widget on the left
     Friend *m_pFriend;
-    Book *m_pBook;
+    File *m_pBook;
     QStackedWidget *m_pSW; // stacked widget on the right, contaning friend and book, but only show one of them at one time.
 
 signals:

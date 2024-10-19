@@ -16,6 +16,9 @@
 #define ADD_FRIEND_OFFLINE "user offline"
 #define ADD_FRIEND_NOT_EXIST "user not exist"
 #define DELETE_OK "removed successfully"
+#define BASE_DIR_NOT_EXIST "base directory not exists"
+#define DIR_ALREADY_EXITS "directory exists, rename it please"
+#define CREATE_DIR_OK "folder created"
 
 typedef unsigned int uint;
 
@@ -50,6 +53,8 @@ enum ENUM_MSG_TYPE{
     ENUM_MSG_TYPE_PRIVATE_CHAT_RESPONSE,
     ENUM_MSG_TYPE_GROUP_CHAT_REQUEST, // private chat request
     ENUM_MSG_TYPE_GROUP_CHAT_RESPONSE,
+    ENUM_MSG_TYPE_CREATE_FOLDER_REQUEST, // create dir request
+    ENUM_MSG_TYPE_CREATE_FOLDER_RESPONSE,
     ENUM_MSG_TYPE_MAX=0x00ffffff
 };
 

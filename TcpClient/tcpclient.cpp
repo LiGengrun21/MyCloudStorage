@@ -66,6 +66,11 @@ QString TcpClient::getMyLoginName()
     return m_strMyLoginName;
 }
 
+QString TcpClient::getCurrentPath()
+{
+    return m_strCurPath;
+}
+
 void TcpClient::showConnect()
 {
     QMessageBox::information(this,"connect to server","Connection is successful");
@@ -105,6 +110,7 @@ void TcpClient::recvMsg()
     case ENUM_MSG_TYPE_LOGIN_RESPONSE: // login response
     {
         if (strcmp(pdu->caData,LOGIN_OK)==0){
+            m_strCurPath = QString("./storage/%1").arg(m_strMyLoginName); // if logined, store the current path
             QMessageBox::information(this, "login", "login successful");
             OpeWidget::getInstance().show(); // if login successful, show the operate widget, which is the main window of the application
             hide(); // hide tcp client, which is the login window
@@ -188,28 +194,17 @@ void TcpClient::recvMsg()
         OpeWidget::getInstance().getFriend()->updateGroupChatMsg(pdu); // show new message in group chat
         break;
     }
+    case ENUM_MSG_TYPE_CREATE_FOLDER_RESPONSE:
+    {
+        QMessageBox::information(this, "create folder", pdu->caData); //
+        break;
+    }
     default:
         break;
     }
     free(pdu);
     pdu=NULL;
 }
-
-// void TcpClient::on_sendButton_clicked()
-// {
-//     QString strMsg = ui->lineEdit->text();
-//     if (!strMsg.isEmpty()){
-//         PDU *pdu = mkPDU(strMsg.size());
-//         pdu->uiMsgType = 8888;
-//         memcpy(pdu->caMsg,strMsg.toStdString().c_str(),strMsg.size());
-//         m_tcpSocket.write((char*)pdu, pdu->uiPDULen); //send the pdu
-//         free(pdu);
-//         pdu=NULL;
-//     }
-//     else{
-//         QMessageBox::warning(this, "send message", "message cannot be empty");
-//     }
-// }
 
 // user login
 void TcpClient::on_login_btn_clicked()
@@ -232,7 +227,6 @@ void TcpClient::on_login_btn_clicked()
         QMessageBox::critical(this,"Login","login failed");
     }
 }
-
 
 // user register
 void TcpClient::on_register_btn_clicked()
