@@ -34,12 +34,12 @@ void MyTcpServer::forward(const char *hisName, PDU *pdu)
         if (strName == m_tcpSocketList.at(i)->getName())
         {
             //test
-            qDebug() << "In forward function, print pdu caData to be sent to client";
-            for (int i = 0; i < 64; ++i) {
-                qDebug() << pdu->caData[i];
-            }
-            qDebug()<<pdu->uiPDULen;
-            qDebug() << m_tcpSocketList.at(i)->getName();
+            //qDebug() << "In forward function, print pdu caData to be sent to client";
+            // for (int i = 0; i < 64; ++i) {
+            //     qDebug() << pdu->caData[i];
+            // }
+            // qDebug()<<pdu->uiPDULen;
+            // qDebug() << m_tcpSocketList.at(i)->getName();
 
             m_tcpSocketList.at(i)->write((char*) pdu, pdu->uiPDULen); // His socket sends pdu to his client
             break;

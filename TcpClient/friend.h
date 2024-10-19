@@ -38,6 +38,7 @@ public slots:
     void searchUser(); // check if the user is online
     void flushFriends(); // flush friend list
     void deleteFriend(); // remove the user from friend list
+    void privateChat(); // open a private chat room
 };
 
 #endif // FRIEND_H

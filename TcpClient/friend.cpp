@@ -3,6 +3,8 @@
 #include "tcpclient.h"
 #include <QInputDialog>
 #include <QDebug>
+#include "privatechat.h"
+#include <QMessageBox>
 
 Friend::Friend(QWidget *parent)
     : QWidget{parent}
@@ -53,6 +55,8 @@ Friend::Friend(QWidget *parent)
             , this, SLOT(flushFriends()));
     connect(m_pDelFriendPB, SIGNAL(clicked(bool))
             , this, SLOT(deleteFriend()));
+    connect(m_pPrivateChatPB, SIGNAL(clicked(bool))
+            , this, SLOT(privateChat()));
 }
 
 void Friend::showOnline()
@@ -112,6 +116,19 @@ void Friend::deleteFriend()
     TcpClient::getInstance().getTcpSocket().write((char*) pdu, pdu->uiPDULen);
     free(pdu);
     pdu=NULL;
+}
+
+void Friend::privateChat()
+{
+    if (m_pFriendListWidget->currentItem()==NULL){
+        QMessageBox::information(this, "Private Chat", "Please select a user to chat!");
+    }
+    QString chatName = m_pFriendListWidget->currentItem()->text();
+    PrivateChat::getInstance().setChatName(chatName); // set sender's name and receiver's name
+    PrivateChat::getInstance().setWindowTitle(TcpClient::getInstance().getMyLoginName()); // set window title according to the user
+    if (PrivateChat::getInstance().isHidden()){ // click the button, if private chat window is hidden, then make it visable
+        PrivateChat::getInstance().show();
+    }
 }
 
 void Friend::showAllOnlineUsers(PDU *pdu)

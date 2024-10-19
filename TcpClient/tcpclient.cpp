@@ -5,6 +5,7 @@
 #include <QMessageBox>
 #include <QHostAddress>
 #include "protocol.h"
+#include "privatechat.h"
 
 TcpClient::TcpClient(QWidget *parent)
     : QWidget(parent)
@@ -167,6 +168,19 @@ void TcpClient::recvMsg()
     case ENUM_MSG_TYPE_DELETE_FRIEND_RESPONSE:
     {
         QMessageBox::information(this, "Remove Friend", "removed successfully");
+        break;
+    }
+    case ENUM_MSG_TYPE_PRIVATE_CHAT_REQUEST:
+    {
+        PrivateChat::getInstance().setWindowTitle(m_strMyLoginName); // set window title for the user
+        if (PrivateChat::getInstance().isHidden()){ // if the chat window is closed, show it first, and then update the chat messages.
+            char senderName[32]={'\0'};
+            memcpy(senderName, pdu->caData, 32);
+            QString strSenderName = senderName;
+            PrivateChat::getInstance().setChatName(strSenderName); // tell this chat window who sent the message
+            PrivateChat::getInstance().show();
+        }
+        PrivateChat::getInstance().updateMsg(pdu);
         break;
     }
     default:

@@ -1,8 +1,11 @@
 #include "opewidget.h"
+#include "tcpclient.h"
 
 OpeWidget::OpeWidget(QWidget *parent)
     : QWidget{parent}
 {
+    setWindowTitle(TcpClient::getInstance().getMyLoginName()); // replace "TcpClient" with the actual client name
+
     m_pListWidget=new QListWidget(this); // this is the parent of m_pListWidget. If the parent is destroyed, it will also destroy QListWidget.
     m_pListWidget->addItem("Friends");
     m_pListWidget->addItem("Books");

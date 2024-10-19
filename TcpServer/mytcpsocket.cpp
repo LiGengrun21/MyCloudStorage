@@ -224,6 +224,15 @@ void MyTcpSocket::recvMsg()
         respPdu = NULL;
         break;
     }
+    case ENUM_MSG_TYPE_PRIVATE_CHAT_REQUEST:
+    {
+        char chatName[32] = {'\0'};
+        memcpy(chatName, pdu->caData+32, 32); // get chat partner's name
+        // qDebug() << chatName;
+        // qDebug() << (char*)pdu->caMsg;
+        MyTcpServer::getInstance().forward(chatName, pdu); // forward the request to the chat user
+        break;
+    }
     default:
         break;
     }
