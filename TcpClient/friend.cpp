@@ -10,6 +10,7 @@ Friend::Friend(QWidget *parent)
     : QWidget{parent}
 {
     m_pShowMsgTE = new QTextEdit();
+    m_pShowMsgTE->setReadOnly(true); // group chat board is readonly
     m_pFriendListWidget = new QListWidget();
     m_pInputMsgLe = new QLineEdit();
     m_pDelFriendPB = new QPushButton("Delete Friend");
@@ -57,6 +58,8 @@ Friend::Friend(QWidget *parent)
             , this, SLOT(deleteFriend()));
     connect(m_pPrivateChatPB, SIGNAL(clicked(bool))
             , this, SLOT(privateChat()));
+    connect(m_pMsgSendPB, SIGNAL(clicked(bool))
+            , this, SLOT(groupChat()));
 }
 
 void Friend::showOnline()
@@ -131,6 +134,26 @@ void Friend::privateChat()
     }
 }
 
+void Friend::groupChat()
+{
+    QString strMsg = m_pInputMsgLe->text();
+    // show the message I sent in the group chat board, and clear line eidt
+    QString myMsgShown = QString("I said: ")+strMsg;
+    m_pShowMsgTE->append(myMsgShown);
+    m_pInputMsgLe->clear();
+    if (strMsg.isEmpty()){
+        QMessageBox::warning(this, "Group Chat", "Please enter the message to send");
+    }
+    PDU *pdu=mkPDU(strMsg.size()+1);
+    pdu->uiMsgType = ENUM_MSG_TYPE_GROUP_CHAT_REQUEST;
+    QString myName = TcpClient::getInstance().getMyLoginName();
+    strncpy(pdu->caData, myName.toStdString().c_str(), myName.size()); // caData contains name of user who started the group chat
+    strncpy((char*)pdu->caMsg, strMsg.toStdString().c_str(), strMsg.size()); // caMsg contains the group message
+    TcpClient::getInstance().getTcpSocket().write((char*) pdu, pdu->uiPDULen);
+    free(pdu);
+    pdu=NULL;
+}
+
 void Friend::showAllOnlineUsers(PDU *pdu)
 {
     if (pdu==NULL){
@@ -151,4 +174,9 @@ void Friend::updateFriendList(PDU *pdu)
         memcpy(name, (char*)(pdu->caMsg)+32*i,32);
         m_pFriendListWidget->addItem(name); // add the data to the widget
     }
+}
+
+void Friend::updateGroupChatMsg(PDU* pdu){
+    QString msg = QString("%1 said: %2").arg(pdu->caData).arg((char*)pdu->caMsg);
+    m_pShowMsgTE->append(msg);
 }

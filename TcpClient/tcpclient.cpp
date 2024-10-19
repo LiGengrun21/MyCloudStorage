@@ -183,6 +183,11 @@ void TcpClient::recvMsg()
         PrivateChat::getInstance().updateMsg(pdu);
         break;
     }
+    case ENUM_MSG_TYPE_GROUP_CHAT_REQUEST:
+    {
+        OpeWidget::getInstance().getFriend()->updateGroupChatMsg(pdu); // show new message in group chat
+        break;
+    }
     default:
         break;
     }

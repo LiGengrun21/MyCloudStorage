@@ -233,6 +233,16 @@ void MyTcpSocket::recvMsg()
         MyTcpServer::getInstance().forward(chatName, pdu); // forward the request to the chat user
         break;
     }
+    case ENUM_MSG_TYPE_GROUP_CHAT_REQUEST:
+    {
+        char caName[32]={'\0'};
+        strncpy(caName, pdu->caData, 32);
+        QStringList friendList = OpeDB::getInstance().getFriends(caName); //including offfline friends
+        for(int i=0;i<friendList.size();i++){ // forward the request to all friends
+            MyTcpServer::getInstance().forward(friendList.at(i).toStdString().c_str(), pdu);
+        }
+        break;
+    }
     default:
         break;
     }

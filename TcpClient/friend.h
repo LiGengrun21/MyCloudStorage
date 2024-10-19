@@ -16,6 +16,7 @@ public:
     explicit Friend(QWidget *parent = nullptr);
     void showAllOnlineUsers(PDU *pdu); // show all online users
     void updateFriendList(PDU *pdu); // update friend list (both online and offline)
+    void updateGroupChatMsg(PDU *pdu); // add the new message to group chat
 
     QString m_searchName; // tmp, for showing name in QMessageBox while searching
 
@@ -39,6 +40,7 @@ public slots:
     void flushFriends(); // flush friend list
     void deleteFriend(); // remove the user from friend list
     void privateChat(); // open a private chat room
+    void groupChat(); // send group message
 };
 
 #endif // FRIEND_H

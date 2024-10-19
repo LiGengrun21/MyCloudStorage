@@ -37,7 +37,7 @@ void PrivateChat::on_sendMsgPB_clicked()
         pdu=NULL;
     }
     else{
-        QMessageBox::information(this, "Private Chat", "Message cannot be empty!");
+        QMessageBox::information(this, "Private Chat", "Enter the Message please!");
     }
 }
 
