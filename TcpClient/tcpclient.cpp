@@ -71,6 +71,11 @@ QString TcpClient::getCurrentPath()
     return m_strCurPath;
 }
 
+void TcpClient::setCurPath(QString path)
+{
+    m_strCurPath = path;
+}
+
 void TcpClient::showConnect()
 {
     QMessageBox::information(this,"connect to server","Connection is successful");
@@ -196,11 +201,16 @@ void TcpClient::recvMsg()
     }
     case ENUM_MSG_TYPE_CREATE_FOLDER_RESPONSE:
     {
-        QMessageBox::information(this, "Create Folder", pdu->caData); //
+        QMessageBox::information(this, "Create Folder", pdu->caData);
+        //OpeWidget::getInstance().getFile()->updateFileList(pdu);
         break;
     }
     case ENUM_MSG_TYPE_FLUSH_FOLDER_RESPONSE:
     {
+        if (pdu->caData[0]!='\0'){ // caData not empty means it's from entering folder's response, therefore, cur path should be updated
+            m_strCurPath=QString(pdu->caData);
+            qDebug()<<"cur path in flush folder response"<<m_strCurPath;
+        }
         OpeWidget::getInstance().getFile()->updateFileList(pdu);
         break;
     }
@@ -212,6 +222,11 @@ void TcpClient::recvMsg()
     case ENUM_MSG_TYPE_RENAME_FOLDER_RESPONSE:
     {
         QMessageBox::information(this, "Rename Folder", pdu->caData);
+        break;
+    }
+    case ENUM_MSG_TYPE_ENTER_FOLDER_RESPONSE:
+    {
+        QMessageBox::information(this, "Enter Folder", pdu->caData);
         break;
     }
     default:

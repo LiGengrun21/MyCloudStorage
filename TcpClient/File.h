@@ -21,6 +21,8 @@ public slots:
     void flushFDir();
     void deleteDir();
     void renameDir();
+    void enterDir(const QModelIndex &index);
+    void backDir();
 
 private:
     QListWidget *m_pList;
@@ -33,6 +35,8 @@ private:
     QPushButton *m_pDownloadFilePB;
     QPushButton *m_pDeleteFilePB;
     QPushButton *m_pShareFileFilePB;
+
+    QString m_strEnterDir; // for entering dir. Note: there is another dir string stored in Tcp Client but they are different
 };
 
 #endif // FILE_H

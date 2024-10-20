@@ -260,8 +260,8 @@ void MyTcpSocket::recvMsg()
         bool result = dir.exists(curPath); // if the base dir exists?
         if (!result){
             // base dir not exists
-            qDebug()<< "base dir not exists";
-            qDebug()<<"base path:"<<curPath;
+            //qDebug()<< "base dir not exists";
+            //qDebug()<<"base path:"<<curPath;
             strcpy(respPdu->caData, BASE_DIR_NOT_EXIST);
             write((char*) respPdu, respPdu->uiPDULen);
             free(respPdu);
@@ -283,7 +283,6 @@ void MyTcpSocket::recvMsg()
             break;
         }
         // not exist, create it
-        qDebug()<<"you can create it";
         dir.mkdir(newCurPath);
         // qDebug()<<"base path:"<<curPath;
         // qDebug()<<"new dir name:" <<newDir;
@@ -306,11 +305,11 @@ void MyTcpSocket::recvMsg()
         respPdu->uiMsgType = ENUM_MSG_TYPE_FLUSH_FOLDER_RESPONSE;
         FileInfo* pFileInfo = NULL; // the pointer to help store Qfile info list elements to file info struct
         QString strFileName;
-        qDebug()<<"(FileInfo*)(respPdu->caMsg)"<<(FileInfo*)(respPdu->caMsg);
+        //qDebug()<<"(FileInfo*)(respPdu->caMsg)"<<(FileInfo*)(respPdu->caMsg);
         for (int i=0;i<fileList.size();i++){
             // access FileInfo struct in respPdu
             pFileInfo = (FileInfo*)(respPdu->caMsg)+i;
-            qDebug()<<i<<" pFileInfo: "<<pFileInfo;
+            //qDebug()<<i<<" pFileInfo: "<<pFileInfo;
             // get file name and type to store in FileInfo
             strFileName = fileList[i].fileName();
             memcpy(pFileInfo->caFileName, strFileName.toStdString().c_str(), strFileName.size());
@@ -382,6 +381,54 @@ void MyTcpSocket::recvMsg()
         write((char*) respPdu, respPdu->uiPDULen);
         free(respPdu);
         respPdu = NULL;
+        break;
+    }
+    case ENUM_MSG_TYPE_ENTER_FOLDER_REQUEST:
+    {
+        char dirName[32]={'\0'};
+        strncpy(dirName, pdu->caData, 32);
+        char *pPath = new char[pdu->uiMsgLen];
+        memcpy(pPath, pdu->caMsg, pdu->uiMsgLen);
+        QString strDirPath = QString("%1/%2").arg(pPath).arg(dirName);
+        QFileInfo fileInfo(strDirPath);
+        if (fileInfo.isDir()){ // if dir, flush the files
+            QDir dir(strDirPath); // give it the path to operate
+            QFileInfoList fileList = dir.entryInfoList(); // get the files in this path
+            int fileCount = fileList.size();
+            // each file is stored in the format of FileInfo struct in caMsg of pdu
+            respPdu = mkPDU(sizeof(FileInfo)*fileCount);
+            // for upfating cur path in TcpClient
+            strncpy(respPdu->caData, strDirPath.toStdString().c_str(), strDirPath.size()); // also send path to update current path in tcp client
+            respPdu->uiMsgType = ENUM_MSG_TYPE_FLUSH_FOLDER_RESPONSE;
+            FileInfo* pFileInfo = NULL; // the pointer to help store Qfile info list elements to file info struct
+            QString strFileName;
+            //qDebug()<<"(FileInfo*)(respPdu->caMsg)"<<(FileInfo*)(respPdu->caMsg);
+            for (int i=0;i<fileList.size();i++){
+                // access FileInfo struct in respPdu
+                pFileInfo = (FileInfo*)(respPdu->caMsg)+i;
+                //qDebug()<<i<<" pFileInfo: "<<pFileInfo;
+                // get file name and type to store in FileInfo
+                strFileName = fileList[i].fileName();
+                memcpy(pFileInfo->caFileName, strFileName.toStdString().c_str(), strFileName.size());
+                if (fileList[i].isDir()){
+                    pFileInfo->iFileType=0; // folder
+                }
+                else if (fileList[i].isFile()){
+                    pFileInfo->iFileType = 1; // normal file
+                }
+            }
+            write((char*) respPdu, respPdu->uiPDULen);
+            free(respPdu);
+            respPdu = NULL;
+        }
+        else{ // not a dir
+            respPdu = mkPDU(0);
+            respPdu->uiMsgType=ENUM_MSG_TYPE_ENTER_FOLDER_RESPONSE;
+            strcpy(respPdu->caData, "Failed to enter the folder!");
+            write((char*) respPdu, respPdu->uiPDULen);
+            free(respPdu);
+            respPdu = NULL;
+        }
         break;
     }
     default:

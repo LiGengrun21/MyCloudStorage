@@ -46,6 +46,10 @@ File::File(QWidget *parent)
             , this, SLOT(deleteDir()));
     connect(m_pRenamePB, SIGNAL(clicked(bool))
             , this, SLOT(renameDir()));
+    connect(m_pList, SIGNAL(doubleClicked(QModelIndex))
+            , this, SLOT(enterDir(QModelIndex)));
+    connect(m_pBackPB, SIGNAL(clicked(bool))
+            , this, SLOT(backDir()));
 }
 
 void File::updateFileList(const PDU *pdu)
@@ -158,4 +162,35 @@ void File::renameDir()
     TcpClient::getInstance().getTcpSocket().write((char*) pdu, pdu->uiPDULen);
     free(pdu);
     pdu=NULL;
+}
+
+// send dir name and path
+void File::enterDir(const QModelIndex &index)
+{
+    QString dirName = index.data().toString(); // get dir name
+    QString curPath = TcpClient::getInstance().getCurrentPath(); // get its path
+    PDU* pdu = mkPDU(curPath.size()+1);
+    pdu->uiMsgType = ENUM_MSG_TYPE_ENTER_FOLDER_REQUEST;
+    strncpy(pdu->caData, dirName.toStdString().c_str(), dirName.size());
+    strncpy((char*)pdu->caMsg, curPath.toStdString().c_str(), curPath.size());
+    TcpClient::getInstance().getTcpSocket().write((char*) pdu, pdu->uiPDULen);
+    free(pdu);
+    pdu=NULL;
+}
+
+void File::backDir()
+{
+    QString curPath = TcpClient::getInstance().getCurrentPath(); // get current path
+    QString rootPath = "./storage/"+TcpClient::getInstance().getMyLoginName(); // get the root path
+    // if the current path is root path, then it cannot go bakc anymore
+    if (curPath==rootPath){
+        QMessageBox::warning(this, "Back", "Already root, cannt go back!");
+    }
+    else{
+        int index = curPath.lastIndexOf("/");
+        curPath.remove(index, curPath.size()-index); // starting from the index char, delete the next (total size- index) chars
+        TcpClient::getInstance().setCurPath(curPath); // update the current path
+        flushFDir(); // send a flush request to server
+    }
+
 }

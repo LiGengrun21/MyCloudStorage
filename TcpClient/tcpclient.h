@@ -33,6 +33,9 @@ public:
     QString getMyLoginName();
     QString getCurrentPath();
 
+    // setter
+    void setCurPath(QString path);
+
 public slots:
     void showConnect();
     void recvMsg();
