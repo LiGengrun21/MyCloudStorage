@@ -44,6 +44,8 @@ File::File(QWidget *parent)
             , this, SLOT(flushFDir()));
     connect(m_pDeleteDirPB, SIGNAL(clicked(bool))
             , this, SLOT(deleteDir()));
+    connect(m_pRenamePB, SIGNAL(clicked(bool))
+            , this, SLOT(renameDir()));
 }
 
 void File::updateFileList(const PDU *pdu)
@@ -116,7 +118,7 @@ void File::deleteDir()
     // get dir name
     QListWidgetItem *pItem = m_pList->currentItem();
     if (NULL==pItem){
-        QMessageBox::information(this, "Delete a folder", "Please select a folder to delete!");
+        QMessageBox::information(this, "Delete folder", "Please select a folder to delete!");
         return;
     }
     QString strFileName = pItem->text();
@@ -124,6 +126,34 @@ void File::deleteDir()
     pdu->uiMsgType = ENUM_MSG_TYPE_DELETE_FOLDER_REQUEST;
     // caMsg stores path and caData stores file name
     strncpy(pdu->caData, strFileName.toStdString().c_str(), strFileName.size());
+    strncpy((char*)pdu->caMsg, curPath.toStdString().c_str(), curPath.size());
+    TcpClient::getInstance().getTcpSocket().write((char*) pdu, pdu->uiPDULen);
+    free(pdu);
+    pdu=NULL;
+}
+\
+// send path, name and new name
+void File::renameDir()
+{
+    // get current dir path
+    QString curPath = TcpClient::getInstance().getCurrentPath();
+    // get dir name
+    QListWidgetItem *pItem = m_pList->currentItem();
+    if (NULL==pItem){ // not selected
+        QMessageBox::information(this, "Rename folder", "Please select a folder to rename!");
+        return;
+    }
+    QString strFileName = pItem->text();
+    QString strNewFileName = QInputDialog::getText(this, "Rename folder", "Enter new folder name");
+    if (strNewFileName.isEmpty()){ // file name is empty
+        QMessageBox::warning(this, "Rename folder", "Please enter the name!");
+        return;
+    }
+    PDU* pdu = mkPDU(curPath.size()+1);
+    pdu->uiMsgType = ENUM_MSG_TYPE_RENAME_FOLDER_REQUEST;
+    // caMsg stores path, and caData stores old and new file name
+    strncpy(pdu->caData, strFileName.toStdString().c_str(), strFileName.size());
+    strncpy(pdu->caData+32, strNewFileName.toStdString().c_str(), strNewFileName.size());
     strncpy((char*)pdu->caMsg, curPath.toStdString().c_str(), curPath.size());
     TcpClient::getInstance().getTcpSocket().write((char*) pdu, pdu->uiPDULen);
     free(pdu);

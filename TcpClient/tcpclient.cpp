@@ -209,6 +209,11 @@ void TcpClient::recvMsg()
         QMessageBox::information(this, "Delete Folder", pdu->caData);
         break;
     }
+    case ENUM_MSG_TYPE_RENAME_FOLDER_RESPONSE:
+    {
+        QMessageBox::information(this, "Rename Folder", pdu->caData);
+        break;
+    }
     default:
         break;
     }

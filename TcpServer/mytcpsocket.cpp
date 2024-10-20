@@ -329,7 +329,7 @@ void MyTcpSocket::recvMsg()
     case ENUM_MSG_TYPE_DELETE_FOLDER_REQUEST:
     {
         char caName[32]={'\0'};
-        strcpy(caName, pdu->caData);
+        strncpy(caName, pdu->caData,32);
         char* pPath = new char[pdu->uiMsgLen];
         memcpy(pPath, pdu->caMsg, pdu->uiMsgLen);
         QString strFilePath = QString("%1/%2").arg(pPath).arg(caName); //concat the string to make file path
@@ -351,6 +351,33 @@ void MyTcpSocket::recvMsg()
         }
         else{
             strcpy(respPdu->caData, "Failed to delete the directory!");
+        }
+        write((char*) respPdu, respPdu->uiPDULen);
+        free(respPdu);
+        respPdu = NULL;
+        break;
+    }
+    case ENUM_MSG_TYPE_RENAME_FOLDER_REQUEST:
+    {
+        char oldName[32]={'\0'};
+        char newName[32]={'\0'};
+        strncpy(oldName, pdu->caData, 32);
+        strncpy(newName, pdu->caData+32, 32);
+        char* pPath=new char[pdu->uiMsgLen];
+        memcpy(pPath, pdu->caMsg, pdu->uiMsgLen);
+        // concat two paths
+        QString strOldFilePath = QString("%1/%2").arg(pPath).arg(oldName);
+        QString strNewFilePath = QString("%1/%2").arg(pPath).arg(newName);
+        // rename it with QDir
+        QDir dir;
+        bool result = dir.rename(strOldFilePath, strNewFilePath);
+        respPdu=mkPDU(0);
+        respPdu->uiMsgType=ENUM_MSG_TYPE_RENAME_FOLDER_RESPONSE;
+        if (result){
+            strcpy(respPdu->caData, "Renamed successfully!");
+        }
+        else{
+            strcpy(respPdu->caData, "Failed to rename the directory!");
         }
         write((char*) respPdu, respPdu->uiPDULen);
         free(respPdu);

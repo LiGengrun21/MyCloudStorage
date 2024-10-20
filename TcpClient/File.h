@@ -20,6 +20,7 @@ public slots:
     void createDir();
     void flushFDir();
     void deleteDir();
+    void renameDir();
 
 private:
     QListWidget *m_pList;
