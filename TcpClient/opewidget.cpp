@@ -37,3 +37,8 @@ Friend *OpeWidget::getFriend()
 {
     return m_pFriend;
 }
+
+File *OpeWidget::getFile()
+{
+    return m_pBook;
+}

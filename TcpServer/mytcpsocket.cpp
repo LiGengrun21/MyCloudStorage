@@ -2,6 +2,7 @@
 #include "mytcpserver.h"
 #include <QDebug>
 #include <QDir>
+#include <QFileInfoList>
 
 MyTcpSocket::MyTcpSocket(QObject *parent)
     : QTcpSocket{parent}
@@ -288,6 +289,69 @@ void MyTcpSocket::recvMsg()
         // qDebug()<<"new dir name:" <<newDir;
         // qDebug()<<"new current path:"<<newCurPath;
         strcpy(respPdu->caData, CREATE_DIR_OK);
+        write((char*) respPdu, respPdu->uiPDULen);
+        free(respPdu);
+        respPdu = NULL;
+        break;
+    }
+    case ENUM_MSG_TYPE_FLUSH_FOLDER_REQUEST:
+    {
+        char* pCurPath = new char[pdu->uiMsgLen];
+        memcpy(pCurPath, pdu->caMsg, pdu->uiMsgLen); // get the current path
+        QDir dir(pCurPath); // give it the path to operate
+        QFileInfoList fileList = dir.entryInfoList(); // get the files in this path
+        int fileCount = fileList.size();
+        // each file is stored in the format of FileInfo struct in caMsg of pdu
+        respPdu = mkPDU(sizeof(FileInfo)*fileCount);
+        respPdu->uiMsgType = ENUM_MSG_TYPE_FLUSH_FOLDER_RESPONSE;
+        FileInfo* pFileInfo = NULL; // the pointer to help store Qfile info list elements to file info struct
+        QString strFileName;
+        qDebug()<<"(FileInfo*)(respPdu->caMsg)"<<(FileInfo*)(respPdu->caMsg);
+        for (int i=0;i<fileList.size();i++){
+            // access FileInfo struct in respPdu
+            pFileInfo = (FileInfo*)(respPdu->caMsg)+i;
+            qDebug()<<i<<" pFileInfo: "<<pFileInfo;
+            // get file name and type to store in FileInfo
+            strFileName = fileList[i].fileName();
+            memcpy(pFileInfo->caFileName, strFileName.toStdString().c_str(), strFileName.size());
+            if (fileList[i].isDir()){
+                pFileInfo->iFileType=0; // folder
+            }
+            else if (fileList[i].isFile()){
+                pFileInfo->iFileType = 1; // normal file
+            }
+        }
+        write((char*) respPdu, respPdu->uiPDULen);
+        free(respPdu);
+        respPdu = NULL;
+        break;
+    }
+    case ENUM_MSG_TYPE_DELETE_FOLDER_REQUEST:
+    {
+        char caName[32]={'\0'};
+        strcpy(caName, pdu->caData);
+        char* pPath = new char[pdu->uiMsgLen];
+        memcpy(pPath, pdu->caMsg, pdu->uiMsgLen);
+        QString strFilePath = QString("%1/%2").arg(pPath).arg(caName); //concat the string to make file path
+        qDebug()<<strFilePath;
+        QFileInfo file(strFilePath);
+        bool result = false;
+        if (file.isDir()){ // it is a dir
+            QDir dir;
+            dir.setPath(strFilePath);
+            result = dir.removeRecursively(); // remove the dir recursively, meaning all files inside the dir deleted as well
+        }
+        else if (file.isFile()){ // not a dir, just a normal file
+            result=false;
+        }
+        respPdu=mkPDU(0);
+        respPdu->uiMsgType=ENUM_MSG_TYPE_DELETE_FOLDER_RESPONSE;
+        if (result){
+            strcpy(respPdu->caData, "Deleted successfully!");
+        }
+        else{
+            strcpy(respPdu->caData, "Failed to delete the directory!");
+        }
         write((char*) respPdu, respPdu->uiPDULen);
         free(respPdu);
         respPdu = NULL;

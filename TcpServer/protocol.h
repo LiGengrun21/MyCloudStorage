@@ -31,6 +31,12 @@ struct PDU
     int caMsg[]; // actual message
 };
 
+struct FileInfo
+{
+    char caFileName[32]; // file name
+    int iFileType;      // file type
+};
+
 enum ENUM_MSG_TYPE{
     ENUM_MSG_TYPE_MIN=0,
     ENUM_MSG_TYPE_REGISTER_REQUEST,
@@ -55,8 +61,13 @@ enum ENUM_MSG_TYPE{
     ENUM_MSG_TYPE_GROUP_CHAT_RESPONSE,
     ENUM_MSG_TYPE_CREATE_FOLDER_REQUEST, // create dir request
     ENUM_MSG_TYPE_CREATE_FOLDER_RESPONSE,
+    ENUM_MSG_TYPE_FLUSH_FOLDER_REQUEST, // flush dir to see what it contains
+    ENUM_MSG_TYPE_FLUSH_FOLDER_RESPONSE,
+    ENUM_MSG_TYPE_DELETE_FOLDER_REQUEST, // delete dir
+    ENUM_MSG_TYPE_DELETE_FOLDER_RESPONSE,
     ENUM_MSG_TYPE_MAX=0x00ffffff
 };
+
 
 PDU *mkPDU(uint uiMsgLen);
 

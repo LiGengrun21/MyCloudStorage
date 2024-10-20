@@ -196,7 +196,17 @@ void TcpClient::recvMsg()
     }
     case ENUM_MSG_TYPE_CREATE_FOLDER_RESPONSE:
     {
-        QMessageBox::information(this, "create folder", pdu->caData); //
+        QMessageBox::information(this, "Create Folder", pdu->caData); //
+        break;
+    }
+    case ENUM_MSG_TYPE_FLUSH_FOLDER_RESPONSE:
+    {
+        OpeWidget::getInstance().getFile()->updateFileList(pdu);
+        break;
+    }
+    case ENUM_MSG_TYPE_DELETE_FOLDER_RESPONSE:
+    {
+        QMessageBox::information(this, "Delete Folder", pdu->caData);
         break;
     }
     default:

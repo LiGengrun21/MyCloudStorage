@@ -12,11 +12,14 @@ class File : public QWidget
     Q_OBJECT
 public:
     explicit File(QWidget *parent = nullptr);
+    void updateFileList(const PDU* pdu); // update files in the path
 
 signals:
 
 public slots:
     void createDir();
+    void flushFDir();
+    void deleteDir();
 
 private:
     QListWidget *m_pList;

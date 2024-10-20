@@ -14,11 +14,12 @@ public:
     explicit OpeWidget(QWidget *parent = nullptr);
     static OpeWidget &getInstance();
     Friend* getFriend();
+    File* getFile();
 
 private:
     QListWidget *m_pListWidget; // list widget on the left
-    Friend *m_pFriend;
-    File *m_pBook;
+    Friend *m_pFriend; // friend widget
+    File *m_pBook; // file widget
     QStackedWidget *m_pSW; // stacked widget on the right, contaning friend and book, but only show one of them at one time.
 
 signals:
