@@ -23,6 +23,8 @@ public slots:
     void renameDir();
     void enterDir(const QModelIndex &index);
     void backDir();
+    void uploadFile();
+    void uploadFileSendData();
 
 private:
     QListWidget *m_pList;
@@ -37,6 +39,8 @@ private:
     QPushButton *m_pShareFileFilePB;
 
     QString m_strEnterDir; // for entering dir. Note: there is another dir string stored in Tcp Client but they are different
+    QString m_strUploadFilePath; // store the path of uploading file
+    QTimer *m_pTimer;
 };
 
 #endif // FILE_H

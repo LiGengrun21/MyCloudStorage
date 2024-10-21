@@ -93,12 +93,12 @@ void TcpClient::recvMsg()
     m_tcpSocket.read((char*)pdu+sizeof(uint), uiPDULen - sizeof(uint));
 
     // test
-    qDebug() << "tcp client: pdu message type: " <<pdu->uiMsgType;
-    QString output;
-    for (int i = 0; i < 64; ++i) {
-        output.append(pdu->caData[i]);
-    }
-    qDebug() << "tcp client: pdu caData: " <<output;
+    // qDebug() << "tcp client: pdu message type: " <<pdu->uiMsgType;
+    // QString output;
+    // for (int i = 0; i < 64; ++i) {
+    //     output.append(pdu->caData[i]);
+    // }
+    // qDebug() << "tcp client: pdu caData: " <<output;
 
 
     switch(pdu->uiMsgType){
@@ -227,6 +227,11 @@ void TcpClient::recvMsg()
     case ENUM_MSG_TYPE_ENTER_FOLDER_RESPONSE:
     {
         QMessageBox::information(this, "Enter Folder", pdu->caData);
+        break;
+    }
+    case ENUM_MSG_TYPE_UPLOAD_FILE_RESPONSE:
+    {
+        QMessageBox::information(this, "Upload file", pdu->caData);
         break;
     }
     default:

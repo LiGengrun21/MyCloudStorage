@@ -2,10 +2,14 @@
 #include "tcpclient.h"
 #include <QInputDialog>
 #include <QMessageBox>
+#include <QFileDialog>
+#include <QTimer>
 
 File::File(QWidget *parent)
     : QWidget{parent}
 {
+    m_pTimer = new QTimer; // create the timer for uplaoding
+
     m_pList = new QListWidget();
     m_pBackPB = new QPushButton("Back");
     m_pCreateDirPB = new QPushButton("Create Directory");
@@ -50,6 +54,11 @@ File::File(QWidget *parent)
             , this, SLOT(enterDir(QModelIndex)));
     connect(m_pBackPB, SIGNAL(clicked(bool))
             , this, SLOT(backDir()));
+    connect(m_pUplaodFilePB, SIGNAL(clicked(bool))
+            , this, SLOT(uploadFile()));
+    // when the timer is out, it's safe to send the file data to server
+    connect(m_pTimer, SIGNAL(timeout())
+            , this, SLOT(uploadFileSendData()));
 }
 
 void File::updateFileList(const PDU *pdu)
@@ -193,4 +202,77 @@ void File::backDir()
         flushFDir(); // send a flush request to server
     }
 
+}
+
+void File::uploadFile()
+{
+    m_strUploadFilePath = QFileDialog::getOpenFileName(); // open a new window where you can select file to upload, and get the full path of the file you selected
+    if (m_strUploadFilePath.isEmpty()){
+        QMessageBox::warning(this, "Uplaod file", "Failed to upload!");
+        return;
+    }
+     // only file name is needed, so the full path should be processed a bit to get file name
+    int index = m_strUploadFilePath.lastIndexOf('/');
+    QString fileName = m_strUploadFilePath.right(m_strUploadFilePath.size()-index-1); // only want the string after the last '/'
+    //qDebug()<<fileName;
+    // get the size of uploaded file via QFile
+    QFile file(m_strUploadFilePath);
+    qint64 fileSize = file.size();
+    // make a pdu
+    QString curPath = TcpClient::getInstance().getCurrentPath(); // get current path
+    PDU *pdu = mkPDU(curPath.size()+1);
+    pdu->uiMsgType=ENUM_MSG_TYPE_UPLOAD_FILE_REQUEST;
+    memcpy(pdu->caMsg, curPath.toStdString().c_str(), curPath.size()); // cur path stored in caMsg
+    // sprinf stores the formatted output in a buffer (a character array)
+    //qDebug()<<"uploadFile funciton: fileName"<<fileName<<"file size: "<<fileSize;
+    sprintf(pdu->caData, "%s %lld", fileName.toStdString().c_str(), fileSize); // file name and size stored in caData
+
+
+    // QString output;
+    // for (int i = 0; i < 64; ++i) {
+    //     output.append(pdu->caData[i]);
+    // }
+    // qDebug() << "File.cpp uplaod file: pdu caData: " <<output;
+
+    TcpClient::getInstance().getTcpSocket().write((char*) pdu, pdu->uiPDULen);
+    free(pdu);
+    pdu=NULL;
+
+    // after sending request, wait for a while (1 second) until timer is out, and then send the file data, to avoid problems
+    m_pTimer->start(1000);
+}
+
+// send file data in binary
+void File::uploadFileSendData()
+{
+    // test
+    qDebug()<<"uploadFileSendData";
+
+    m_pTimer->stop();
+    // get the file and read it
+    QFile file(m_strUploadFilePath);
+    if (!file.open(QIODevice::ReadOnly)){
+        QMessageBox::warning(this, "Upload file", "Failed to open the file!");
+        return;
+    }
+    char *pBuffer = new char[4096]; // this is the best for efficiency
+    qint64 result = 0;
+    // the file is probably big, so it cannot be read into memory at one time, therefore, everytime read a block, like 4096 bytes
+    while(true){
+        result = file.read(pBuffer, 4096); // read the file in binary
+        if (result>0 && result<=4096){
+            qDebug()<<"read data in while loop";
+            TcpClient::getInstance().getTcpSocket().write(pBuffer, result);
+        }
+        else if (result==0){ // read it util no more left
+            qDebug()<<"finished reading in while loop";
+            break;
+        }
+        else{
+            QMessageBox::warning(this, "Upload file", "Failed to upload the file: read error");
+            break;
+        }
+    }
+    file.close();
+    delete [] pBuffer;
 }

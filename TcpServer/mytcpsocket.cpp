@@ -3,6 +3,7 @@
 #include <QDebug>
 #include <QDir>
 #include <QFileInfoList>
+#include <QFile>
 
 MyTcpSocket::MyTcpSocket(QObject *parent)
     : QTcpSocket{parent}
@@ -13,6 +14,8 @@ MyTcpSocket::MyTcpSocket(QObject *parent)
     // if client is offline, the socket sends disconnected signal, and clientOffline will process it
     connect(this, SIGNAL(disconnected())
             ,this, SLOT(clientOffline()));
+
+    m_upload = false; // normally, the server is not in the state of uploading something
 }
 
 // getter of m_strName
@@ -23,6 +26,32 @@ QString MyTcpSocket::getName()
 
 void MyTcpSocket::recvMsg()
 {
+    // Not PDU, it's uploading file
+    if (m_upload){
+        //test
+        qDebug()<<"receiving file data";
+
+        PDU *filePdu = mkPDU(0);
+        filePdu->uiMsgType=ENUM_MSG_TYPE_UPLOAD_FILE_RESPONSE;
+        QByteArray buff = readAll();
+        m_file.write(buff);
+        m_receivedSize+=buff.size();
+        if (m_totalSize==m_receivedSize){
+            strcpy(filePdu->caData, "Uploaded successfully!");
+        }
+        else if (m_totalSize<m_receivedSize){
+            strcpy(filePdu->caData, "Uploaded failed!");
+        }
+        write((char*) filePdu, filePdu->uiPDULen);
+        free(filePdu);
+        filePdu=NULL;
+        m_file.close();
+        m_upload=false;
+        return;
+    }
+
+    // PDU
+
     //qDebug() << "my tcp socket recvMsg, bytes of socket:" <<this->bytesAvailable();
     uint uiPDULen=0;
     this->read((char*)&uiPDULen, sizeof(uint));
@@ -428,6 +457,39 @@ void MyTcpSocket::recvMsg()
             write((char*) respPdu, respPdu->uiPDULen);
             free(respPdu);
             respPdu = NULL;
+        }
+        break;
+    }
+    case ENUM_MSG_TYPE_UPLOAD_FILE_REQUEST:
+    {
+        //test
+        //qDebug()<<"ENUM_MSG_TYPE_UPLOAD_FILE_REQUEST in server";
+        // QString output;
+        // for (int i = 0; i < 64; ++i) {
+        //     output.append(pdu->caData[i]);
+        // }
+        // qDebug() << "server uplaod file: pdu caData: " <<output;
+
+        char caFileName[32]={'\0'};
+        qint64 fileSize =0;
+        // get file name and size
+        int ret = sscanf(pdu->caData, "%s %lld", caFileName, &fileSize);
+        //qDebug()<<"scanf: "<<ret;
+        char* pPath = new char[pdu->uiMsgLen];
+        memcpy(pPath, pdu->caMsg, pdu->uiMsgLen);
+        QString strFilePath = QString("%1/%2").arg(pPath).arg(caFileName); //concat the string to make file path
+        //test
+        //qDebug()<<"ENUM_MSG_TYPE_UPLOAD_FILE_REQUEST"<<"file name: "<<caFileName<<"file size: "<<fileSize;
+        delete [] pPath;
+        pPath = NULL;
+
+        m_file.setFileName(strFilePath);
+        // if not exists, create a new one
+        if (m_file.open(QIODevice::WriteOnly)){
+            qDebug()<<"file created and opened!";
+            m_upload=true;
+            m_totalSize=fileSize;
+            m_receivedSize=0;
         }
         break;
     }
