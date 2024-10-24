@@ -14,6 +14,14 @@ public:
     explicit File(QWidget *parent = nullptr);
     void updateFileList(const PDU* pdu); // update files in the path
 
+    // getter and setter
+    void setDownload(bool status);
+    bool getDownload();
+    QString getSaveFilePath();
+
+    qint64 m_iTotal; // file size
+    qint64 m_iReceived; // how many received so far
+
 signals:
 
 public slots:
@@ -26,6 +34,7 @@ public slots:
     void uploadFile();
     void uploadFileSendData();
     void deleteFile();
+    void downloadFile();
 
 private:
     QListWidget *m_pList;
@@ -42,6 +51,8 @@ private:
     QString m_strEnterDir; // for entering dir. Note: there is another dir string stored in Tcp Client but they are different
     QString m_strUploadFilePath; // store the path of uploading file
     QTimer *m_pTimer;
+    QString m_strSaveFilePath; // where to save the downloaded file
+    bool m_bDownload; // state of dowlloading file
 };
 
 #endif // FILE_H

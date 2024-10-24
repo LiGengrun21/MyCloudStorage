@@ -83,6 +83,28 @@ void TcpClient::showConnect()
 
 void TcpClient::recvMsg()
 {
+    if (OpeWidget::getInstance().getFile()->getDownload()){
+        // if the client is downloading file, don't need to check enum types
+        QByteArray buffer = m_tcpSocket.readAll();
+        m_file.write(buffer); // save the data to the file
+        File* pFileWidget = OpeWidget::getInstance().getFile();
+        pFileWidget->m_iReceived+=buffer.size();
+        if (pFileWidget->m_iReceived==pFileWidget->m_iTotal){ // all data has been received
+            m_file.close();
+            pFileWidget->m_iReceived=0;
+            pFileWidget->m_iTotal=0;
+            pFileWidget->setDownload(false);
+            QMessageBox::information(this, "Download file", "Downloaded successfully");
+        }
+        else if (pFileWidget->m_iReceived > pFileWidget->m_iTotal){
+            m_file.close();
+            pFileWidget->m_iReceived=0;
+            pFileWidget->m_iTotal=0;
+            pFileWidget->setDownload(false);
+            QMessageBox::critical(this, "Download file", "Download failed!!");
+        }
+        return;
+    }
     // test
     //qDebug()<<"tcp client socket byts:" << m_tcpSocket.bytesAvailable();
 
@@ -237,6 +259,24 @@ void TcpClient::recvMsg()
     case ENUM_MSG_TYPE_DELETE_FILE_RESPONSE:
     {
         QMessageBox::information(this, "Delete file", pdu->caData);
+        break;
+    }
+    case ENUM_MSG_TYPE_DOWNLOAD_FILE_RESPONSE:
+    {
+        qDebug()<<"Tcp client download file: "<<pdu->caData;
+        char caFileName[32]={'\0'};
+        sscanf(pdu->caData, "%s %lld", caFileName, &(OpeWidget::getInstance().getFile()->m_iTotal));
+        if (strlen(caFileName)>0 && OpeWidget::getInstance().getFile()->m_iTotal>0){
+            // if the file is valid, the client is in the state of downloading
+            OpeWidget::getInstance().getFile()->setDownload(true);
+            m_file.setFileName(OpeWidget::getInstance().getFile()->getSaveFilePath());
+            if (!m_file.open(QIODevice::WriteOnly)){
+                QMessageBox::warning(this, "Download file", "The path doesn't exist");
+            }
+        }
+        else{
+            QMessageBox::warning(this, "Download file", "The file you selected is empty!");
+        }
         break;
     }
     default:

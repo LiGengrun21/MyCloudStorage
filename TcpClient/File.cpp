@@ -10,6 +10,8 @@ File::File(QWidget *parent)
 {
     m_pTimer = new QTimer; // create the timer for uplaoding
 
+    m_bDownload=false;
+
     m_pList = new QListWidget();
     m_pBackPB = new QPushButton("Back");
     m_pCreateDirPB = new QPushButton("Create Directory");
@@ -61,6 +63,8 @@ File::File(QWidget *parent)
             , this, SLOT(uploadFileSendData()));
     connect(m_pDeleteFilePB, SIGNAL(clicked(bool))
             , this, SLOT(deleteFile()));
+    connect(m_pDownloadFilePB, SIGNAL(clicked(bool))
+            , this, SLOT(downloadFile()));
 }
 
 void File::updateFileList(const PDU *pdu)
@@ -87,6 +91,21 @@ void File::updateFileList(const PDU *pdu)
         m_pList->addItem(pItem);
     }
 
+}
+
+void File::setDownload(bool status)
+{
+    m_bDownload=status;
+}
+
+bool File::getDownload()
+{
+    return m_bDownload;
+}
+
+QString File::getSaveFilePath()
+{
+    return m_strSaveFilePath;
 }
 
 void File::createDir()
@@ -295,6 +314,34 @@ void File::deleteFile()
     // caMsg stores path and caData stores file name
     strncpy(pdu->caData, strFileName.toStdString().c_str(), strFileName.size());
     strncpy((char*)pdu->caMsg, curPath.toStdString().c_str(), curPath.size());
+    TcpClient::getInstance().getTcpSocket().write((char*) pdu, pdu->uiPDULen);
+    free(pdu);
+    pdu=NULL;
+}
+
+void File::downloadFile()
+{
+    QString strSavePath = QFileDialog::getSaveFileName(); //open a new window where you can select a path to store downloaded file
+    if (strSavePath.isEmpty()){
+        QMessageBox::warning(this, "Download File", "Please select a path");
+        m_strSaveFilePath.clear();
+    }
+    m_strSaveFilePath = strSavePath;
+
+    // get dir name
+    QListWidgetItem *pItem = m_pList->currentItem();
+    if (NULL==pItem){
+        QMessageBox::information(this, "Download file", "Please select a file to download!");
+        return;
+    }
+    // get current dir path
+    QString curPath = TcpClient::getInstance().getCurrentPath();
+    // get file name
+    QString strFileName = pItem->text();
+    PDU* pdu = mkPDU(curPath.size()+1);
+    pdu->uiMsgType = ENUM_MSG_TYPE_DOWNLOAD_FILE_REQUEST;
+    strncpy(pdu->caData, strFileName.toStdString().c_str(), strFileName.size());
+    memcpy(pdu->caMsg, curPath.toStdString().c_str(), curPath.size());
     TcpClient::getInstance().getTcpSocket().write((char*) pdu, pdu->uiPDULen);
     free(pdu);
     pdu=NULL;

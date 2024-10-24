@@ -16,6 +16,10 @@ MyTcpSocket::MyTcpSocket(QObject *parent)
             ,this, SLOT(clientOffline()));
 
     m_upload = false; // normally, the server is not in the state of uploading something
+
+    m_pTimer=new QTimer;
+    connect(m_pTimer, SIGNAL(timeout())
+            , this, SLOT(sendFileToClient()));
 }
 
 // getter of m_strName
@@ -523,6 +527,32 @@ void MyTcpSocket::recvMsg()
         respPdu = NULL;
         break;
     }
+    case ENUM_MSG_TYPE_DOWNLOAD_FILE_REQUEST:
+    {
+        char caFileName[32]={'\0'};
+        // get file name
+        strncpy(caFileName, pdu->caData, 32);
+        char* pPath = new char[pdu->uiMsgLen];
+        memcpy(pPath, pdu->caMsg, pdu->uiMsgLen);
+        QString strFilePath = QString("%1/%2").arg(pPath).arg(caFileName); //concat the string to make file path
+        delete [] pPath;
+        pPath = NULL;
+
+        QFileInfo fileInfo(strFilePath);
+        qint64 fileSize = fileInfo.size(); // get file size
+
+        respPdu=mkPDU(0);
+        respPdu->uiMsgType=ENUM_MSG_TYPE_DOWNLOAD_FILE_RESPONSE;
+        sprintf(respPdu->caData, "%s %lld", caFileName, fileSize); // tell client how big the file you want to download is
+        write((char*) respPdu, respPdu->uiPDULen);
+        free(respPdu);
+        respPdu = NULL;
+
+        m_file.setFileName(strFilePath);
+        m_file.open(QIODevice::ReadOnly);
+        m_pTimer->start(1000);
+        break;
+    }
     default:
         break;
     }
@@ -538,4 +568,27 @@ void MyTcpSocket::clientOffline()
     OpeDB::getInstance().logout(m_strName.toStdString().c_str());
     // once db operation is done, send the offline signal
     emit offline(this);
+}
+
+void MyTcpSocket::sendFileToClient()
+{
+    m_pTimer->stop(); // close the timer before sending data
+
+    char *pData = new char[4096];
+    qint64 result = 0;
+    while(true){
+        result = m_file.read(pData, 4096);
+        if (result>0 && result<=4096){
+            write(pData, result);
+        }
+        else if (0==result){
+            m_file.close();
+            break;
+        }
+        else if (result<0){
+            qDebug()<<"sendFileToClient failed";
+        }
+    }
+    delete [] pData;
+    pData=NULL;
 }

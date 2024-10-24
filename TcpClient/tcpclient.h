@@ -54,5 +54,6 @@ private:
     QTcpSocket m_tcpSocket; // to connect server
     QString m_strMyLoginName; // login name of the user
     QString m_strCurPath; // current path of user's folder
+    QFile m_file; // the file to open and read from server, for downloading function
 };
 #endif // TCPCLIENT_H
