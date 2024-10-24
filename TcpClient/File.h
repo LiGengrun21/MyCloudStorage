@@ -25,6 +25,7 @@ public slots:
     void backDir();
     void uploadFile();
     void uploadFileSendData();
+    void deleteFile();
 
 private:
     QListWidget *m_pList;

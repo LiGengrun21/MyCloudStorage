@@ -361,7 +361,7 @@ void MyTcpSocket::recvMsg()
         char* pPath = new char[pdu->uiMsgLen];
         memcpy(pPath, pdu->caMsg, pdu->uiMsgLen);
         QString strFilePath = QString("%1/%2").arg(pPath).arg(caName); //concat the string to make file path
-        qDebug()<<strFilePath;
+        //qDebug()<<strFilePath;
         QFileInfo file(strFilePath);
         bool result = false;
         if (file.isDir()){ // it is a dir
@@ -473,7 +473,7 @@ void MyTcpSocket::recvMsg()
         char caFileName[32]={'\0'};
         qint64 fileSize =0;
         // get file name and size
-        int ret = sscanf(pdu->caData, "%s %lld", caFileName, &fileSize);
+        sscanf(pdu->caData, "%s %lld", caFileName, &fileSize);
         //qDebug()<<"scanf: "<<ret;
         char* pPath = new char[pdu->uiMsgLen];
         memcpy(pPath, pdu->caMsg, pdu->uiMsgLen);
@@ -491,6 +491,36 @@ void MyTcpSocket::recvMsg()
             m_totalSize=fileSize;
             m_receivedSize=0;
         }
+        break;
+    }
+    case ENUM_MSG_TYPE_DELETE_FILE_REQUEST:
+    {
+        char caName[32]={'\0'};
+        strncpy(caName, pdu->caData,32);
+        char* pPath = new char[pdu->uiMsgLen];
+        memcpy(pPath, pdu->caMsg, pdu->uiMsgLen);
+        QString strFilePath = QString("%1/%2").arg(pPath).arg(caName); //concat the string to make file path
+        //qDebug()<<strFilePath;
+        QFileInfo file(strFilePath);
+        bool result = false;
+        if (file.isDir()){ // it is a dir, don't delete it
+            result=false;
+        }
+        else if (file.isFile()){ // a file, delete it
+            QDir dir;
+            result = dir.remove(strFilePath);
+        }
+        respPdu=mkPDU(0);
+        respPdu->uiMsgType=ENUM_MSG_TYPE_DELETE_FILE_RESPONSE;
+        if (result){
+            strcpy(respPdu->caData, "Deleted successfully!");
+        }
+        else{
+            strcpy(respPdu->caData, "Failed to delete the file!");
+        }
+        write((char*) respPdu, respPdu->uiPDULen);
+        free(respPdu);
+        respPdu = NULL;
         break;
     }
     default:

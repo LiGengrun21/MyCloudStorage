@@ -59,6 +59,8 @@ File::File(QWidget *parent)
     // when the timer is out, it's safe to send the file data to server
     connect(m_pTimer, SIGNAL(timeout())
             , this, SLOT(uploadFileSendData()));
+    connect(m_pDeleteFilePB, SIGNAL(clicked(bool))
+            , this, SLOT(deleteFile()));
 }
 
 void File::updateFileList(const PDU *pdu)
@@ -275,4 +277,25 @@ void File::uploadFileSendData()
     }
     file.close();
     delete [] pBuffer;
+}
+
+void File::deleteFile()
+{
+    // get current dir path
+    QString curPath = TcpClient::getInstance().getCurrentPath();
+    // get dir name
+    QListWidgetItem *pItem = m_pList->currentItem();
+    if (NULL==pItem){
+        QMessageBox::information(this, "Delete file", "Please select a file to delete!");
+        return;
+    }
+    QString strFileName = pItem->text();
+    PDU* pdu = mkPDU(curPath.size()+1);
+    pdu->uiMsgType = ENUM_MSG_TYPE_DELETE_FILE_REQUEST;
+    // caMsg stores path and caData stores file name
+    strncpy(pdu->caData, strFileName.toStdString().c_str(), strFileName.size());
+    strncpy((char*)pdu->caMsg, curPath.toStdString().c_str(), curPath.size());
+    TcpClient::getInstance().getTcpSocket().write((char*) pdu, pdu->uiPDULen);
+    free(pdu);
+    pdu=NULL;
 }

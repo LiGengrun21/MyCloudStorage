@@ -234,6 +234,11 @@ void TcpClient::recvMsg()
         QMessageBox::information(this, "Upload file", pdu->caData);
         break;
     }
+    case ENUM_MSG_TYPE_DELETE_FILE_RESPONSE:
+    {
+        QMessageBox::information(this, "Delete file", pdu->caData);
+        break;
+    }
     default:
         break;
     }
