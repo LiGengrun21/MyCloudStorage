@@ -37,6 +37,8 @@ public slots:
     void deleteFile();
     void downloadFile();
     void shareFile();
+    void moveFile();
+    void selectDestDir();
 
 private:
     QListWidget *m_pList;
@@ -49,6 +51,8 @@ private:
     QPushButton *m_pDownloadFilePB;
     QPushButton *m_pDeleteFilePB;
     QPushButton *m_pShareFilePB;
+    QPushButton *m_pMoveFilePB;
+    QPushButton *m_pSelectDirPB;
 
     QString m_strEnterDir; // for entering dir. Note: there is another dir string stored in Tcp Client but they are different
     QString m_strUploadFilePath; // store the path of uploading file
@@ -56,6 +60,9 @@ private:
     QString m_strSaveFilePath; // where to save the downloaded file
     bool m_bDownload; // state of dowlloading file
     QString m_strShareFileName; // the file to share
+    QString m_strMoveFileName; // the file to move
+    QString m_strMoveFilePath;
+    QString m_strDestDir;
 };
 
 #endif // FILE_H

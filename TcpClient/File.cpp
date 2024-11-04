@@ -32,12 +32,17 @@ File::File(QWidget *parent)
     m_pDownloadFilePB = new QPushButton("Downlaod File");
     m_pDeleteFilePB = new QPushButton("Delete File");
     m_pShareFilePB = new QPushButton("Share File");
+    m_pMoveFilePB = new QPushButton("Move file");
+    m_pSelectDirPB = new QPushButton("Target Directory");
+    m_pSelectDirPB->setEnabled(false);
 
     QVBoxLayout *pFileVBL = new QVBoxLayout;
     pFileVBL->addWidget(m_pUplaodFilePB);
     pFileVBL->addWidget(m_pDownloadFilePB);
     pFileVBL->addWidget(m_pDeleteFilePB);
     pFileVBL->addWidget(m_pShareFilePB);
+    pFileVBL->addWidget(m_pMoveFilePB);
+    pFileVBL->addWidget(m_pSelectDirPB);
 
     QHBoxLayout *pMain = new QHBoxLayout;
     pMain->addWidget(m_pList);
@@ -69,6 +74,10 @@ File::File(QWidget *parent)
             , this, SLOT(downloadFile()));
     connect(m_pShareFilePB, SIGNAL(clicked(bool))
             , this, SLOT(shareFile()));
+    connect(m_pMoveFilePB, SIGNAL(clicked(bool))
+            , this, SLOT(moveFile()));
+    connect(m_pSelectDirPB, SIGNAL(clicked(bool))
+            , this, SLOT(selectDestDir()));
 }
 
 void File::updateFileList(const PDU *pdu)
@@ -373,4 +382,44 @@ void File::shareFile()
     if (ShareFile::getInstance().isHidden()){
         ShareFile::getInstance().show();
     }
+}
+
+void File::moveFile()
+{
+    QListWidgetItem *pCurItem = m_pList->currentItem();
+    if (NULL!=pCurItem){
+        m_strMoveFileName = pCurItem->text();
+        QString strCurPath = TcpClient::getInstance().getCurrentPath();
+        m_strMoveFilePath = strCurPath + '/' + m_strMoveFileName;
+        m_pSelectDirPB->setEnabled(true);
+    }
+    else{
+        QMessageBox::warning(this, "Move file", "Please select the file to move");
+    }
+}
+
+void File::selectDestDir()
+{
+    QListWidgetItem *pCurItem = m_pList->currentItem();
+    if (NULL!=pCurItem){
+        QString strDestDir = pCurItem->text();
+        QString strCurPath = TcpClient::getInstance().getCurrentPath();
+        m_strDestDir = strCurPath + '/' + strDestDir;
+
+        int srcLen = m_strMoveFilePath.size();
+        int destLen = m_strDestDir.size();
+        PDU *pdu=mkPDU(srcLen+destLen+2);
+        pdu->uiMsgType=ENUM_MSG_TYPE_MOVE_FILE_REQUEST;
+        // caData stores size of m_strMoveFilePath, size of m_strDestDir, and m_strMoveFileName itself
+        sprintf(pdu->caData, "%d %d %s", srcLen, destLen, m_strMoveFileName.toStdString().c_str());
+        memcpy(pdu->caMsg, m_strMoveFilePath.toStdString().c_str(), srcLen);
+        memcpy((char*)(pdu->caMsg) + srcLen + 1, m_strDestDir.toStdString().c_str(), destLen); // cast to char* to let pointer arithmetic to be in terms of bytes instead of int units (usually 4 bytes).
+        TcpClient::getInstance().getTcpSocket().write((char*) pdu, pdu->uiPDULen);
+        free(pdu);
+        pdu=NULL;
+    }
+    else{
+        QMessageBox::warning(this, "Move file", "Please select the file to move");
+    }
+    m_pSelectDirPB->setEnabled(false);
 }

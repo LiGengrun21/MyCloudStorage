@@ -306,6 +306,11 @@ void TcpClient::recvMsg()
         }
         break;
     }
+    case ENUM_MSG_TYPE_MOVEE_FILE_RESPONSE:
+    {
+        QMessageBox::information(this, "Move file", pdu->caData);
+        break;
+    }
     default:
         break;
     }

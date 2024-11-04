@@ -646,6 +646,43 @@ void MyTcpSocket::recvMsg()
         }
         break;
     }
+    case ENUM_MSG_TYPE_MOVE_FILE_REQUEST:
+    {
+        char caFileName[32]={'\0'};
+        int srcLen = 0;
+        int destLen = 0;
+        sscanf(pdu->caData, "%d %d %s", &srcLen, &destLen, caFileName);
+        char *pSrcPath = new char[srcLen+1];
+        char *pDestPath = new char[destLen+1+32];// 32 is the file name, for concating
+        memset(pSrcPath, '\0', srcLen+1);
+        memset(pDestPath, '\0', destLen+1+32);
+
+        memcpy(pSrcPath, pdu->caMsg, srcLen);
+        mempcpy(pDestPath, (char*) (pdu->caMsg) + srcLen +1, destLen);
+
+        respPdu = mkPDU(0);
+        respPdu->uiMsgType=ENUM_MSG_TYPE_MOVEE_FILE_RESPONSE;
+        QFileInfo fileInfo(pDestPath);
+        if (fileInfo.isDir()){
+            strcat(pDestPath, "/");
+            strcat(pDestPath, caFileName);
+            bool result = QFile::rename(pSrcPath, pDestPath); // move the dir by renaming it
+            if (result){
+                strcpy(respPdu->caData, "Moved successfully");
+            }
+            else{
+                 strcpy(respPdu->caData, "System failed");
+            }
+        }
+        else if(fileInfo.isFile()){
+            // cannot move a normal file
+            strcpy(respPdu->caData, "Failed to move: not a directory");
+        }
+        write((char*) respPdu, respPdu->uiPDULen);
+        free(respPdu);
+        respPdu = NULL;
+        break;
+    }
     default:
         break;
     }
