@@ -28,6 +28,45 @@ QString MyTcpSocket::getName()
     return m_strName;
 }
 
+void MyTcpSocket::copyDir(QString strSrcDir, QString strDestDir)
+{
+    // qDebug()<<"strSrcDir: "<<strSrcDir;
+    // qDebug()<<"strDestDir: "<<strDestDir;
+    QDir dir;
+    dir.mkdir(strDestDir);
+
+    dir.setPath(strSrcDir);
+    QFileInfoList fileInfoList = dir.entryInfoList(); // get file list
+    QString srcDirTmp;
+    QString destDirTmp;
+     // recursive
+    for (int i=0;i<fileInfoList.size();i++){
+        // test
+        qDebug()<<"filename: "<<fileInfoList[i].fileName();
+        if (fileInfoList[i].isFile()){
+            // if it's a file
+            srcDirTmp = strSrcDir + '/' + fileInfoList[i].fileName();
+            destDirTmp = strDestDir + '/' + fileInfoList[i].fileName();
+            // test
+            qDebug()<<"srcDirTmp: "<<srcDirTmp;
+            qDebug()<<"destDirTmp: "<<destDirTmp;
+            QFile::copy(srcDirTmp, destDirTmp);
+        }
+        else if(fileInfoList[i].isDir()){
+            if (QString(".")==fileInfoList[i].fileName() || QString("..")==fileInfoList[i].fileName()){
+                continue;
+            }
+            // if it's not a file, invoke copyDir recursively
+            srcDirTmp = strSrcDir + '/' + fileInfoList[i].fileName();
+            destDirTmp = strDestDir + '/' + fileInfoList[i].fileName();
+            //test
+            qDebug()<<"srcDirTmp: "<<srcDirTmp;
+            qDebug()<<"destDirTmp: "<<destDirTmp;
+            copyDir(srcDirTmp, destDirTmp);
+        }
+    }
+}
+
 void MyTcpSocket::recvMsg()
 {
     // Not PDU, it's uploading file
@@ -551,6 +590,60 @@ void MyTcpSocket::recvMsg()
         m_file.setFileName(strFilePath);
         m_file.open(QIODevice::ReadOnly);
         m_pTimer->start(1000);
+        break;
+    }
+    case ENUM_MSG_TYPE_SHARE_FILE_REQUEST:
+    {
+        char caSenderName[32] = {'\0'}; // shared by
+        int num=0; // number of receivers
+        sscanf(pdu->caData, "%s %d", caSenderName, &num);
+        int size = num*32; // how much memory does the receivers' names occupy
+        respPdu = mkPDU(pdu->uiMsgLen-size); // subtract the memory of receivers' names
+        respPdu->uiMsgType=ENUM_MSG_TYPE_SHARE_FILE_NOTE_REQUEST;
+        // shared by is stored in caData
+        strcpy(respPdu->caData, caSenderName);
+        // file path is stored in caMsg
+        memcpy(respPdu->caMsg, (char*)(pdu->caMsg)+size, pdu->uiMsgLen-size);
+
+        // store one receiver's name
+        char caRecvName[32]={'\0'};
+        for(int i=0;i<num;i++){
+            memcpy(caRecvName, (char*)(pdu->caMsg)+32*i, 32); // copy receicer's name
+            MyTcpServer::getInstance().forward(caRecvName, respPdu);
+        }
+        free(respPdu);
+        respPdu = NULL;
+
+        // create another pdu to tell the shared by the file has been shared
+        respPdu=mkPDU(0);
+        respPdu->uiMsgType=ENUM_MSG_TYPE_SHARE_FILE_RESPONSE;
+        strcpy(respPdu->caData, "Shared!");
+        write((char*) respPdu, respPdu->uiPDULen);
+        free(respPdu);
+        respPdu = NULL;
+        break;
+    }
+    case ENUM_MSG_TYPE_SHARE_FILE_NOTE_RESPONSE:
+    {
+        QString strRecvPath = QString("./storage/%1").arg(pdu->caData); // copy to the someone's root directory
+        QString strShareFilePath = QString("%1").arg((char*)(pdu->caMsg));
+        int index = strShareFilePath.lastIndexOf('/');
+        QString strFileName = strShareFilePath.right(strShareFilePath.size()-index-1); // get file name
+        strRecvPath = strRecvPath+'/'+strFileName; // concat to get full dir of the file
+
+        // test
+        qDebug()<<"strShareFilePath: "<<strShareFilePath;
+        qDebug()<<"strRecvPath: "<<strRecvPath;
+
+        QFileInfo fileInfo(strShareFilePath);
+        // the shared could be normal file or directory
+        if (fileInfo.isFile()){
+
+            QFile::copy(strShareFilePath, strRecvPath); // copy the file from strShareFilePath to strRecvPath
+        }
+        else if (fileInfo.isDir()){
+            copyDir(strShareFilePath, strRecvPath);
+        }
         break;
     }
     default:

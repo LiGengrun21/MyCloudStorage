@@ -1,5 +1,7 @@
 #include "File.h"
 #include "tcpclient.h"
+#include "sharefile.h"
+#include "opewidget.h"
 #include <QInputDialog>
 #include <QMessageBox>
 #include <QFileDialog>
@@ -29,13 +31,13 @@ File::File(QWidget *parent)
     m_pUplaodFilePB = new QPushButton("Upload File");
     m_pDownloadFilePB = new QPushButton("Downlaod File");
     m_pDeleteFilePB = new QPushButton("Delete File");
-    m_pShareFileFilePB = new QPushButton("Share File");
+    m_pShareFilePB = new QPushButton("Share File");
 
     QVBoxLayout *pFileVBL = new QVBoxLayout;
     pFileVBL->addWidget(m_pUplaodFilePB);
     pFileVBL->addWidget(m_pDownloadFilePB);
     pFileVBL->addWidget(m_pDeleteFilePB);
-    pFileVBL->addWidget(m_pShareFileFilePB);
+    pFileVBL->addWidget(m_pShareFilePB);
 
     QHBoxLayout *pMain = new QHBoxLayout;
     pMain->addWidget(m_pList);
@@ -65,6 +67,8 @@ File::File(QWidget *parent)
             , this, SLOT(deleteFile()));
     connect(m_pDownloadFilePB, SIGNAL(clicked(bool))
             , this, SLOT(downloadFile()));
+    connect(m_pShareFilePB, SIGNAL(clicked(bool))
+            , this, SLOT(shareFile()));
 }
 
 void File::updateFileList(const PDU *pdu)
@@ -106,6 +110,11 @@ bool File::getDownload()
 QString File::getSaveFilePath()
 {
     return m_strSaveFilePath;
+}
+
+QString File::getShareFileName()
+{
+    return m_strShareFileName;
 }
 
 void File::createDir()
@@ -345,4 +354,23 @@ void File::downloadFile()
     TcpClient::getInstance().getTcpSocket().write((char*) pdu, pdu->uiPDULen);
     free(pdu);
     pdu=NULL;
+}
+
+void File::shareFile()
+{
+    // get dir name
+    QListWidgetItem *pItem = m_pList->currentItem();
+    if (NULL==pItem){
+        QMessageBox::information(this, "Share file", "Please select a file to share!");
+        return;
+    }
+    m_strShareFileName = pItem->text(); // get name of the file to share
+    // if at least file has been selected, then...
+    Friend *pFriend = OpeWidget::getInstance().getFriend();
+    QListWidget *pFriendList = pFriend->getFriendList();
+    qDebug()<<"friend list: "<<pFriendList->count();
+    ShareFile::getInstance().updateFriend(pFriendList); // update the new friend list in the share file widget
+    if (ShareFile::getInstance().isHidden()){
+        ShareFile::getInstance().show();
+    }
 }

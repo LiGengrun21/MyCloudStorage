@@ -5,6 +5,7 @@
 #include <QDebug>
 #include "privatechat.h"
 #include <QMessageBox>
+#include "opewidget.h"
 
 Friend::Friend(QWidget *parent)
     : QWidget{parent}
@@ -179,4 +180,9 @@ void Friend::updateFriendList(PDU *pdu)
 void Friend::updateGroupChatMsg(PDU* pdu){
     QString msg = QString("%1 said: %2").arg(pdu->caData).arg((char*)pdu->caMsg);
     m_pShowMsgTE->append(msg);
+}
+
+QListWidget *Friend::getFriendList()
+{
+    return m_pFriendListWidget;
 }

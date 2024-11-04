@@ -13,6 +13,7 @@ class MyTcpSocket : public QTcpSocket
 public:
     explicit MyTcpSocket(QObject *parent = nullptr);
     QString getName();
+    void copyDir(QString strSrcDir, QString strDestDir); // function for copying folder
 
 signals:
     void offline(MyTcpSocket* socket); // offline signal

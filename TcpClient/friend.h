@@ -17,6 +17,7 @@ public:
     void showAllOnlineUsers(PDU *pdu); // show all online users
     void updateFriendList(PDU *pdu); // update friend list (both online and offline)
     void updateGroupChatMsg(PDU *pdu); // add the new message to group chat
+    QListWidget *getFriendList();
 
     QString m_searchName; // tmp, for showing name in QMessageBox while searching
 

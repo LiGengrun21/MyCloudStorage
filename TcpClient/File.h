@@ -18,6 +18,7 @@ public:
     void setDownload(bool status);
     bool getDownload();
     QString getSaveFilePath();
+    QString getShareFileName();
 
     qint64 m_iTotal; // file size
     qint64 m_iReceived; // how many received so far
@@ -35,6 +36,7 @@ public slots:
     void uploadFileSendData();
     void deleteFile();
     void downloadFile();
+    void shareFile();
 
 private:
     QListWidget *m_pList;
@@ -46,13 +48,14 @@ private:
     QPushButton *m_pUplaodFilePB;
     QPushButton *m_pDownloadFilePB;
     QPushButton *m_pDeleteFilePB;
-    QPushButton *m_pShareFileFilePB;
+    QPushButton *m_pShareFilePB;
 
     QString m_strEnterDir; // for entering dir. Note: there is another dir string stored in Tcp Client but they are different
     QString m_strUploadFilePath; // store the path of uploading file
     QTimer *m_pTimer;
     QString m_strSaveFilePath; // where to save the downloaded file
     bool m_bDownload; // state of dowlloading file
+    QString m_strShareFileName; // the file to share
 };
 
 #endif // FILE_H

@@ -279,6 +279,33 @@ void TcpClient::recvMsg()
         }
         break;
     }
+    case ENUM_MSG_TYPE_SHARE_FILE_RESPONSE:
+    {
+        QMessageBox::information(this, "Share file", pdu->caData);
+        break;
+    }
+    case ENUM_MSG_TYPE_SHARE_FILE_NOTE_REQUEST:
+    {
+        char *pPath = new char[pdu->uiMsgType];
+        memcpy(pPath, pdu->caMsg, pdu->uiMsgLen);
+        char *pos = strrchr(pPath, '/'); // get the position of last /
+        if (NULL!=pos){
+            pos++; // the next
+            QString strNotification = QString("%1 shared file: %2 \n Do you accept it?").arg(pdu->caData).arg(pos);
+            int result = QMessageBox::question(this, "Share file", strNotification);
+            if (result==QMessageBox::Yes){ // say yes to the shared file
+                PDU *respPDU=mkPDU(pdu->uiMsgLen);
+                respPDU->uiMsgType=ENUM_MSG_TYPE_SHARE_FILE_NOTE_RESPONSE;
+                memcpy(respPDU->caMsg, pdu->caMsg, pdu->uiMsgLen);
+                QString strName = TcpClient::getInstance().getMyLoginName();
+                strcpy(respPDU->caData, strName.toStdString().c_str());
+                m_tcpSocket.write((char*) respPDU, respPDU->uiPDULen);
+                free(respPDU);
+                respPDU=NULL;
+            }
+        }
+        break;
+    }
     default:
         break;
     }
